@@ -161,7 +161,7 @@ class ProductResource extends Resource
                                     ->relationship('variants')
                                     ->schema([
                                         // Color Info
-                                        Forms\Components\Section::make('Color Information')
+                                        Forms\Components\Section::make(__('app.label.color_information'))
                                             ->schema([
                                                 Forms\Components\Grid::make(3)
                                                     ->schema([
@@ -175,7 +175,7 @@ class ProductResource extends Resource
                                                             ->columnSpan(1),
 
                                                         Forms\Components\TextInput::make('sku')
-                                                            ->label('SKU')
+                                                            ->label(__('app.label.sku'))
                                                             ->helperText('Stock Keeping Unit')
                                                             ->maxLength(64)
                                                             ->columnSpan(1),
@@ -183,7 +183,7 @@ class ProductResource extends Resource
                                             ]),
 
                                         // Pricing
-                                        Forms\Components\Section::make('Pricing')
+                                        Forms\Components\Section::make(__('app.label.pricing'))
                                             ->schema([
                                                 Forms\Components\Grid::make(2)
                                                     ->schema([
@@ -202,10 +202,10 @@ class ProductResource extends Resource
                                             ->collapsible(),
 
                                         // Materials
-                                        Forms\Components\Section::make('Materials')
+                                        Forms\Components\Section::make(__('app.label.materials'))
                                             ->schema([
                                                 Forms\Components\Select::make('materials')
-                                                    ->label('Materials')
+                                                    ->label(__('app.label.materials'))
                                                     ->relationship('materials', 'name')
                                                     ->multiple()
                                                     ->preload()
@@ -215,7 +215,7 @@ class ProductResource extends Resource
                                             ->collapsible(),
 
                                         // Image
-                                        Forms\Components\Section::make('Main Image')
+                                        Forms\Components\Section::make(__('app.label.main_image'))
                                             ->schema([
                                                 Forms\Components\SpatieMediaLibraryFileUpload::make('variant_image')
                                                     ->collection('variant_image')
@@ -232,10 +232,10 @@ class ProductResource extends Resource
                                             ->collapsible(),
 
                                         // Sizes with Stock
-                                        Forms\Components\Section::make('Sizes & Stock')
+                                        Forms\Components\Section::make(__('app.label.sizes_stock'))
                                             ->schema([
                                                 Forms\Components\Repeater::make('sizes')
-                                                    ->label('Sizes')
+                                                    ->label(__('app.label.sizes'))
                                                     ->relationship('sizes')
                                                     ->schema([
                                                         Forms\Components\Grid::make(4)
@@ -248,7 +248,7 @@ class ProductResource extends Resource
                                                                     ->columnSpan(1),
 
                                                                 Forms\Components\TextInput::make('stock')
-                                                                    ->label('Stock')
+                                                                    ->label(__('app.label.stock'))
                                                                     ->numeric()
                                                                     ->default(0)
                                                                     ->minValue(0)
@@ -279,7 +279,7 @@ class ProductResource extends Resource
                                             ->collapsible(),
 
                                         // Status & Sort
-                                        Forms\Components\Section::make('Settings')
+                                        Forms\Components\Section::make(__('app.label.settings'))
                                             ->schema([
                                                 Forms\Components\Grid::make(2)
                                                     ->schema([
@@ -354,7 +354,7 @@ class ProductResource extends Resource
 
                                 Forms\Components\SpatieMediaLibraryFileUpload::make('hover_image')
                                     ->collection('hover_image')
-                                    ->label('Hover Image')
+                                    ->label(__('app.label.hover_image'))
                                     ->helperText('Image shown on hover in catalog')
                                     ->image()
                                     ->downloadable()
