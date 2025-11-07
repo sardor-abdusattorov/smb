@@ -399,28 +399,100 @@ class ProductResource extends Resource
             ->defaultSort('updated_at', 'desc')
             ->columns([
 
-                Tables\Columns\TextColumn::make('name')
-                    ->label(__('app.label.name'))
-                    ->sortable()
-                    ->wrap()
-                    ->searchable(),
-
                 SpatieMediaLibraryImageColumn::make('preview_image')
                     ->collection('preview_image')
                     ->label(__('app.label.preview_image'))
                     ->square()
-                    ->height(75),
+                    ->height(60),
+
+                Tables\Columns\TextColumn::make('name')
+                    ->label(__('app.label.name'))
+                    ->sortable()
+                    ->searchable()
+                    ->limit(30),
+
+                Tables\Columns\TextColumn::make('category.name')
+                    ->label(__('app.label.category'))
+                    ->sortable()
+                    ->searchable()
+                    ->toggleable(),
+
+                Tables\Columns\TextColumn::make('subcategory.name')
+                    ->label(__('app.label.subcategory'))
+                    ->sortable()
+                    ->searchable()
+                    ->toggleable(),
+
+                Tables\Columns\TextColumn::make('price')
+                    ->label(__('app.label.price'))
+                    ->money('UZS', locale: 'uz_UZ')
+                    ->sortable(),
+
+                Tables\Columns\TextColumn::make('variants_count')
+                    ->label(__('app.label.variants'))
+                    ->counts('variants')
+                    ->sortable()
+                    ->alignCenter(),
+
+                Tables\Columns\TextColumn::make('variants.sizes_sum_stock')
+                    ->label(__('app.label.total_stock'))
+                    ->sum('variants.sizes', 'stock')
+                    ->alignCenter()
+                    ->toggleable(),
+
+                Tables\Columns\IconColumn::make('is_new_collection')
+                    ->label(__('app.label.is_new'))
+                    ->boolean()
+                    ->toggleable()
+                    ->alignCenter(),
+
+                Tables\Columns\IconColumn::make('status')
+                    ->label(__('app.label.status'))
+                    ->boolean()
+                    ->sortable()
+                    ->alignCenter(),
+
+                Tables\Columns\TextColumn::make('sort')
+                    ->label(__('app.label.sort'))
+                    ->sortable()
+                    ->toggleable()
+                    ->alignCenter(),
+
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->label(__('app.label.updated'))
+                    ->dateTime('d.m.Y H:i')
+                    ->sortable()
+                    ->toggleable(),
 
                 Tables\Columns\TextColumn::make('created_at')
                     ->label(__('app.label.created'))
                     ->dateTime('d.m.Y H:i')
-                    ->toggleable()
+                    ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 SelectFilter::make('status')
                     ->label(__('app.label.status'))
                     ->options(Product::statusOptions()),
+
+                SelectFilter::make('category_id')
+                    ->label(__('app.label.category'))
+                    ->relationship('category', 'name')
+                    ->searchable()
+                    ->preload(),
+
+                SelectFilter::make('subcategory_id')
+                    ->label(__('app.label.subcategory'))
+                    ->relationship('subcategory', 'name')
+                    ->searchable()
+                    ->preload(),
+
+                SelectFilter::make('is_new_collection')
+                    ->label(__('app.label.is_new'))
+                    ->options([
+                        1 => __('app.status.active'),
+                        0 => __('app.status.inactive'),
+                    ]),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),

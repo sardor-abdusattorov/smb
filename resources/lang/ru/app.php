@@ -34,6 +34,7 @@ return [
         'main_image' => 'Главное фото',
         'sizes_stock' => 'Размеры и остатки',
         'stock' => 'Остаток',
+        'total_stock' => 'Общий остаток',
         'sku' => 'Артикул',
         'settings' => 'Настройки',
         'seo' => 'SEO',

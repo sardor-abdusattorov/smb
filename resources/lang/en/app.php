@@ -34,6 +34,7 @@ return [
         'main_image' => 'Main Image',
         'sizes_stock' => 'Sizes & Stock',
         'stock' => 'Stock',
+        'total_stock' => 'Total Stock',
         'sku' => 'SKU',
         'settings' => 'Settings',
         'seo' => 'SEO',
