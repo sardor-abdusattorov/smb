@@ -191,6 +191,17 @@ return [
         'menu_title' => 'Enter menu title',
         'helper_slug' => 'Only latin letters, numbers, dash and underscore. Example: my-category-1',
         'menu_group' => 'Select a group (e.g. "For buyers" or "Data security")',
+        'sku_helper' => 'Stock Keeping Unit (article number)',
+        'price_helper' => 'Leave empty to use product base price',
+        'materials_helper' => 'Select materials for this color variant',
+        'variant_image_helper' => 'Main image for this color',
+        'dimensions_helper' => 'e.g. 30x40x15 cm',
+        'preview_image_helper' => 'Main image for catalog',
+        'hover_image_helper' => 'Image shown on hover in catalog',
+        'add_color_variant' => 'Add Color Variant',
+        'add_size' => 'Add Size',
+        'new_variant' => 'New Variant',
+        'new_size' => 'New Size',
     ],
 
 ];

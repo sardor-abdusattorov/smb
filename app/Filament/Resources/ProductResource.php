@@ -176,7 +176,7 @@ class ProductResource extends Resource
 
                                                         Forms\Components\TextInput::make('sku')
                                                             ->label(__('app.label.sku'))
-                                                            ->helperText('Stock Keeping Unit')
+                                                            ->helperText(__('app.helper.sku_helper'))
                                                             ->maxLength(64)
                                                             ->columnSpan(1),
                                                     ]),
@@ -190,7 +190,7 @@ class ProductResource extends Resource
                                                         Forms\Components\TextInput::make('price')
                                                             ->label(__('app.label.price'))
                                                             ->numeric()
-                                                            ->helperText('Leave empty to use product base price')
+                                                            ->helperText(__('app.helper.price_helper'))
                                                             ->columnSpan(1),
 
                                                         Forms\Components\TextInput::make('old_price')
@@ -210,7 +210,7 @@ class ProductResource extends Resource
                                                     ->multiple()
                                                     ->preload()
                                                     ->searchable()
-                                                    ->helperText('Select materials for this color variant'),
+                                                    ->helperText(__('app.helper.materials_helper')),
                                             ])
                                             ->collapsible(),
 
@@ -220,7 +220,7 @@ class ProductResource extends Resource
                                                 Forms\Components\SpatieMediaLibraryFileUpload::make('variant_image')
                                                     ->collection('variant_image')
                                                     ->label(__('app.label.variant_image'))
-                                                    ->helperText('Main image for this color')
+                                                    ->helperText(__('app.helper.variant_image_helper'))
                                                     ->image()
                                                     ->downloadable()
                                                     ->openable()
@@ -257,7 +257,7 @@ class ProductResource extends Resource
 
                                                                 Forms\Components\TextInput::make('dimensions')
                                                                     ->label(__('app.label.dimensions'))
-                                                                    ->helperText('e.g. 30x40x15 cm')
+                                                                    ->helperText(__('app.helper.dimensions_helper'))
                                                                     ->maxLength(128)
                                                                     ->columnSpan(1),
 
@@ -268,12 +268,12 @@ class ProductResource extends Resource
                                                             ]),
                                                     ])
                                                     ->defaultItems(0)
-                                                    ->addActionLabel('Add Size')
+                                                    ->addActionLabel(__('app.helper.add_size'))
                                                     ->collapsible()
                                                     ->itemLabel(fn (array $state): ?string =>
                                                         isset($state['size_id'])
-                                                            ? \App\Models\ProductSize::find($state['size_id'])?->name . ' (Stock: ' . ($state['stock'] ?? 0) . ')'
-                                                            : 'New Size'
+                                                            ? \App\Models\ProductSize::find($state['size_id'])?->name . ' (' . __('app.label.stock') . ': ' . ($state['stock'] ?? 0) . ')'
+                                                            : __('app.helper.new_size')
                                                     ),
                                             ])
                                             ->collapsible(),
@@ -299,10 +299,10 @@ class ProductResource extends Resource
                                             ->collapsed(),
                                     ])
                                     ->defaultItems(0)
-                                    ->addActionLabel('Add Color Variant')
+                                    ->addActionLabel(__('app.helper.add_color_variant'))
                                     ->orderable('sort')
                                     ->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['color_name'] ?? 'New Variant')
+                                    ->itemLabel(fn (array $state): ?string => $state['color_name'] ?? __('app.helper.new_variant'))
                                     ->columnSpanFull(),
                             ]),
 
@@ -342,7 +342,7 @@ class ProductResource extends Resource
                                 Forms\Components\SpatieMediaLibraryFileUpload::make('preview_image')
                                     ->collection('preview_image')
                                     ->label(__('app.label.preview_image'))
-                                    ->helperText('Main image for catalog')
+                                    ->helperText(__('app.helper.preview_image_helper'))
                                     ->image()
                                     ->downloadable()
                                     ->openable()
@@ -355,7 +355,7 @@ class ProductResource extends Resource
                                 Forms\Components\SpatieMediaLibraryFileUpload::make('hover_image')
                                     ->collection('hover_image')
                                     ->label(__('app.label.hover_image'))
-                                    ->helperText('Image shown on hover in catalog')
+                                    ->helperText(__('app.helper.hover_image_helper'))
                                     ->image()
                                     ->downloadable()
                                     ->openable()
