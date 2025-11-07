@@ -64,31 +64,17 @@ class Product extends Model implements HasMedia
         return $this->hasMany(ProductVariant::class);
     }
 
-    /**
-     * @deprecated Use variants()->with('sizes') instead
-     */
-    public function sizeValues()
-    {
-        return $this->hasMany(ProductSizeValue::class, 'product_id');
-    }
-
     public function scopeNewActive($query)
     {
         return $query->where('is_new_collection', true)
             ->where('status', 1)
-            ->where(function ($q) {
-                $q->whereHas('variants', fn($sub) => $sub->where('status', 1))
-                    ->orWhereHas('sizeValues', fn($sub) => $sub->where('status', 1));
-            });
+            ->whereHas('variants', fn($sub) => $sub->where('status', 1));
     }
 
     public function scopeActive($query)
     {
         return $query->where('status', 1)
-            ->where(function ($q) {
-                $q->whereHas('variants', fn($sub) => $sub->where('status', 1))
-                    ->orWhereHas('sizeValues', fn($sub) => $sub->where('status', 1));
-            });
+            ->whereHas('variants', fn($sub) => $sub->where('status', 1));
     }
 
     public function registerMediaCollections(): void
@@ -110,20 +96,14 @@ class Product extends Model implements HasMedia
     public function scopeNewProducts($query)
     {
         return $query->where('status', 1)
-            ->where(function ($q) {
-                $q->whereHas('variants', fn($sub) => $sub->where('status', 1))
-                    ->orWhereHas('sizeValues', fn($sub) => $sub->where('status', 1));
-            });
+            ->whereHas('variants', fn($sub) => $sub->where('status', 1));
     }
 
     public function scopeNewCollection($query)
     {
         return $query->where('is_new_collection', true)
             ->where('status', 1)
-            ->where(function ($q) {
-                $q->whereHas('variants', fn($sub) => $sub->where('status', 1))
-                    ->orWhereHas('sizeValues', fn($sub) => $sub->where('status', 1));
-            });
+            ->whereHas('variants', fn($sub) => $sub->where('status', 1));
     }
 
 }
