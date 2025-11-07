@@ -64,11 +64,9 @@ class Product extends Model implements HasMedia
         return $this->hasMany(ProductVariant::class);
     }
 
-    public function materials()
-    {
-        return $this->hasMany(ProductMaterial::class);
-    }
-
+    /**
+     * @deprecated Use variants()->with('sizes') instead
+     */
     public function sizeValues()
     {
         return $this->hasMany(ProductSizeValue::class, 'product_id');
@@ -96,6 +94,7 @@ class Product extends Model implements HasMedia
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('preview_image')->singleFile();
+        $this->addMediaCollection('hover_image')->singleFile();
         $this->addMediaCollection('gallery');
     }
 

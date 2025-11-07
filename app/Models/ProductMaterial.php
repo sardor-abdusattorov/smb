@@ -29,8 +29,18 @@ class ProductMaterial extends Model
         ];
     }
 
-    public function product()
+    public function variants()
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsToMany(ProductVariant::class, 'product_material_variant', 'material_id', 'variant_id')
+            ->withTimestamps();
+    }
+
+    public static function listOptions(): array
+    {
+        return self::query()
+            ->where('status', self::STATUS_ACTIVE)
+            ->orderBy('sort')
+            ->pluck('name', 'id')
+            ->toArray();
     }
 }

@@ -16,12 +16,17 @@ class ProductVariant extends Model implements HasMedia
         'product_id',
         'color_name',
         'color_code',
+        'price',
+        'old_price',
+        'sku',
         'sort',
         'status',
     ];
 
     protected $casts = [
         'status' => 'boolean',
+        'price' => 'decimal:2',
+        'old_price' => 'decimal:2',
     ];
 
     public const STATUS_ACTIVE   = 1;
@@ -38,6 +43,17 @@ class ProductVariant extends Model implements HasMedia
     public function product()
     {
         return $this->belongsTo(Product::class);
+    }
+
+    public function sizes()
+    {
+        return $this->hasMany(ProductVariantSize::class, 'variant_id');
+    }
+
+    public function materials()
+    {
+        return $this->belongsToMany(ProductMaterial::class, 'product_material_variant', 'variant_id', 'material_id')
+            ->withTimestamps();
     }
 
     public function registerMediaCollections(): void
