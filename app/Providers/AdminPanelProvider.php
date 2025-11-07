@@ -99,11 +99,12 @@ class AdminPanelProvider extends PanelProvider
 
             ])
             ->navigationGroups([
-                NavigationGroup::make()
-                    ->label(fn () => __('app.label.resources')),
 
                 NavigationGroup::make()
                     ->label(fn () => __('app.label.catalog')),
+
+                NavigationGroup::make()
+                    ->label(fn () => __('app.label.resources')),
 
                 NavigationGroup::make()
                     ->label(fn () => __('app.label.settings')),
