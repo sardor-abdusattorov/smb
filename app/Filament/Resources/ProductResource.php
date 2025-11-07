@@ -153,74 +153,156 @@ class ProductResource extends Resource
                                     ->columns(1),
                             ]),
 
-                        Forms\Components\Tabs\Tab::make(__('app.label.sizes'))
-                            ->schema([
-                                Forms\Components\Repeater::make('sizeValues')
-                                    ->label(__('app.label.sizes'))
-                                    ->relationship('sizeValues') // связь в модели Product
-                                    ->schema([
-                                        Forms\Components\Select::make('size_id')
-                                            ->label(__('app.label.size'))
-                                            ->options(\App\Models\ProductSize::pluck('name', 'id'))
-                                            ->searchable()
-                                            ->required(),
-
-                                        Forms\Components\TextInput::make('dimensions')
-                                            ->label(__('app.label.dimensions'))
-                                            ->maxLength(128),
-
-                                        Forms\Components\Toggle::make('status')
-                                            ->label(__('app.label.status'))
-                                            ->default(true),
-
-                                        Forms\Components\TextInput::make('sort')
-                                            ->label(__('app.label.sort'))
-                                            ->numeric()
-                                            ->default(0),
-                                    ])
-                                    ->default([])
-                                    ->orderable('sort')
-                                    ->collapsible()
-                                    ->columnSpanFull(),
-                            ]),
-
-                        // --- Variants ---
+                        // --- Variants (Colors) ---
                         Forms\Components\Tabs\Tab::make(__('app.label.variants'))
                             ->schema([
                                 Forms\Components\Repeater::make('variants')
                                     ->label(__('app.label.variants'))
-                                    ->relationship('variants') // связь в модели Product
+                                    ->relationship('variants')
                                     ->schema([
-                                        Forms\Components\TextInput::make('color_name')
-                                            ->label(__('app.label.color_name'))
-                                            ->required(),
+                                        // Color Info
+                                        Forms\Components\Section::make('Color Information')
+                                            ->schema([
+                                                Forms\Components\Grid::make(3)
+                                                    ->schema([
+                                                        Forms\Components\TextInput::make('color_name')
+                                                            ->label(__('app.label.color_name'))
+                                                            ->required()
+                                                            ->columnSpan(1),
 
-                                        Forms\Components\ColorPicker::make('color_code')
-                                            ->label(__('app.label.color_code')),
+                                                        Forms\Components\ColorPicker::make('color_code')
+                                                            ->label(__('app.label.color_code'))
+                                                            ->columnSpan(1),
 
-                                        Forms\Components\SpatieMediaLibraryFileUpload::make('variant_image')
-                                            ->collection('variant_image')
-                                            ->label(__('app.label.variant_image'))
-                                            ->image()
-                                            ->downloadable()
-                                            ->openable()
-                                            ->imageEditor()
-                                            ->imageEditorMode(3)
-                                            ->acceptedFileTypes(['image/png', 'image/jpeg'])
-                                            ->required(),
+                                                        Forms\Components\TextInput::make('sku')
+                                                            ->label('SKU')
+                                                            ->helperText('Stock Keeping Unit')
+                                                            ->maxLength(64)
+                                                            ->columnSpan(1),
+                                                    ]),
+                                            ]),
 
-                                        Forms\Components\Toggle::make('status')
-                                            ->label(__('app.label.status'))
-                                            ->default(true),
+                                        // Pricing
+                                        Forms\Components\Section::make('Pricing')
+                                            ->schema([
+                                                Forms\Components\Grid::make(2)
+                                                    ->schema([
+                                                        Forms\Components\TextInput::make('price')
+                                                            ->label(__('app.label.price'))
+                                                            ->numeric()
+                                                            ->helperText('Leave empty to use product base price')
+                                                            ->columnSpan(1),
 
-                                        Forms\Components\TextInput::make('sort')
-                                            ->label(__('app.label.sort'))
-                                            ->numeric()
-                                            ->default(0),
+                                                        Forms\Components\TextInput::make('old_price')
+                                                            ->label(__('app.label.old_price'))
+                                                            ->numeric()
+                                                            ->columnSpan(1),
+                                                    ]),
+                                            ])
+                                            ->collapsible(),
+
+                                        // Materials
+                                        Forms\Components\Section::make('Materials')
+                                            ->schema([
+                                                Forms\Components\Select::make('materials')
+                                                    ->label('Materials')
+                                                    ->relationship('materials', 'name')
+                                                    ->multiple()
+                                                    ->preload()
+                                                    ->searchable()
+                                                    ->helperText('Select materials for this color variant'),
+                                            ])
+                                            ->collapsible(),
+
+                                        // Image
+                                        Forms\Components\Section::make('Main Image')
+                                            ->schema([
+                                                Forms\Components\SpatieMediaLibraryFileUpload::make('variant_image')
+                                                    ->collection('variant_image')
+                                                    ->label(__('app.label.variant_image'))
+                                                    ->helperText('Main image for this color')
+                                                    ->image()
+                                                    ->downloadable()
+                                                    ->openable()
+                                                    ->imageEditor()
+                                                    ->imageEditorMode(3)
+                                                    ->acceptedFileTypes(['image/png', 'image/jpeg'])
+                                                    ->required(),
+                                            ])
+                                            ->collapsible(),
+
+                                        // Sizes with Stock
+                                        Forms\Components\Section::make('Sizes & Stock')
+                                            ->schema([
+                                                Forms\Components\Repeater::make('sizes')
+                                                    ->label('Sizes')
+                                                    ->relationship('sizes')
+                                                    ->schema([
+                                                        Forms\Components\Grid::make(4)
+                                                            ->schema([
+                                                                Forms\Components\Select::make('size_id')
+                                                                    ->label(__('app.label.size'))
+                                                                    ->options(\App\Models\ProductSize::pluck('name', 'id'))
+                                                                    ->searchable()
+                                                                    ->required()
+                                                                    ->columnSpan(1),
+
+                                                                Forms\Components\TextInput::make('stock')
+                                                                    ->label('Stock')
+                                                                    ->numeric()
+                                                                    ->default(0)
+                                                                    ->minValue(0)
+                                                                    ->required()
+                                                                    ->columnSpan(1),
+
+                                                                Forms\Components\TextInput::make('dimensions')
+                                                                    ->label(__('app.label.dimensions'))
+                                                                    ->helperText('e.g. 30x40x15 cm')
+                                                                    ->maxLength(128)
+                                                                    ->columnSpan(1),
+
+                                                                Forms\Components\Toggle::make('status')
+                                                                    ->label(__('app.label.status'))
+                                                                    ->default(true)
+                                                                    ->columnSpan(1),
+                                                            ]),
+                                                    ])
+                                                    ->defaultItems(0)
+                                                    ->addActionLabel('Add Size')
+                                                    ->collapsible()
+                                                    ->itemLabel(fn (array $state): ?string =>
+                                                        isset($state['size_id'])
+                                                            ? \App\Models\ProductSize::find($state['size_id'])?->name . ' (Stock: ' . ($state['stock'] ?? 0) . ')'
+                                                            : 'New Size'
+                                                    ),
+                                            ])
+                                            ->collapsible(),
+
+                                        // Status & Sort
+                                        Forms\Components\Section::make('Settings')
+                                            ->schema([
+                                                Forms\Components\Grid::make(2)
+                                                    ->schema([
+                                                        Forms\Components\Toggle::make('status')
+                                                            ->label(__('app.label.status'))
+                                                            ->default(true)
+                                                            ->columnSpan(1),
+
+                                                        Forms\Components\TextInput::make('sort')
+                                                            ->label(__('app.label.sort'))
+                                                            ->numeric()
+                                                            ->default(0)
+                                                            ->columnSpan(1),
+                                                    ]),
+                                            ])
+                                            ->collapsible()
+                                            ->collapsed(),
                                     ])
-                                    ->default([])
+                                    ->defaultItems(0)
+                                    ->addActionLabel('Add Color Variant')
                                     ->orderable('sort')
                                     ->collapsible()
+                                    ->itemLabel(fn (array $state): ?string => $state['color_name'] ?? 'New Variant')
                                     ->columnSpanFull(),
                             ]),
 
@@ -260,6 +342,7 @@ class ProductResource extends Resource
                                 Forms\Components\SpatieMediaLibraryFileUpload::make('preview_image')
                                     ->collection('preview_image')
                                     ->label(__('app.label.preview_image'))
+                                    ->helperText('Main image for catalog')
                                     ->image()
                                     ->downloadable()
                                     ->openable()
@@ -268,6 +351,18 @@ class ProductResource extends Resource
                                     ->acceptedFileTypes(['image/png'])
                                     ->optimize('png')
                                     ->required(),
+
+                                Forms\Components\SpatieMediaLibraryFileUpload::make('hover_image')
+                                    ->collection('hover_image')
+                                    ->label('Hover Image')
+                                    ->helperText('Image shown on hover in catalog')
+                                    ->image()
+                                    ->downloadable()
+                                    ->openable()
+                                    ->imageEditor()
+                                    ->imageEditorMode(3)
+                                    ->acceptedFileTypes(['image/png'])
+                                    ->optimize('png'),
 
                                 Forms\Components\SpatieMediaLibraryFileUpload::make('gallery')
                                     ->collection('gallery')
