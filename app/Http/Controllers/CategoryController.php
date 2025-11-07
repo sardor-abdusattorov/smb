@@ -15,22 +15,30 @@ class CategoryController extends Controller
             ->orderBy('sort')
             ->get();
 
-        $products = Product::active()->whereIn('subcategory_id', $category->subcategories->pluck('id'))
+        $products = Product::with(['category', 'subcategory', 'variants'])
+            ->active()
+            ->whereIn('subcategory_id', $category->subcategories->pluck('id'))
             ->orderBy('updated_at', 'desc')
             ->take(4)
             ->get();
 
-        $top_products = Product::active()->whereIn('subcategory_id', $category->subcategories->pluck('id'))
+        $top_products = Product::with(['category', 'subcategory', 'variants'])
+            ->active()
+            ->whereIn('subcategory_id', $category->subcategories->pluck('id'))
             ->orderBy('updated_at', 'asc')
             ->take(2)
             ->get();
 
-        $new_products = Product::NewProducts()->whereIn('subcategory_id', $category->subcategories->pluck('id'))
+        $new_products = Product::with(['category', 'subcategory', 'variants'])
+            ->NewProducts()
+            ->whereIn('subcategory_id', $category->subcategories->pluck('id'))
             ->orderBy('updated_at', 'desc')
             ->take(4)
             ->get();
 
-        $all_products = Product::active()->whereIn('subcategory_id', $category->subcategories->pluck('id'))
+        $all_products = Product::with(['category', 'subcategory', 'variants'])
+            ->active()
+            ->whereIn('subcategory_id', $category->subcategories->pluck('id'))
             ->orderBy('updated_at', 'desc')
             ->paginate(8);
 

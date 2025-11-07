@@ -22,7 +22,9 @@ class SubCategoryController extends Controller
 
         $products = $this->repo->getProducts($subcategory);
 
-        $all_products = Product::active()->where('subcategory_id', $subcategory->id)
+        $all_products = Product::with(['category', 'subcategory', 'variants'])
+            ->active()
+            ->where('subcategory_id', $subcategory->id)
             ->orderBy('updated_at', 'desc')
             ->paginate(8);
 

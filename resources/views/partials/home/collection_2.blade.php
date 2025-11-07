@@ -60,14 +60,14 @@
               </div>
 
               <div class="product-price_item">
-                @if(!empty($product->old_price))
+                @if(!empty($product->display_old_price))
                   <div class="old-product-price">
-                    {{ number_format($product->old_price, 0, ',', ' ') }} ₽
+                    {{ number_format($product->display_old_price, 0, ',', ' ') }} ₽
                   </div>
                 @endif
 
                 <div class="product-price">
-                  {{ number_format($product->price, 0, ',', ' ') }} ₽
+                  {{ number_format($product->display_price, 0, ',', ' ') }} ₽
                 </div>
               </div>
 

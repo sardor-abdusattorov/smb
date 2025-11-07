@@ -47,7 +47,7 @@
               <div class="product-brand">{{ $product->name }}</div>
 
               <div class="product-price">
-                {{ number_format($product->price, 0, ',', ' ') }} ₽
+                {{ number_format($product->display_price, 0, ',', ' ') }} ₽
               </div>
 
               @if($product->variants->isNotEmpty())

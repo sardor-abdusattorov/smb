@@ -30,12 +30,14 @@ class SiteController extends Controller
             ->orderBy('sort', 'asc')
             ->get();
 
-        $products = Product::active()
+        $products = Product::with(['category', 'subcategory', 'variants'])
+            ->active()
             ->orderBy('updated_at', 'desc')
             ->take(4)
             ->get();
 
-        $new_products = Product::newActive()
+        $new_products = Product::with(['category', 'subcategory', 'variants'])
+            ->newActive()
             ->orderBy('updated_at', 'desc')
             ->take(4)
             ->get();
@@ -118,22 +120,26 @@ class SiteController extends Controller
             ->orderBy('sort')
             ->get();
 
-        $products = Product::active()
+        $products = Product::with(['category', 'subcategory', 'variants'])
+            ->active()
             ->orderBy('updated_at', 'desc')
             ->take(4)
             ->get();
 
-        $top_products = Product::active()
+        $top_products = Product::with(['category', 'subcategory', 'variants'])
+            ->active()
             ->orderBy('updated_at', 'asc')
             ->take(2)
             ->get();
 
-        $new_products = Product::NewProducts()
+        $new_products = Product::with(['category', 'subcategory', 'variants'])
+            ->NewProducts()
             ->orderBy('updated_at', 'desc')
             ->take(4)
             ->get();
 
-        $all_products = Product::active()
+        $all_products = Product::with(['category', 'subcategory', 'variants'])
+            ->active()
             ->orderBy('updated_at', 'desc')
             ->paginate(8);
 

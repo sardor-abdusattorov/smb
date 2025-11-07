@@ -10,6 +10,7 @@ class SubCategoryRepository
     public function getProducts(Subcategory $subcategory): Collection
     {
         return $subcategory->products()
+            ->with(['category', 'subcategory', 'variants'])
             ->where('status', true)
             ->orderBy('sort')
             ->get();

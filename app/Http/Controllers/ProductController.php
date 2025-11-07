@@ -34,7 +34,8 @@ class ProductController extends Controller
             abort(404);
         }
 
-        $new_products = Product::active()
+        $new_products = Product::with(['category', 'subcategory', 'variants'])
+            ->active()
             ->orderBy('updated_at', 'desc')
             ->take(4)
             ->get();

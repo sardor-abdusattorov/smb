@@ -38,7 +38,7 @@ class Product extends Model implements HasMedia
         'old_price'=> 'decimal:2',
     ];
 
-    protected $appends = ['total_stock'];
+    protected $appends = ['total_stock', 'display_price', 'display_old_price'];
 
     public const STATUS_ACTIVE   = 1;
     public const STATUS_INACTIVE = 0;
@@ -51,6 +51,26 @@ class Product extends Model implements HasMedia
             ->sum(function ($variant) {
                 return $variant->sizes->sum('stock');
             });
+    }
+
+    public function getDisplayPriceAttribute()
+    {
+        // Если у вариантов есть свои цены, берем минимальную
+        $variantPrice = $this->variants()
+            ->whereNotNull('price')
+            ->min('price');
+
+        return $variantPrice ?? $this->price;
+    }
+
+    public function getDisplayOldPriceAttribute()
+    {
+        // Если у вариантов есть старые цены, берем минимальную
+        $variantOldPrice = $this->variants()
+            ->whereNotNull('old_price')
+            ->min('old_price');
+
+        return $variantOldPrice ?? $this->old_price;
     }
 
     public static function statusOptions(): array
