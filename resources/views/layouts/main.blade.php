@@ -51,6 +51,7 @@
         </div>
       </div>
     </div>
+
     <div class="profile-modal" id="politic">
       <div class="modal_content">
         <span class="exit"><img src="/images/close.svg" alt=""></span>
@@ -145,6 +146,7 @@
         </div>
       </div>
     </div>
+
     <div class="profile-modal" id="login">
       <div class="modal_content">
         <div class="step step_phone ">
@@ -205,14 +207,16 @@
         <div class="step step_email hide">
           <span class="exit"><img src="/images/close.svg" alt=""></span>
           <div class="modal_title">Войти в личный кабинет</div>
-          <form class="modal_form">
+          
+          <form class="modal_form" id="loginFormEmail" data-url="/auth/ajax/login">
+            <div class="alert_errors"></div>
             <label class="modal_input">
               <span class="modal_input-title">Email*</span>
-              <input type="email" id="email" placeholder="you@example.com" required />
+              <input type="email" id="email" name="email" placeholder="you@example.com" required />
             </label>
             <label class="modal_input">
               <span class="modal_input-title">пароль*</span>
-              <input type="password" id="passowrd" placeholder="Введите пароль" required />
+              <input type="password" id="passowrd" name="password" placeholder="Введите пароль" required />
               <span class="eye ">
                             <img src="/images/eye.svg" alt="" class=" ">
                         </span>
@@ -221,7 +225,7 @@
             <div class="modal_inputs">
               <label class="form_bottom">
                             <span class="custom_checkbox">
-                                <input type="checkbox" class="custom_checkbox_input" name="passwords">
+                                <input type="checkbox" class="custom_checkbox_input" name="remember_me" />
                                 <span class="custom_checkbox_box"></span>
                             </span>
                 <p>Запомнить пароль</p>
@@ -229,7 +233,7 @@
               <a href="#" class="modal_link">Забыли пароль?</a>
             </div>
             <div class="form_buttons">
-              <button class="button" disabled>Войти в личный кабинет</button>
+              <button class="button" type="submit" disabled>Войти в личный кабинет</button>
               <a href="#" class="button modal_link btn_back_email">войти по номеру телефона</a>
             </div>
 
@@ -252,72 +256,92 @@
 
       </div>
     </div>
+
     <div class="profile-modal" id="registerModal">
       <div class="modal_content">
         <span class="exit"><img src="/images/close.svg" alt=""></span>
         <div class="modal_title">Зарегистрироваться</div>
-        <div class="modal_subtitle">Позвоним или пришлём SMS. Введи последние четыре цифры номера телефона или код
-          из SMS-сообщения</div>
-        <form class="modal_form">
+        <div class="modal_subtitle">
+          Позвоним или пришлём SMS. Введи последние четыре цифры номера телефона или код из SMS-сообщения
+        </div>
+
+        <!-- Error box -->
+        
+
+        <form class="modal_form" id="registerForm" data-url="/auth/ajax/register">
+
+          <div class="alert_errors"></div>
+
           <label class="modal_input">
             <span class="modal_input-title">Имя*</span>
-            <input type="text" placeholder="Ввести имя" name="first_name" required />
+            <input type="text" placeholder="Ввести имя" name="name" required />
           </label>
+
           <label class="modal_input">
-            <span class="modal_input-title">фамилия*</span>
-            <input type="text" placeholder="Ввести фамилию" name="last_name" required />
+            <span class="modal_input-title">Фамилия*</span>
+            <input type="text" placeholder="Ввести фамилию" name="lastname" required />
           </label>
+
           <label class="modal_input">
-            <span class="modal_input-title">отчество</span>
-            <input type="text" placeholder="Ввести отчество" name="last_name" />
+            <span class="modal_input-title">Отчество</span>
+            <!-- patronymic uchun alohida name -->
+            <input type="text" placeholder="Ввести отчество" name="middlename" />
           </label>
+
           <label class="modal_input">
             <span class="modal_input-title">E-mail*</span>
-            <input type="email" placeholder="Ввести e-mail" name="email" />
+            <input type="email" placeholder="Ввести e-mail" name="email" required />
           </label>
+
           <label class="modal_input">
-            <span class="modal_input-title">номер телефона*</span>
-            <input type="tel" placeholder="Ввести e-mail" name="phone" />
+            <span class="modal_input-title">Номер телефона*</span>
+            <input type="tel" placeholder="+998901234567" name="phone" required />
           </label>
+
           <label class="modal_input">
-            <span class="modal_input-title">пароль*</span>
-            <input type="passowrd" placeholder="Придумай пароль" name="pasword" />
-            <span class="eye">
-                        <img src="/images/eye.svg" alt="" class=" ">
-                    </span>
+            <span class="modal_input-title">Пароль*</span>
+            <!-- type="password" va name="password" -->
+            <input type="password" placeholder="Придумай пароль" name="password" required minlength="6" />
+            <span class="eye"><img src="/images/eye.svg" alt=""></span>
           </label>
+
           <label class="modal_input">
-            <span class="modal_input-title">подтвердите пароль*</span>
-            <input type="passowrd" placeholder="Введи пароль еще раз" name="is_password" />
-            <span class="eye">
-                        <img src="/images/eye.svg" alt="" class=" ">
-                    </span>
+            <span class="modal_input-title">Подтвердите пароль*</span>
+            <!-- type="password" va name="password_confirmation" -->
+            <input type="password" placeholder="Введи пароль еще раз" name="password_confirmation" required minlength="6" />
+            <span class="eye"><img src="/images/eye.svg" alt=""></span>
           </label>
+
           <label class="form_bottom">
-                    <span class="custom_checkbox">
-                        <input type="checkbox" class="custom_checkbox_input" name="checkbox" />
-                        <span class="custom_checkbox_box"></span>
-                    </span>
+            <span class="custom_checkbox">
+              <input type="checkbox" class="custom_checkbox_input" name="marketing_optin" />
+              <span class="custom_checkbox_box"></span>
+            </span>
             <p>Я согласен(-на) на получение рекламно-информационной рассылки</p>
           </label>
+
           <label class="form_bottom">
-                    <span class="custom_checkbox">
-                        <input type="checkbox" class="custom_checkbox_input" name="checkbox" />
-                        <span class="custom_checkbox_box"></span>
-                    </span>
-            <p>Я согласен(-на) с <a
-                href="https://864109.selcdn.ru/irnby.com/DOCUMENTS/%D0%9F%D0%BE%D0%BB%D0%B8%D1%82%D0%B8%D0%BA%D0%B0%20%D0%BA%D0%BE%D0%BD%D1%84%D0%B8%D0%B4%D0%B5%D0%BD%D1%86%D0%B8%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D0%B8%20IRNBY.pdf">политикой
-                конфиденциальности</a>  и договором оферты</p>
+            <span class="custom_checkbox">
+              <!-- Bu shartli chek: rozilik bo‘lmasa yuborilmaydi -->
+              <input type="checkbox" class="custom_checkbox_input" name="terms" required />
+              <span class="custom_checkbox_box"></span>
+            </span>
+            <p>Я согласен(-на) с
+              <a href="https://864109.selcdn.ru/irnby.com/DOCUMENTS/%D0%9F%D0%BE%D0%BB%D0%B8%D1%82%D0%B8%D0%BA%D0%B0%20%D0%BA%D0%BE%D0%BD%D1%84%D0%B8%D0%B4%D0%B5%D0%BD%D1%86%D0%B8%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D0%B8%20IRNBY.pdf" target="_blank" rel="noopener">политикой конфиденциальности</a> и договором оферты
+            </p>
           </label>
+
           <div class="form_buttons">
-            <button class="button btn_phone_next" disabled>Зарегистрироваться</button>
+            <button type="submit" class="button regstr_btn " disabled>Зарегистрироваться</button>
           </div>
+
           <span class="modal_bottom_text">
-                    Вы уже с нами? <a href="#login" class="modal_login">Авторизоваться</a>
-                </span>
+            Вы уже с нами? <a href="#login" class="modal_login">Авторизоваться</a>
+          </span>
         </form>
       </div>
     </div>
+
     <div class="smb-modal-overlay" id="smbModalOverlay">
       <div class="smb-modal">
         <button class="smb-modal-close" id="smbModalClose"><svg xmlns="http://www.w3.org/2000/svg" width="14"
@@ -352,6 +376,7 @@
         </div>
       </div>
     </div>
+
     <div class="smb-modal-overlay smb-success-modal" id="smbSuccessModal">
       <div class="smb-modal">
         <button class="smb-modal-close" id="smbSuccessModalClose"><svg xmlns="http://www.w3.org/2000/svg"
@@ -368,6 +393,7 @@
         </div>
       </div>
     </div>
+
     <div class="cookie-popup show" id="cookiePopup">
       <div class="cookie-content">
         <div class="cookie-text">
@@ -383,205 +409,110 @@
         </div>
       </div>
     </div>
+
     <div class="popup-overlay" id="popupOverlay"></div>
+
+    @php
+      $cartCount = 0;
+      if (auth('web')->check()) {
+          $cartCount = \App\Models\CartItem::where('frontend_user_id', auth('web')->id())->sum('quantity');
+      } else {
+          $c = session('guest_cart');
+          $cartCount = $c ? array_sum($c['items'] ?? []) : 0;
+      }
+    @endphp
+
     <div class="buyer_modal">
       <!-- Cart Modal -->
       <div class="cart-modal-overlay" id="cartModal">
-        <div class="cart-modal">
+        <div class="cart-modal {{ $cartCount == 0 ? 'empty' : '' }}">
           <!-- Header -->
-          <div class="cart-header">
-            <div class="cart-title">
-              МОЯ КОРЗИНА <span class="cart-count">(3)</span>
-            </div>
-            <button class="close-cart" onclick="closeCartModal()">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                   xmlns="http://www.w3.org/2000/svg">
-                <mask id="mask0_687_58555" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0"
-                      y="0" width="24" height="24">
-                  <rect width="24" height="24" fill="#D9D9D9" />
-                </mask>
-                <g mask="url(#mask0_687_58555)">
-                  <path
-                    d="M6.39916 18.3108L5.69141 17.6031L11.2914 12.0031L5.69141 6.40306L6.39916 5.69531L11.9992 11.2953L17.5992 5.69531L18.3069 6.40306L12.7069 12.0031L18.3069 17.6031L17.5992 18.3108L11.9992 12.7108L6.39916 18.3108Z"
-                    fill="#1C1B1F" />
-                </g>
-              </svg>
-
-            </button>
-          </div>
-
-          <!-- Content with items -->
-          <div class="cart-content" id="cartContent">
-            <!-- Cart Item 1 -->
-            <div class="cart-item">
-              <div class="item-favorite">
-                <svg viewBox="0 0 24 24" onclick="heart_icon(this)">
-                  <path
-                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
-                  </path>
+          @if ($cartCount !== 0)
+          
+            <div class="cart-header">
+              <div class="cart-title">
+                МОЯ КОРЗИНА <span class="cart-count">({{ $cartCount }})</span>
+              </div>
+              <button class="close-cart" onclick="closeCartModal()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                  <mask id="mask0_687_58555" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0"
+                        y="0" width="24" height="24">
+                    <rect width="24" height="24" fill="#D9D9D9" />
+                  </mask>
+                  <g mask="url(#mask0_687_58555)">
+                    <path
+                      d="M6.39916 18.3108L5.69141 17.6031L11.2914 12.0031L5.69141 6.40306L6.39916 5.69531L11.9992 11.2953L17.5992 5.69531L18.3069 6.40306L12.7069 12.0031L18.3069 17.6031L17.5992 18.3108L11.9992 12.7108L6.39916 18.3108Z"
+                      fill="#1C1B1F" />
+                  </g>
                 </svg>
-              </div>
-              <div class="item-image">
-                <img src="/images/karzinka-modal_img.png" alt="Кожаная сумка">
-              </div>
-              <div class="item-details">
-                <div class="item-name">НАЗВАНИЕ ТОВАРА</div>
-                <div class="item-specs">
-                  <div class="item-spec">Цвет: Коричневый</div>
-                  <div class="item-spec">Материал: Кожа</div>
-                  <div class="item-spec">Размер: 36x25x18 (М)</div>
-                  <div class="item-price">
-                    <div class="item-price-old">29 900 ₽</div>
-                    <div class="item-price-current">20 400 ₽</div>
+
+              </button>
+            </div>
+ 
+            <!-- Content with items -->
+            <div class="cart-content" id="cartContent">
+
+              <!-- Cart Item 1 -->
+              <div class="cart-item">
+
+                <div class="item-favorite">
+                  <svg viewBox="0 0 24 24" onclick="heart_icon(this)">
+                    <path
+                      d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                    </path>
+                  </svg>
+                </div>
+
+                <div class="item-image">
+                  <img src="/images/karzinka-modal_img.png" alt="Кожаная сумка">
+                </div>
+                <div class="item-details">
+                  <div class="item-name">НАЗВАНИЕ ТОВАРА (x2)</div>
+                  <div class="item-specs">
+                    <div class="item-spec">Цвет: Коричневый</div>
+                    <div class="item-spec">Материал: Кожа</div>
+                    <div class="item-spec">Размер: 36x25x18 (М)</div>
+                    <div class="item-price">
+                      <div class="item-price-old">29 900 ₽</div>
+                      <div class="item-price-current">20 400 ₽</div>
+                    </div>
+                  </div>
+                  <div class="item-bottom">
+                    <button class="item-remove">УДАЛИТЬ</button>
+
                   </div>
                 </div>
-                <div class="item-bottom">
-                  <button class="item-remove">УДАЛИТЬ</button>
-
-                </div>
               </div>
+
             </div>
-            <!--  -->
-            <div class="cart-item">
-              <div class="item-favorite">
-                <svg viewBox="0 0 24 24" onclick="heart_icon(this)">
-                  <path
-                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
-                  </path>
-                </svg>
-              </div>
-              <div class="item-image">
-                <img src="/images/karzinka-modal_img.png" alt="Кожаная сумка">
-              </div>
-              <div class="item-details">
-                <div class="item-name">НАЗВАНИЕ ТОВАРА</div>
-                <div class="item-specs">
-                  <div class="item-spec">Цвет: Коричневый</div>
-                  <div class="item-spec">Материал: Кожа</div>
-                  <div class="item-spec">Размер: 36x25x18 (М)</div>
-                  <div class="item-price">
-                    <div class="item-price-old">29 900 ₽</div>
-                    <div class="item-price-current">20 400 ₽</div>
-                  </div>
-                </div>
-                <div class="item-bottom">
-                  <button class="item-remove">УДАЛИТЬ</button>
 
-                </div>
+            <!-- Footer -->
+            <div class="cart-footer">
+              <div class="cart-total">
+                <div class="cart-total-label">ИТОГО</div>
+                <div class="cart-total-price">40 800 ₽</div>
+              </div>
+              <div class="cart-actions">
+                <button class="cart-btn cart-btn-secondary">ПРОДОЛЖИТЬ ПОКУПКИ</button>
+                <button class="cart-btn cart-btn-primary">КУПИТЬ</button>
               </div>
             </div>
 
-            <!-- Cart Item  -->
-            <div class="cart-item">
-              <div class="item-favorite">
-                <svg viewBox="0 0 24 24" onclick="heart_icon(this)">
-                  <path
-                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
-                  </path>
-                </svg>
-              </div>
-              <div class="item-image">
-                <img src="/images/karzinka-modal_img.png" alt="Кожаная сумка">
-              </div>
-              <div class="item-details">
-                <div class="item-name">НАЗВАНИЕ ТОВАРА</div>
-                <div class="item-specs">
-                  <div class="item-spec">Цвет: Коричневый</div>
-                  <div class="item-spec">Материал: Кожа</div>
-                  <div class="item-spec">Размер: 36x25x18 (М)</div>
-                  <div class="item-price">
-                    <div class="item-price-old">29 900 ₽</div>
-                    <div class="item-price-current">20 400 ₽</div>
-                  </div>
-                </div>
-                <div class="item-bottom">
-                  <button class="item-remove">УДАЛИТЬ</button>
+          @else
 
-                </div>
+            <!-- Empty cart state (hidden by default) -->
+            <div class="empty-cart show" id="emptyCart">
+              <div class="empty-cart-title">КОРЗИНА ПУСТА</div>
+              <div class="empty-cart-text">
+                Пора добавить немного стиля.<br>
+                Подберем классную сумку?
               </div>
+              <a href="{{ route('catalog') }}" class="empty-cart-btn">В КАТАЛОГ</a>
             </div>
 
-            <!-- Cart Item  -->
-            <div class="cart-item">
-              <div class="item-favorite">
-                <svg onclick="heart_icon(this)" viewBox="0 0 24 24">
-                  <path
-                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
-                  </path>
-                </svg>
-              </div>
-              <div class="item-image">
-                <img src="/images/karzinka-modal_img.png" alt="Кожаная сумка">
-              </div>
-              <div class="item-details">
-                <div class="item-name">НАЗВАНИЕ ТОВАРА</div>
-                <div class="item-specs">
-                  <div class="item-spec">Цвет: Коричневый</div>
-                  <div class="item-spec">Материал: Кожа</div>
-                  <div class="item-spec">Размер: 36x25x18 (М)</div>
-                  <div class="item-price">
-                    <div class="item-price-old">29 900 ₽</div>
-                    <div class="item-price-current">20 400 ₽</div>
-                  </div>
-                </div>
-                <div class="item-bottom">
-                  <button class="item-remove">УДАЛИТЬ</button>
+          @endif
 
-                </div>
-              </div>
-            </div>
-            <!-- Cart Item  -->
-            <div class="cart-item">
-              <div class="item-favorite">
-                <svg onclick="heart_icon(this)" viewBox="0 0 24 24">
-                  <path
-                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
-                  </path>
-                </svg>
-              </div>
-              <div class="item-image">
-                <img src="/images/karzinka-modal_img.png" alt="Кожаная сумка">
-              </div>
-              <div class="item-details">
-                <div class="item-name">НАЗВАНИЕ ТОВАРА</div>
-                <div class="item-specs">
-                  <div class="item-spec">Цвет: Коричневый</div>
-                  <div class="item-spec">Материал: Кожа</div>
-                  <div class="item-spec">Размер: 36x25x18 (М)</div>
-                  <div class="item-price">
-                    <div class="item-price-old">29 900 ₽</div>
-                    <div class="item-price-current">20 400 ₽</div>
-                  </div>
-                </div>
-                <div class="item-bottom">
-                  <button class="item-remove">УДАЛИТЬ</button>
-
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Footer -->
-          <div class="cart-footer">
-            <div class="cart-total">
-              <div class="cart-total-label">ИТОГО</div>
-              <div class="cart-total-price">40 800 ₽</div>
-            </div>
-            <div class="cart-actions">
-              <button class="cart-btn cart-btn-secondary">ПРОДОЛЖИТЬ ПОКУПКИ</button>
-              <button class="cart-btn cart-btn-primary">КУПИТЬ</button>
-            </div>
-          </div>
-
-          <!-- Empty cart state (hidden by default) -->
-          <div class="empty-cart" id="emptyCart" style="display: none;">
-            <div class="empty-cart-title">КОРЗИНА ПУСТА</div>
-            <div class="empty-cart-text">
-              Пора добавить немного стиля.<br>
-              Подберем классную сумку?
-            </div>
-            <button class="empty-cart-btn">В КАТАЛОГ</button>
-          </div>
         </div>
       </div>
     </div>
@@ -593,5 +524,163 @@
     <script src="{{ asset('assets/vendor/moment-timezone-with-data.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/moment.min.js') }}"></script>
     <script src="{{ asset('assets/js/script.js') }}"></script>
+    <script src="{{ asset('assets/js/custom.js') }}"></script>
+
+    <script>
+        $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content } });
+
+         window.APP_IS_AUTH = {!! auth('frontend')->check() ? 'true' : 'false' !!};
+
+        $(function(){
+          const $registerForm = $('#registerForm');
+          if (!$registerForm.length) return;
+
+          const $registrbtn = $registerForm.find('button[type="submit"]');
+          const $errorBox = $registerForm.find('.alert_errors');
+
+          // Faqat zarur inputlar (middlename'ni hisobga olmaymiz)
+          const $inputs = $registerForm.find('input[name="name"], input[name="lastname"], input[name="email"], input[name="phone"], input[name="password"], input[name="password_confirmation"]');
+          const $marketing = $registerForm.find('input[name="marketing_optin"]');
+          const $terms = $registerForm.find('input[name="terms"]');
+
+          function validate() {
+            let filled = true;
+            $inputs.each(function(){
+              if ($(this).val().trim() === '') {
+                filled = false;
+                return false;
+              }
+            });
+
+            const checkboxesOK = $marketing.is(':checked') && $terms.is(':checked');
+            const ok = filled && checkboxesOK;
+
+            $registrbtn.prop('disabled', !ok);
+          }
+
+          // Hodisalar (input, change)
+          $inputs.on('input change', validate);
+          $marketing.on('change', validate);
+          $terms.on('change', validate);
+
+          // Sahifa yuklanganda tekshirish
+          validate();
+
+          // Forma yuborish
+          $registerForm.off('submit').on('submit', function(e){
+            e.preventDefault();
+            $errorBox.hide().empty();
+            $registrbtn.prop('disabled', true).text('Отправляем...');
+
+            $.ajax({
+              url: $registerForm.data('url'),
+              method: 'POST',
+              data: $registerForm.serialize(),
+              success: function(resp){
+                if (resp && resp.ok) {
+                  window.location.href = resp.redirect || '/profile';
+                } else {
+                  $errorBox.text(resp?.message || 'Ошибка регистрации').show();
+                }
+              },
+              error: function(xhr){
+                let msg = xhr.responseJSON?.message || 'Ошибка регистрации';
+                $errorBox.text(msg).show();
+              },
+              complete: function(){
+                $registrbtn.text('Зарегистрироваться');
+                validate(); // qayta tekshirish
+              }
+            });
+          });
+        });
+        
+        $(function(){
+          const loginForm = $('#loginFormEmail');
+          if (!loginForm.length) return;
+
+          const $email = loginForm.find('input[name="email"]');
+          const $password = loginForm.find('input[name="password"]');
+          const $btn = loginForm.find('button[type="submit"]');
+          const $errorBox = loginForm.find('.alert_errors');
+
+          // Parol ko'rish/berkitish (ixtiyoriy)
+          // $form.on('click', '.eye', function () {
+          //   const $inp = $password;
+          //   $inp.attr('type', $inp.attr('type') === 'password' ? 'text' : 'password');
+          // });
+
+          function enableBtn()  { $btn.prop('disabled', false).removeAttr('disabled'); }
+          function disableBtn() { $btn.prop('disabled', true).attr('disabled', 'disabled'); }
+
+          // Tugmani faollashtirish: email va parol to'lgan bo'lsa
+          function validate() {
+            const ok = $email.val().trim() !== '' && $password.val().trim() !== '';
+            if (ok) enableBtn(); else disableBtn();
+          }
+
+          
+
+          // Hamma hodisalarga ulaymiz (autofill, paste, va h.k.)
+          $email.on('input change keyup paste', function(e){
+            validate();
+          });
+          $password.on('input change keyup paste', function(e){
+            validate();
+          });
+
+          validate(); // initial
+
+           // Brauzer autofill kechikib kelishi uchun yana tekshiramiz
+          setTimeout(validate, 150);
+          setTimeout(validate, 600);
+
+
+          // Xato chiqarish helper
+          function showError(msg) {
+            $errorBox.text(msg).show();
+          }
+          function hideError() {
+            $errorBox.hide().empty();
+          }
+
+          // Bir marta bog'lash uchun .off().on()
+          loginForm.off('submit').on('submit', function (e) {
+            e.preventDefault();
+            hideError();
+
+            $btn.prop('disabled', true).text('Проверяем...');
+
+            $.ajax({
+              url: loginForm.data('url'),
+              method: 'POST',
+              data: loginForm.serialize(),
+              success: function (resp) {
+                if (resp && resp.ok) {
+                  window.location.href = resp.redirect || '/profile';
+                } else {
+                  showError((resp && resp.message) ? resp.message : 'Ошибка входа');
+                }
+              },
+              error: function (xhr) {
+                // MUHIM: bu yerda "response" degan o'zgaruvchi yo'q. xhr'dan o'qiymiz.
+                let msg = 'Ошибка входа';
+                if (xhr.status === 401) {
+                  msg = (xhr.responseJSON && xhr.responseJSON.message) ? xhr.responseJSON.message : 'Неверный email или пароль';
+                } else if (xhr.status === 429) {
+                  msg = 'Слишком много попыток. Попробуйте позже.';
+                } else if (xhr.responseJSON && xhr.responseJSON.message) {
+                  msg = xhr.responseJSON.message;
+                }
+                showError(msg);
+              },
+              complete: function () {
+                $btn.prop('disabled', false).text('Войти в личный кабинет');
+              }
+            });
+          });
+       });
+    </script>
 </body>
 </html>
+

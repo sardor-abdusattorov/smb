@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", function () {
   const accordionButtons = document.querySelectorAll(".accordion-button");
 
@@ -250,11 +251,11 @@ function initMarquee() {
   marqueeContent.innerHTML = originalHTML + originalHTML;
 }
 
-function toggleHeart(heartElement) {
-  if (heartElement) {
-    heartElement.classList.toggle("active");
-  }
-}
+// function toggleHeart(heartElement) {
+//   if (heartElement) {
+//     heartElement.classList.toggle("active");
+//   }
+// }
 
 // ==================== NEWSLETTER MODAL FUNCTIONS ====================
 function initSMBNewsletter() {
@@ -1096,35 +1097,35 @@ $(document).ready(function () {
   });
 
   // Recipient form validation
-  function validateRecipientStep() {
-    const name = $("#recipient-name").val().trim();
-    const phone = $("#recipient-phone").val().trim();
-    const isValid = name.length > 0 && phone.length > 0;
-    $("#continue-recipient").prop("disabled", !isValid);
-  }
+  // function validateRecipientStep() {
+  //   const name = $("#recipient-name").val().trim();
+  //   const phone = $("#recipient-phone").val().trim();
+  //   const isValid = name.length > 0 && phone.length > 0;
+  //   $("#continue-recipient").prop("disabled", !isValid);
+  // }
 
-  $("#recipient-name, #recipient-phone").on("input", function () {
-    formData.recipientName = $("#recipient-name").val().trim();
-    formData.recipientPhone = $("#recipient-phone").val().trim();
-    validateRecipientStep();
-  });
+  // $("#recipient-name, #recipient-phone").on("input", function () {
+  //   formData.recipientName = $("#recipient-name").val().trim();
+  //   formData.recipientPhone = $("#recipient-phone").val().trim();
+  //   validateRecipientStep();
+  // });
 
-  $("#message").on("input", function () {
-    const length = $(this).val().length;
-    $(".char-count").text(length + "/300");
-    formData.message = $(this).val();
-  });
+  // $("#message").on("input", function () {
+  //   const length = $(this).val().length;
+  //   $(".char-count").text(length + "/300");
+  //   formData.message = $(this).val();
+  // });
 
-  $("#continue-recipient").click(function (e) {
-    e.preventDefault(); // Prevent form submission
-    if (!$(this).prop("disabled")) {
-      switchToStep("time"); // Go to time step
-    }
-  });
+  // $("#continue-recipient").click(function (e) {
+  //   e.preventDefault(); // Prevent form submission
+  //   if (!$(this).prop("disabled")) {
+  //     switchToStep("time"); // Go to time step
+  //   }
+  // });
 
-  $("#back-recipient").click(function () {
-    switchToStep("sender"); // Back to sender step
-  });
+  // $("#back-recipient").click(function () {
+  //   switchToStep("sender"); // Back to sender step
+  // });
 
   // Sender form validation
   function validateSenderStep() {
@@ -1354,19 +1355,19 @@ $(document).ready(function () {
   }
 
   // Initialize form
-  function initializeForm() {
-    validateAmountStep();
-    validateRecipientStep();
-    validateSenderStep();
+  // function initializeForm() {
+  //   validateAmountStep();
+  //   validateRecipientStep();
+  //   validateSenderStep();
 
-    // Set initial focus
-    $("#recipient-name").focus();
+  //   // Set initial focus
+  //   $("#recipient-name").focus();
 
-    console.log("Gift card form initialized");
-  }
+  //   console.log("Gift card form initialized");
+  // }
 
   // Call initialize
-  initializeForm();
+  // initializeForm();
 });
 // =============================================================================================
 
@@ -1754,67 +1755,67 @@ function updateTotalPrice() {
 }
 
 function updateCheckoutButton() {
-  const isFormValid = validateForm();
+  // const isFormValid = validateForm();
   const btn = $("#checkoutBtn");
 
-  if (isFormValid) {
-    btn.addClass("active").prop("disabled", false);
-  } else {
-    btn.removeClass("active").prop("disabled", true);
-  }
+  // if (isFormValid) {
+  //   btn.addClass("active").prop("disabled", false);
+  // } else {
+  //   btn.removeClass("active").prop("disabled", true);
+  // }
 }
 
-function validateForm() {
-  // Проверяем обязательные поля
-  const firstName = $("#firstName").val().trim();
-  const lastName = $("#lastName").val().trim();
-  const phone = $("#phone").val().trim();
-  const email = $("#email").val().trim();
-  const city = $("#city").val();
-  const marketing = $("#marketing").is(":checked");
-  const privacy = $("#privacy").is(":checked");
-  const paymentSelected = $('input[name="payment"]:checked').length > 0;
+// function validateForm() {
+//   // Проверяем обязательные поля
+//   const firstName = $("#firstName").val().trim();
+//   const lastName = $("#lastName").val().trim();
+//   const phone = $("#phone").val().trim();
+//   const email = $("#email").val().trim();
+//   const city = $("#city").val();
+//   const marketing = $("#marketing").is(":checked");
+//   const privacy = $("#privacy").is(":checked");
+//   const paymentSelected = $('input[name="payment"]:checked').length > 0;
 
-  if (
-    !firstName ||
-    !lastName ||
-    !phone ||
-    !email ||
-    !city ||
-    !marketing ||
-    !privacy ||
-    !paymentSelected
-  ) {
-    return false;
-  }
+//   if (
+//     !firstName ||
+//     !lastName ||
+//     !phone ||
+//     !email ||
+//     !city ||
+//     !marketing ||
+//     !privacy ||
+//     !paymentSelected
+//   ) {
+//     return false;
+//   }
 
-  // Проверяем поля доставки
-  if ($(".city-fields").is(":visible")) {
-    const deliveryType = $(".delivery-btn.active").data("type");
-    const serviceSelected =
-      $('input[name="deliveryService"]:checked').length > 0;
+//   // Проверяем поля доставки
+//   if ($(".city-fields").is(":visible")) {
+//     const deliveryType = $(".delivery-btn.active").data("type");
+//     const serviceSelected =
+//       $('input[name="deliveryService"]:checked').length > 0;
 
-    if (!serviceSelected) {
-      return false;
-    }
+//     if (!serviceSelected) {
+//       return false;
+//     }
 
-    if (deliveryType === "courier") {
-      const zipCode = $("#zipCode").val().trim();
-      const address = $("#address").val().trim();
-      if (!zipCode || !address) {
-        return false;
-      }
-    } else if (deliveryType === "pickup") {
-      const pickup =
-        $("#pickupLocation").val() || $("#selectedPickup").is(":visible");
-      if (!pickup) {
-        return false;
-      }
-    }
-  }
+//     if (deliveryType === "courier") {
+//       const zipCode = $("#zipCode").val().trim();
+//       const address = $("#address").val().trim();
+//       if (!zipCode || !address) {
+//         return false;
+//       }
+//     } else if (deliveryType === "pickup") {
+//       const pickup =
+//         $("#pickupLocation").val() || $("#selectedPickup").is(":visible");
+//       if (!pickup) {
+//         return false;
+//       }
+//     }
+//   }
 
-  return true;
-}
+//   return true;
+// }
 
 function removePromo() {
   $("#promoSection").hide();

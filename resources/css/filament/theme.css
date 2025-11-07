@@ -4,8 +4,8 @@
 @config 'tailwind.config.js';
 
 [x-cloak] {
-    display: none !important;
+  display: none !important;
 }
 .grid-image .filepond--item {
-    width: calc(33.3% - 0.5em);
+  width: calc(33.3% - 0.5em);
 }

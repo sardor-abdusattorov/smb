@@ -1,767 +1,138 @@
-<div class="top-banner">
-  <div class="marquee-container">
-    <div class="marquee-content" id="marquee-content">
-      <span>DROP MINI MOSS 2 д 12 ч 7 м</span>
-      <span>LIMIT MINI MOSS 2 д 12 ч 7 м</span>
-      <span>LIMIT MINI MOSS 2 д 12 ч 7 м</span>
-      <span>LIMIT MINI MOSS 2 д 12 ч 7 м</span>
-      <span>LIMIT MINI MOSS 2 д 12 ч 7 м</span>
-      <span>LIMIT MINI MOSS 2 д 12 ч 7 м</span>
-      <span>LIMIT MINI MOSS 2 д 12 ч 7 м</span>
-      <span>ДРОП GOSHA 2 д 12 ч 7 м</span>
-      <span>ДРОП GOSHA 2 д 12 ч 7 м</span>
-    </div>
-  </div>
-</div>
+@extends('layouts.main', ['wrapperClass' => 'catalog'])
 
-<header class="header">
-  <div class="container">
-    <nav class="navbar">
-      <!-- Mobile Menu Toggle -->
-      <button class="mobile-menu-toggle d-lg-none" type="button" onclick="toggleMobileMenu()">
-        <div class="opening active">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-               xmlns="http://www.w3.org/2000/svg">
-            <rect x="3" y="6.5" width="18" height="1" fill="#272727" />
-            <rect x="3" y="11.5" width="18" height="1" fill="#272727" />
-            <rect x="3" y="16.5" width="18" height="1" fill="#272727" />
-          </svg>
-        </div>
-        <div class="closing">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-               xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M1.39916 13.3069L0.691406 12.5992L6.29141 6.99916L0.691406 1.39916L1.39916 0.691406L6.99916 6.29141L12.5992 0.691406L13.3069 1.39916L7.70691 6.99916L13.3069 12.5992L12.5992 13.3069L6.99916 7.70691L1.39916 13.3069Z"
-              fill="#1C1B1F" />
-          </svg>
-        </div>
-      </button>
-      <!-- Left Navigation -->
-      <div class="navbar-left d-none d-lg-flex">
-        <a href="about.html" class="nav-link">О НАС
-        </a>
-        <a href="catalog.html" class="nav-link">ЖЕНЩИНА</a>
-        <a href="catalog.html" class="nav-link">МУЖЧИНА</a>
-      </div>
-      <!-- Center Logo -->
-      <div class="navbar-brand p-0 m-0">
-        <a href="index.html" class="logo">
-          <svg xmlns="http://www.w3.org/2000/svg" width="63" height="36" viewBox="0 0 63 36"
-               fill="none">
-            <g clip-path="url(#clip0_3380_5341)">
-              <path
-                d="M3.98985 15.9493C4.50761 18.2911 6.09137 19.4238 8.74112 19.4238C11.467 19.4238 12.5939 18.2146 12.5939 16.4544C12.5939 14.5258 11.5736 13.5922 7.75127 12.6585C2.28426 11.2962 0.761421 9.26052 0.761421 6.26052C0.761421 2.63297 3.35025 0.015625 8.23858 0.015625C13.6294 0.015625 15.8071 3.10746 16.0964 6.1993H12.1218C11.8477 4.63807 10.9797 3.13807 8.13198 3.13807C6.04568 3.13807 4.81218 4.07175 4.81218 5.81665C4.81218 7.53093 5.80203 8.2044 9.30457 9.06154C15.3959 10.5768 16.6294 12.9646 16.6294 15.9646C16.6294 19.8064 13.8579 22.5615 8.43655 22.5615C3.1066 22.5615 0.472081 19.7299 0 15.9493H3.98985Z"
-                fill="black" />
-              <path
-                d="M47.0703 0H55.6744C60.4256 0 62.3597 2.72449 62.3597 5.72449C62.3597 8.29592 61.0805 9.96429 59.6338 10.6224C61.0348 11.1735 62.984 12.7653 62.984 15.8571C62.984 19.852 60.1515 22.5612 55.9485 22.5612H47.0703V0ZM55.1718 9.06122C57.5779 9.06122 58.5525 7.92857 58.5525 6.13775C58.5525 4.36224 57.3495 3.32143 55.4003 3.32143H50.8622V9.06122H55.1718ZM50.8622 19.2398H55.248C57.715 19.2398 59.0399 18.0612 59.0399 15.75C59.0399 13.7143 57.852 12.3827 55.05 12.3827H50.8622V19.2398Z"
-                fill="black" />
-              <path
-                d="M21.9883 0H25.171L31.5517 12.398L37.8106 0H41.0086V22.5765H37.6279V8.4949H37.5517L32.8918 17.0204H30.0746L25.4147 8.4949H25.3538V22.5765H21.9883V0Z"
-                fill="black" />
-              <path
-                d="M4.37244 32.662L3.26077 32.7844C3.21508 32.463 3.01711 32.2946 2.66686 32.2946C2.49935 32.2946 2.37752 32.3253 2.27092 32.4018C2.16432 32.4783 2.11863 32.5702 2.11863 32.6926C2.11863 32.7997 2.14909 32.8916 2.22523 32.9528C2.30138 33.014 2.4232 33.0753 2.62117 33.1365L3.24554 33.3202C3.67193 33.4426 3.9765 33.611 4.17447 33.7946C4.37244 33.9936 4.46381 34.2538 4.46381 34.5753C4.46381 35.0038 4.2963 35.3559 3.9765 35.6008C3.65671 35.861 3.21508 35.9834 2.68209 35.9834C2.14909 35.9834 1.7227 35.861 1.37244 35.6314C1.02219 35.4018 0.839447 35.0804 0.824219 34.6977L1.96635 34.5753C1.99681 34.7589 2.07295 34.8967 2.19478 34.9885C2.33183 35.0804 2.48412 35.1263 2.68209 35.1263C2.88006 35.1263 3.03234 35.0804 3.12371 35.0038C3.23031 34.9273 3.276 34.8048 3.276 34.6671C3.276 34.5446 3.24554 34.4528 3.1694 34.3916C3.09325 34.3304 2.9562 34.2691 2.77346 34.2079L2.13386 34.0242C1.35721 33.7946 0.976503 33.3814 0.976503 32.7844C0.976503 32.3865 1.14402 32.0651 1.46381 31.8048C1.78361 31.56 2.19478 31.4375 2.68209 31.4375C3.1694 31.4375 3.56534 31.5446 3.8699 31.7589C4.15924 31.9885 4.34199 32.2793 4.37244 32.662Z"
-                fill="black" />
-              <path
-                d="M11.0118 30.1382L12.2148 29.832V31.531H13.159V32.5565H12.2148V35.9086H11.0118V32.5565H10.1133V31.531H11.0118V30.1382Z"
-                fill="black" />
-              <path
-                d="M20.2702 34.0721C20.2702 34.3629 20.3464 34.5772 20.5139 34.7302C20.6814 34.8833 20.8642 34.9598 21.0926 34.9598C21.3362 34.9598 21.5494 34.868 21.7322 34.6996C21.9149 34.5312 22.0063 34.317 22.0063 34.0568V31.5312H23.1941V35.9088H22.0672V35.4496C21.7474 35.817 21.321 35.9853 20.8032 35.9853C20.3159 35.9853 19.92 35.8323 19.585 35.5261C19.2652 35.22 19.0977 34.8068 19.0977 34.317V31.5312H20.2855V34.0721H20.2702Z"
-                fill="black" />
-              <path
-                d="M31.5546 35.9986C30.915 35.9986 30.382 35.7844 29.9556 35.3405C29.514 34.8966 29.3008 34.3609 29.3008 33.7333C29.3008 33.1058 29.514 32.5701 29.9556 32.1262C30.3972 31.6823 30.9302 31.468 31.5546 31.468C32.1333 31.468 32.6206 31.667 33.0013 32.0497V29.3711H34.2043V35.9374H33.047V35.417C32.651 35.7844 32.1485 35.9986 31.5546 35.9986ZM30.8845 34.6211C31.1282 34.866 31.4328 34.9884 31.783 34.9884C32.1333 34.9884 32.4378 34.866 32.6815 34.6211C32.9251 34.3762 33.047 34.0701 33.047 33.718C33.047 33.3507 32.9251 33.0599 32.6815 32.7997C32.4378 32.5548 32.1333 32.4323 31.783 32.4323C31.4328 32.4323 31.1282 32.5548 30.8845 32.7997C30.6409 33.0446 30.5191 33.3507 30.5191 33.718C30.5038 34.0701 30.6257 34.3762 30.8845 34.6211Z"
-                fill="black" />
-              <path
-                d="M40.5547 29.3438H41.7577V30.8744H40.5547V29.3438ZM40.5547 31.5325H41.7577V35.9101H40.5547V31.5325Z"
-                fill="black" />
-              <path
-                d="M50.2994 31.4375C50.9999 31.4375 51.5786 31.6518 52.0507 32.0957C52.5228 32.5395 52.7512 33.0753 52.7512 33.7028C52.7512 34.3304 52.5228 34.8661 52.0507 35.3099C51.5786 35.7538 50.9999 35.9681 50.2994 35.9681C49.5989 35.9681 49.005 35.7538 48.5482 35.3099C48.0913 34.8661 47.8477 34.3304 47.8477 33.7028C47.8477 33.0753 48.0761 32.5395 48.5482 32.0957C49.005 31.6671 49.5989 31.4375 50.2994 31.4375ZM51.1979 32.8304C50.9543 32.5855 50.6497 32.463 50.2994 32.463C49.9492 32.463 49.6446 32.5855 49.401 32.8304C49.1573 33.0753 49.0355 33.3661 49.0355 33.7181C49.0355 34.0702 49.1573 34.3763 49.401 34.6059C49.6446 34.8508 49.9492 34.9732 50.2994 34.9732C50.6497 34.9732 50.9543 34.8508 51.1979 34.6059C51.4416 34.361 51.5634 34.0702 51.5634 33.7181C51.5634 33.3661 51.4416 33.0753 51.1979 32.8304Z"
-                fill="black" />
-              <path
-                d="M62.1185 32.662L61.0069 32.7844C60.9612 32.463 60.7632 32.2946 60.413 32.2946C60.2454 32.2946 60.1236 32.3253 60.017 32.4018C59.9104 32.4783 59.8647 32.5702 59.8647 32.6926C59.8647 32.7997 59.8952 32.8916 59.9713 32.9528C60.0475 33.014 60.1693 33.0753 60.3673 33.1365L60.9916 33.3202C61.418 33.4426 61.7226 33.611 61.9206 33.7946C62.1185 33.9936 62.2099 34.2538 62.2099 34.5753C62.2099 35.0038 62.0424 35.3559 61.7226 35.6008C61.4028 35.861 60.9612 35.9834 60.4282 35.9834C59.8952 35.9834 59.4688 35.861 59.1185 35.6314C58.7683 35.4018 58.5855 35.0804 58.5703 34.6977L59.7124 34.5753C59.7429 34.7589 59.819 34.8967 59.9409 34.9885C60.0779 35.0804 60.2302 35.1263 60.4282 35.1263C60.6261 35.1263 60.7784 35.0804 60.8698 35.0038C60.9764 34.9273 61.0221 34.8048 61.0221 34.6671C61.0221 34.5446 60.9916 34.4528 60.9155 34.3916C60.8393 34.3304 60.7023 34.2691 60.5195 34.2079L59.88 34.0242C59.1033 33.7946 58.7226 33.3814 58.7226 32.7844C58.7226 32.3865 58.8901 32.0651 59.2099 31.8048C59.5297 31.56 59.9409 31.4375 60.4282 31.4375C60.9155 31.4375 61.3114 31.5446 61.616 31.7589C61.9206 31.9885 62.0881 32.2793 62.1185 32.662Z"
-                fill="black" />
-            </g>
-            <defs>
-              <clipPath id="clip0_3380_5341">
-                <rect width="63" height="36" fill="white" />
-              </clipPath>
-            </defs>
-          </svg>
-        </a>
-      </div>
-      <!-- Right Actions -->
-      <div class="navbar-actions">
-        <a href="search.html" class="action-btn search-btn d-none d-lg-block">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"
-               fill="none">
-            <path
-              d="M17.1023 17.8358L10.319 11.0525C9.77733 11.5137 9.15441 11.8706 8.45025 12.1234C7.74608 12.3762 7.03848 12.5026 6.32745 12.5026C4.59232 12.5026 3.12377 11.9019 1.92181 10.7007C0.720029 9.49947 0.119141 8.03183 0.119141 6.29777C0.119141 4.56353 0.719759 3.09462 1.92099 1.89104C3.12223 0.687638 4.58988 0.0859375 6.32393 0.0859375C8.05817 0.0859375 9.52708 0.686826 10.7307 1.8886C11.9341 3.09056 12.5358 4.55911 12.5358 6.29425C12.5358 7.04699 12.4024 7.77544 12.1357 8.4796C11.8691 9.18377 11.5191 9.78583 11.0857 10.2858L17.869 17.0694L17.1023 17.8358ZM6.32745 11.4192C7.76486 11.4192 8.97837 10.9244 9.968 9.93479C10.9576 8.94535 11.4524 7.73183 11.4524 6.29425C11.4524 4.85667 10.9576 3.64315 9.968 2.65371C8.97837 1.66408 7.76486 1.16927 6.32745 1.16927C4.88987 1.16927 3.67636 1.66408 2.68691 2.65371C1.69729 3.64315 1.20247 4.85667 1.20247 6.29425C1.20247 7.73183 1.69729 8.94535 2.68691 9.93479C3.67636 10.9244 4.88987 11.4192 6.32745 11.4192Z"
-              fill="#1C1B1F" />
-          </svg>
-        </a>
-        <a href="favorites.html" class="action-btn wishlist-btn d-none d-lg-block">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="19" viewBox="0 0 20 19"
-               fill="none">
-            <path
-              d="M10 18.2905L9.1791 17.549C7.41111 15.9337 5.9486 14.5511 4.7916 13.4012C3.63479 12.251 2.72162 11.2368 2.05212 10.3584C1.38262 9.47995 0.914896 8.68515 0.648937 7.97394C0.382979 7.26291 0.25 6.54764 0.25 5.82812C0.25 4.45031 0.718091 3.2934 1.65427 2.3574C2.59027 1.42121 3.74718 0.953125 5.125 0.953125C6.07779 0.953125 6.97154 1.19688 7.80625 1.68438C8.64096 2.17188 9.37221 2.88092 10 3.8115C10.6278 2.88092 11.359 2.17188 12.1938 1.68438C13.0285 1.19688 13.9222 0.953125 14.875 0.953125C16.2528 0.953125 17.4097 1.42121 18.3457 2.3574C19.2819 3.2934 19.75 4.45031 19.75 5.82812C19.75 6.54764 19.617 7.26291 19.3511 7.97394C19.0851 8.68515 18.6174 9.47995 17.9479 10.3584C17.2784 11.2368 16.3686 12.251 15.2187 13.4012C14.0687 14.5511 12.6028 15.9337 10.8209 17.549L10 18.2905ZM10 16.824C11.7333 15.2573 13.1597 13.9153 14.2792 12.798C15.3986 11.6806 16.2833 10.7111 16.9333 9.88954C17.5833 9.06801 18.0347 8.34028 18.2875 7.70635C18.5403 7.07224 18.6667 6.44617 18.6667 5.82812C18.6667 4.74479 18.3056 3.84201 17.5833 3.11979C16.8611 2.39757 15.9583 2.03646 14.875 2.03646C14.0125 2.03646 13.2167 2.28265 12.4876 2.77502C11.7583 3.2674 11.1055 4.00867 10.5292 4.99883H9.47079C8.88056 3.99476 8.22433 3.24997 7.5021 2.76446C6.77988 2.27913 5.98751 2.03646 5.125 2.03646C4.05557 2.03646 3.15622 2.39757 2.42696 3.11979C1.69788 3.84201 1.33333 4.74479 1.33333 5.82812C1.33333 6.44617 1.45972 7.07224 1.7125 7.70635C1.96528 8.34028 2.41667 9.06801 3.06667 9.88954C3.71667 10.7111 4.60139 11.677 5.72083 12.7875C6.84028 13.8979 8.26667 15.2434 10 16.824Z"
-              fill="#1C1B1F" />
-          </svg>
-        </a>
-        <a href="#" onclick="buyerModal()" class="action-btn cart-btn d-none d-lg-block">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="20" viewBox="0 0 16 20"
-               fill="none">
-            <path
-              d="M2.17005 19.75C1.67135 19.75 1.25499 19.583 0.920964 19.249C0.586936 18.9149 0.419922 18.4986 0.419922 17.9999V6.33346C0.419922 5.83476 0.586936 5.4184 0.920964 5.08438C1.25499 4.75035 1.67135 4.58333 2.17005 4.58333H4.21159V4.04167C4.21159 2.98885 4.58037 2.09374 5.31794 1.35635C6.05533 0.618784 6.95044 0.25 8.00325 0.25C9.05607 0.25 9.95118 0.618784 10.6886 1.35635C11.4261 2.09374 11.7949 2.98885 11.7949 4.04167V4.58333H13.8365C14.3352 4.58333 14.7515 4.75035 15.0855 5.08438C15.4196 5.4184 15.5866 5.83476 15.5866 6.33346V17.9999C15.5866 18.4986 15.4196 18.9149 15.0855 19.249C14.7515 19.583 14.3352 19.75 13.8365 19.75H2.17005ZM2.17005 18.6667H13.8365C14.0033 18.6667 14.1561 18.5972 14.295 18.4584C14.4338 18.3195 14.5033 18.1667 14.5033 17.9999V6.33346C14.5033 6.16663 14.4338 6.01379 14.295 5.87494C14.1561 5.73609 14.0033 5.66667 13.8365 5.66667H11.7949V8.375C11.7949 8.52919 11.7432 8.65802 11.6397 8.76148C11.5363 8.86494 11.4074 8.91667 11.2533 8.91667C11.0991 8.91667 10.9702 8.86494 10.8668 8.76148C10.7633 8.65802 10.7116 8.52919 10.7116 8.375V5.66667H5.29492V8.375C5.29492 8.52919 5.24319 8.65802 5.13973 8.76148C5.03628 8.86494 4.90745 8.91667 4.75325 8.91667C4.59906 8.91667 4.47023 8.86494 4.36678 8.76148C4.26332 8.65802 4.21159 8.52919 4.21159 8.375V5.66667H2.17005C2.00321 5.66667 1.85037 5.73609 1.71153 5.87494C1.57268 6.01379 1.50326 6.16663 1.50326 6.33346V17.9999C1.50326 18.1667 1.57268 18.3195 1.71153 18.4584C1.85037 18.5972 2.00321 18.6667 2.17005 18.6667ZM5.29492 4.58333H10.7116V4.04167C10.7116 3.27918 10.4509 2.63713 9.92942 2.1155C9.4078 1.59406 8.76574 1.33333 8.00325 1.33333C7.24077 1.33333 6.59871 1.59406 6.07709 2.1155C5.55564 2.63713 5.29492 3.27918 5.29492 4.04167V4.58333Z"
-              fill="#1C1B1F" />
-          </svg>
-        </a>
-        <a href="contact.html" class="action-btn profile-btn d-none d-lg-block">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="18" viewBox="0 0 20 18"
-               fill="none">
-            <path
-              d="M10 7.83871C8.89179 7.83871 7.94316 7.455 7.15411 6.68758C6.3648 5.91992 5.97015 4.99718 5.97015 3.91935C5.97015 2.84153 6.3648 1.91879 7.15411 1.15113C7.94316 0.383709 8.89179 0 10 0C11.1082 0 12.057 0.383709 12.8463 1.15113C13.6353 1.91879 14.0299 2.84153 14.0299 3.91935C14.0299 4.99718 13.6353 5.91992 12.8463 6.68758C12.057 7.455 11.1082 7.83871 10 7.83871ZM0 18V16.1129C0 15.5806 0.16791 15.0786 0.503731 14.6069C0.839552 14.1351 1.29353 13.7661 1.86567 13.5C3.23383 12.871 4.59577 12.3992 5.95149 12.0847C7.30721 11.7702 8.65672 11.6129 10 11.6129C11.3433 11.6129 12.6928 11.7702 14.0485 12.0847C15.4042 12.3992 16.7662 12.871 18.1343 13.5C18.7065 13.7661 19.1604 14.1351 19.4963 14.6069C19.8321 15.0786 20 15.5806 20 16.1129V18H0ZM1.04478 16.9839H18.9552V16.1129C18.9552 15.7742 18.8371 15.4536 18.6007 15.1512C18.3644 14.8488 18.0348 14.5887 17.6119 14.371C16.4179 13.8145 15.178 13.3851 13.8922 13.0827C12.6066 12.7802 11.3092 12.629 10 12.629C8.6908 12.629 7.39341 12.7802 6.10784 13.0827C4.82202 13.3851 3.58209 13.8145 2.38806 14.371C1.96517 14.5887 1.63557 14.8488 1.39925 15.1512C1.16294 15.4536 1.04478 15.7742 1.04478 16.1129V16.9839ZM10 6.82258C10.8209 6.82258 11.5236 6.53831 12.1082 5.96976C12.6928 5.40121 12.9851 4.71774 12.9851 3.91935C12.9851 3.12097 12.6928 2.4375 12.1082 1.86895C11.5236 1.3004 10.8209 1.01613 10 1.01613C9.1791 1.01613 8.47637 1.3004 7.89179 1.86895C7.30721 2.4375 7.01493 3.12097 7.01493 3.91935C7.01493 4.71774 7.30721 5.40121 7.89179 5.96976C8.47637 6.53831 9.1791 6.82258 10 6.82258Z"
-              fill="#1C1B1F" />
-          </svg>
-        </a>
-        <!-- Mobile Actions -->
-        <a href="search.html" class="action-btn search-btn d-lg-none">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"
-               fill="none">
-            <path
-              d="M17.1023 17.8358L10.319 11.0525C9.77733 11.5137 9.15441 11.8706 8.45025 12.1234C7.74608 12.3762 7.03848 12.5026 6.32745 12.5026C4.59232 12.5026 3.12377 11.9019 1.92181 10.7007C0.720029 9.49947 0.119141 8.03183 0.119141 6.29777C0.119141 4.56353 0.719759 3.09462 1.92099 1.89104C3.12223 0.687638 4.58988 0.0859375 6.32393 0.0859375C8.05817 0.0859375 9.52708 0.686826 10.7307 1.8886C11.9341 3.09056 12.5358 4.55911 12.5358 6.29425C12.5358 7.04699 12.4024 7.77544 12.1357 8.4796C11.8691 9.18377 11.5191 9.78583 11.0857 10.2858L17.869 17.0694L17.1023 17.8358ZM6.32745 11.4192C7.76486 11.4192 8.97837 10.9244 9.968 9.93479C10.9576 8.94535 11.4524 7.73183 11.4524 6.29425C11.4524 4.85667 10.9576 3.64315 9.968 2.65371C8.97837 1.66408 7.76486 1.16927 6.32745 1.16927C4.88987 1.16927 3.67636 1.66408 2.68691 2.65371C1.69729 3.64315 1.20247 4.85667 1.20247 6.29425C1.20247 7.73183 1.69729 8.94535 2.68691 9.93479C3.67636 10.9244 4.88987 11.4192 6.32745 11.4192Z"
-              fill="#1C1B1F" />
-          </svg>
-        </a>
-        <a href="favorites.html" class="action-btn wishlist-btn d-lg-none">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="19" viewBox="0 0 20 19"
-               fill="none">
-            <path
-              d="M10 18.2905L9.1791 17.549C7.41111 15.9337 5.9486 14.5511 4.7916 13.4012C3.63479 12.251 2.72162 11.2368 2.05212 10.3584C1.38262 9.47995 0.914896 8.68515 0.648937 7.97394C0.382979 7.26291 0.25 6.54764 0.25 5.82812C0.25 4.45031 0.718091 3.2934 1.65427 2.3574C2.59027 1.42121 3.74718 0.953125 5.125 0.953125C6.07779 0.953125 6.97154 1.19688 7.80625 1.68438C8.64096 2.17188 9.37221 2.88092 10 3.8115C10.6278 2.88092 11.359 2.17188 12.1938 1.68438C13.0285 1.19688 13.9222 0.953125 14.875 0.953125C16.2528 0.953125 17.4097 1.42121 18.3457 2.3574C19.2819 3.2934 19.75 4.45031 19.75 5.82812C19.75 6.54764 19.617 7.26291 19.3511 7.97394C19.0851 8.68515 18.6174 9.47995 17.9479 10.3584C17.2784 11.2368 16.3686 12.251 15.2187 13.4012C14.0687 14.5511 12.6028 15.9337 10.8209 17.549L10 18.2905ZM10 16.824C11.7333 15.2573 13.1597 13.9153 14.2792 12.798C15.3986 11.6806 16.2833 10.7111 16.9333 9.88954C17.5833 9.06801 18.0347 8.34028 18.2875 7.70635C18.5403 7.07224 18.6667 6.44617 18.6667 5.82812C18.6667 4.74479 18.3056 3.84201 17.5833 3.11979C16.8611 2.39757 15.9583 2.03646 14.875 2.03646C14.0125 2.03646 13.2167 2.28265 12.4876 2.77502C11.7583 3.2674 11.1055 4.00867 10.5292 4.99883H9.47079C8.88056 3.99476 8.22433 3.24997 7.5021 2.76446C6.77988 2.27913 5.98751 2.03646 5.125 2.03646C4.05557 2.03646 3.15622 2.39757 2.42696 3.11979C1.69788 3.84201 1.33333 4.74479 1.33333 5.82812C1.33333 6.44617 1.45972 7.07224 1.7125 7.70635C1.96528 8.34028 2.41667 9.06801 3.06667 9.88954C3.71667 10.7111 4.60139 11.677 5.72083 12.7875C6.84028 13.8979 8.26667 15.2434 10 16.824Z"
-              fill="#1C1B1F" />
-          </svg>
-        </a>
-        <a onclick="buyerModal()" class="action-btn cart-btn d-lg-none">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="20" viewBox="0 0 16 20"
-               fill="none">
-            <path
-              d="M2.17005 19.75C1.67135 19.75 1.25499 19.583 0.920964 19.249C0.586936 18.9149 0.419922 18.4986 0.419922 17.9999V6.33346C0.419922 5.83476 0.586936 5.4184 0.920964 5.08438C1.25499 4.75035 1.67135 4.58333 2.17005 4.58333H4.21159V4.04167C4.21159 2.98885 4.58037 2.09374 5.31794 1.35635C6.05533 0.618784 6.95044 0.25 8.00325 0.25C9.05607 0.25 9.95118 0.618784 10.6886 1.35635C11.4261 2.09374 11.7949 2.98885 11.7949 4.04167V4.58333H13.8365C14.3352 4.58333 14.7515 4.75035 15.0855 5.08438C15.4196 5.4184 15.5866 5.83476 15.5866 6.33346V17.9999C15.5866 18.4986 15.4196 18.9149 15.0855 19.249C14.7515 19.583 14.3352 19.75 13.8365 19.75H2.17005ZM2.17005 18.6667H13.8365C14.0033 18.6667 14.1561 18.5972 14.295 18.4584C14.4338 18.3195 14.5033 18.1667 14.5033 17.9999V6.33346C14.5033 6.16663 14.4338 6.01379 14.295 5.87494C14.1561 5.73609 14.0033 5.66667 13.8365 5.66667H11.7949V8.375C11.7949 8.52919 11.7432 8.65802 11.6397 8.76148C11.5363 8.86494 11.4074 8.91667 11.2533 8.91667C11.0991 8.91667 10.9702 8.86494 10.8668 8.76148C10.7633 8.65802 10.7116 8.52919 10.7116 8.375V5.66667H5.29492V8.375C5.29492 8.52919 5.24319 8.65802 5.13973 8.76148C5.03628 8.86494 4.90745 8.91667 4.75325 8.91667C4.59906 8.91667 4.47023 8.86494 4.36678 8.76148C4.26332 8.65802 4.21159 8.52919 4.21159 8.375V5.66667H2.17005C2.00321 5.66667 1.85037 5.73609 1.71153 5.87494C1.57268 6.01379 1.50326 6.16663 1.50326 6.33346V17.9999C1.50326 18.1667 1.57268 18.3195 1.71153 18.4584C1.85037 18.5972 2.00321 18.6667 2.17005 18.6667ZM5.29492 4.58333H10.7116V4.04167C10.7116 3.27918 10.4509 2.63713 9.92942 2.1155C9.4078 1.59406 8.76574 1.33333 8.00325 1.33333C7.24077 1.33333 6.59871 1.59406 6.07709 2.1155C5.55564 2.63713 5.29492 3.27918 5.29492 4.04167V4.58333Z"
-              fill="#1C1B1F" />
-          </svg>
-        </a>
-        <a href="contact.html" class="action-btn profile-btn d-lg-none">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="18" viewBox="0 0 20 18"
-               fill="none">
-            <path
-              d="M10 7.83871C8.89179 7.83871 7.94316 7.455 7.15411 6.68758C6.3648 5.91992 5.97015 4.99718 5.97015 3.91935C5.97015 2.84153 6.3648 1.91879 7.15411 1.15113C7.94316 0.383709 8.89179 0 10 0C11.1082 0 12.057 0.383709 12.8463 1.15113C13.6353 1.91879 14.0299 2.84153 14.0299 3.91935C14.0299 4.99718 13.6353 5.91992 12.8463 6.68758C12.057 7.455 11.1082 7.83871 10 7.83871ZM0 18V16.1129C0 15.5806 0.16791 15.0786 0.503731 14.6069C0.839552 14.1351 1.29353 13.7661 1.86567 13.5C3.23383 12.871 4.59577 12.3992 5.95149 12.0847C7.30721 11.7702 8.65672 11.6129 10 11.6129C11.3433 11.6129 12.6928 11.7702 14.0485 12.0847C15.4042 12.3992 16.7662 12.871 18.1343 13.5C18.7065 13.7661 19.1604 14.1351 19.4963 14.6069C19.8321 15.0786 20 15.5806 20 16.1129V18H0ZM1.04478 16.9839H18.9552V16.1129C18.9552 15.7742 18.8371 15.4536 18.6007 15.1512C18.3644 14.8488 18.0348 14.5887 17.6119 14.371C16.4179 13.8145 15.178 13.3851 13.8922 13.0827C12.6066 12.7802 11.3092 12.629 10 12.629C8.6908 12.629 7.39341 12.7802 6.10784 13.0827C4.82202 13.3851 3.58209 13.8145 2.38806 14.371C1.96517 14.5887 1.63557 14.8488 1.39925 15.1512C1.16294 15.4536 1.04478 15.7742 1.04478 16.1129V16.9839ZM10 6.82258C10.8209 6.82258 11.5236 6.53831 12.1082 5.96976C12.6928 5.40121 12.9851 4.71774 12.9851 3.91935C12.9851 3.12097 12.6928 2.4375 12.1082 1.86895C11.5236 1.3004 10.8209 1.01613 10 1.01613C9.1791 1.01613 8.47637 1.3004 7.89179 1.86895C7.30721 2.4375 7.01493 3.12097 7.01493 3.91935C7.01493 4.71774 7.30721 5.40121 7.89179 5.96976C8.47637 6.53831 9.1791 6.82258 10 6.82258Z"
-              fill="#1C1B1F" />
-          </svg>
-        </a>
-      </div>
-    </nav>
-  </div>
-</header>
+@section('title', 'Каталог')
 
-<div class="mobile-menu header-top_active" id="mobileMenu">
-  <div class="mobile-menu-content">
-    <!-- Main Categories -->
-    <div class="item1">
-      <div class="nav-section">
-        <button class="nav-dropdown-btn" onclick="toggleDropdown('woman-menu')">
-          WOMAN <i class="fas fa-chevron-right"></i>
-        </button>
-        <div class="nav-dropdown" id="woman-menu">
-          <a href="#" class="dropdown-link">Сумки</a>
-          <a href="#" class="dropdown-link">Рюкзаки</a>
-          <a href="#" class="dropdown-link">Клатчи</a>
-        </div>
-      </div>
-      <div class="nav-section">
-        <button class="nav-dropdown-btn" onclick="toggleDropdown('man-menu')">
-          MAN <i class="fas fa-chevron-right"></i>
-        </button>
-        <div class="nav-dropdown" id="man-menu">
-          <a href="#" class="dropdown-link">Портфели</a>
-          <a href="#" class="dropdown-link">Рюкзаки</a>
-          <a href="#" class="dropdown-link">Сумки</a>
-        </div>
-      </div>
-    </div>
-    <div class="mobile-about">
-      <!-- Additional Links -->
-      <a href="catalog.html" class="mobile-nav-link">STORE</a>
-      <a href="#" class="mobile-nav-link">О БРЕНДЕ</a>
-      <a href="#" class="mobile-nav-link">BAG STUFF</a>
-      <a href="#" class="mobile-nav-link">ПОКУПОЧНЫЕ КАРТЫ</a>
-    </div>
-    <div class="mobile-end-about">
-      <!-- Additional Links -->
-      <li>
-        <a href="tel:88000000000">8(800)000-00-00</a>
-      </li>
-      <li>
-        <a href="https://t.me/" target="_blank">TELEGRAM</a>
-      </li>
-      <li>
-        <a href="https://wa.me/" target="_blank">WHATSAPP</a>
-      </li>
-      <li>
-        <a href="mailto:info@smb.ru">INFO@SMB.RU</a>
-      </li>
-    </div>
-  </div>
-</div>
+@section('content')
 
-<div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
+  <x-marquee />
 
-<div class="buyer_modal">
-  <!-- Cart Modal -->
-  <div class="cart-modal-overlay" id="cartModal">
-    <div class="cart-modal">
-      <!-- Header -->
-      <div class="cart-header">
-        <div class="cart-title">
-          МОЯ КОРЗИНА <span class="cart-count">(3)</span>
-        </div>
-        <button class="close-cart" onclick="closeCartModal()">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-               xmlns="http://www.w3.org/2000/svg">
-            <mask id="mask0_687_58555" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0"
-                  y="0" width="24" height="24">
-              <rect width="24" height="24" fill="#D9D9D9" />
-            </mask>
-            <g mask="url(#mask0_687_58555)">
-              <path
-                d="M6.39916 18.3108L5.69141 17.6031L11.2914 12.0031L5.69141 6.40306L6.39916 5.69531L11.9992 11.2953L17.5992 5.69531L18.3069 6.40306L12.7069 12.0031L18.3069 17.6031L17.5992 18.3108L11.9992 12.7108L6.39916 18.3108Z"
-                fill="#1C1B1F" />
-            </g>
-          </svg>
+  <x-header />
 
-        </button>
-      </div>
+  @php
+    $guestItems = \App\Http\Controllers\WishlistController::getGuestWishlistFromSession();
+    $guestCount = count($guestItems);
+    $wishCount = auth('web')->check()
+        ? \App\Models\WishlistItem::where('frontend_user_id', auth('web')->id())->count()
+        : $guestCount;
+    $hasWishlist = $wishCount > 0;
+  @endphp
 
-      <!-- Content with items -->
-      <div class="cart-content" id="cartContent">
-        <!-- Cart Item 1 -->
-        <div class="cart-item">
-          <div class="item-favorite">
-            <svg viewBox="0 0 24 24" onclick="heart_icon(this)">
-              <path
-                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
-              </path>
-            </svg>
-          </div>
-          <div class="item-image">
-            <img src="/images/karzinka-modal_img.png" alt="Кожаная сумка">
-          </div>
-          <div class="item-details">
-            <div class="item-name">НАЗВАНИЕ ТОВАРА</div>
-            <div class="item-specs">
-              <div class="item-spec">Цвет: Коричневый</div>
-              <div class="item-spec">Материал: Кожа</div>
-              <div class="item-spec">Размер: 36x25x18 (М)</div>
-              <div class="item-price">
-                <div class="item-price-old">29 900 ₽</div>
-                <div class="item-price-current">20 400 ₽</div>
-              </div>
-            </div>
-            <div class="item-bottom">
-              <button class="item-remove">УДАЛИТЬ</button>
-
-            </div>
-          </div>
-        </div>
-        <!--  -->
-        <div class="cart-item">
-          <div class="item-favorite">
-            <svg viewBox="0 0 24 24" onclick="heart_icon(this)">
-              <path
-                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
-              </path>
-            </svg>
-          </div>
-          <div class="item-image">
-            <img src="/images/karzinka-modal_img.png" alt="Кожаная сумка">
-          </div>
-          <div class="item-details">
-            <div class="item-name">НАЗВАНИЕ ТОВАРА</div>
-            <div class="item-specs">
-              <div class="item-spec">Цвет: Коричневый</div>
-              <div class="item-spec">Материал: Кожа</div>
-              <div class="item-spec">Размер: 36x25x18 (М)</div>
-              <div class="item-price">
-                <div class="item-price-old">29 900 ₽</div>
-                <div class="item-price-current">20 400 ₽</div>
-              </div>
-            </div>
-            <div class="item-bottom">
-              <button class="item-remove">УДАЛИТЬ</button>
-
-            </div>
-          </div>
-        </div>
-
-        <!-- Cart Item  -->
-        <div class="cart-item">
-          <div class="item-favorite">
-            <svg viewBox="0 0 24 24" onclick="heart_icon(this)">
-              <path
-                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
-              </path>
-            </svg>
-          </div>
-          <div class="item-image">
-            <img src="/images/karzinka-modal_img.png" alt="Кожаная сумка">
-          </div>
-          <div class="item-details">
-            <div class="item-name">НАЗВАНИЕ ТОВАРА</div>
-            <div class="item-specs">
-              <div class="item-spec">Цвет: Коричневый</div>
-              <div class="item-spec">Материал: Кожа</div>
-              <div class="item-spec">Размер: 36x25x18 (М)</div>
-              <div class="item-price">
-                <div class="item-price-old">29 900 ₽</div>
-                <div class="item-price-current">20 400 ₽</div>
-              </div>
-            </div>
-            <div class="item-bottom">
-              <button class="item-remove">УДАЛИТЬ</button>
-
-            </div>
-          </div>
-        </div>
-
-        <!-- Cart Item  -->
-        <div class="cart-item">
-          <div class="item-favorite">
-            <svg onclick="heart_icon(this)" viewBox="0 0 24 24">
-              <path
-                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
-              </path>
-            </svg>
-          </div>
-          <div class="item-image">
-            <img src="/images/karzinka-modal_img.png" alt="Кожаная сумка">
-          </div>
-          <div class="item-details">
-            <div class="item-name">НАЗВАНИЕ ТОВАРА</div>
-            <div class="item-specs">
-              <div class="item-spec">Цвет: Коричневый</div>
-              <div class="item-spec">Материал: Кожа</div>
-              <div class="item-spec">Размер: 36x25x18 (М)</div>
-              <div class="item-price">
-                <div class="item-price-old">29 900 ₽</div>
-                <div class="item-price-current">20 400 ₽</div>
-              </div>
-            </div>
-            <div class="item-bottom">
-              <button class="item-remove">УДАЛИТЬ</button>
-
-            </div>
-          </div>
-        </div>
-        <!-- Cart Item  -->
-        <div class="cart-item">
-          <div class="item-favorite">
-            <svg onclick="heart_icon(this)" viewBox="0 0 24 24">
-              <path
-                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
-              </path>
-            </svg>
-          </div>
-          <div class="item-image">
-            <img src="/images/karzinka-modal_img.png" alt="Кожаная сумка">
-          </div>
-          <div class="item-details">
-            <div class="item-name">НАЗВАНИЕ ТОВАРА</div>
-            <div class="item-specs">
-              <div class="item-spec">Цвет: Коричневый</div>
-              <div class="item-spec">Материал: Кожа</div>
-              <div class="item-spec">Размер: 36x25x18 (М)</div>
-              <div class="item-price">
-                <div class="item-price-old">29 900 ₽</div>
-                <div class="item-price-current">20 400 ₽</div>
-              </div>
-            </div>
-            <div class="item-bottom">
-              <button class="item-remove">УДАЛИТЬ</button>
-
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Footer -->
-      <div class="cart-footer">
-        <div class="cart-total">
-          <div class="cart-total-label">ИТОГО</div>
-          <div class="cart-total-price">40 800 ₽</div>
-        </div>
-        <div class="cart-actions">
-          <button class="cart-btn cart-btn-secondary">ПРОДОЛЖИТЬ ПОКУПКИ</button>
-          <button class="cart-btn cart-btn-primary">КУПИТЬ</button>
-        </div>
-      </div>
-
-      <!-- Empty cart state (hidden by default) -->
-      <div class="empty-cart" id="emptyCart" style="display: none;">
-        <div class="empty-cart-title">КОРЗИНА ПУСТА</div>
-        <div class="empty-cart-text">
-          Пора добавить немного стиля.<br>
-          Подберем классную сумку?
-        </div>
-        <button class="empty-cart-btn">В КАТАЛОГ</button>
-      </div>
-    </div>
-  </div>
-</div>
+  
 
 <section class="smb-newsletter-section favaurite">
   <div class="smb-newsletter-container">
-    <h1 class="smb-newsletter-title">вишлист <span>(8)</span></h1>
-    <p class="smb-newsletter-description">Войди или зарегистрируйся, чтобы сохранить свои находки.Без входа
-      товары в списке желаний будут ждать 7 дней</p>
-    <button class="smb-subscribe-btn border-black text-black">Войти</button>
+    <h1 class="smb-newsletter-title">вишлист <span>({{ $wishCount }})</span></h1>
+    @auth('web')
+
+    @else
+    
+      <p class="smb-newsletter-description">Войди или зарегистрируйся, чтобы сохранить свои находки.Без входа
+        товары в списке желаний будут ждать 7 дней</p>
+      <button class="smb-subscribe-btn border-black text-black profile-btn">Войти</button>
+    
+    @endauth
   </div>
 </section>
-<section class="collection-section">
+
+
+
+<section class="collection-section" style="padding-top: 64px;">
   <div class="container">
 
     <div class="products-grid">
       <!-- Product 1 -->
-      <div class="product-card">
-        <a href="product.html" class="product-image">
+        
+      @if($products->isNotEmpty())
+      @foreach($products as $product)
 
-          <img src="/images/section_bg-bag1.png" alt="Mini Rosa Handbag">
+      <div class="product-card">
+        <a href="{{ route('product.show', [
+                'category'    => $product->category?->slug,
+                'subcategory' => $product->subcategory?->slug,
+                'product'     => $product->slug,
+            ]) }}" class="product-image">
+
+          <img src="{{ $product->getFirstMediaUrl('preview_image') }}" alt="Mini Rosa Handbag">
         </a>
-        <div class="heart-icon" onclick="toggleHeart(this)">
+
+       @php
+            $isActive = false;
+
+            if(auth('web')->check()) {
+                // Login bo'lgan foydalanuvchi uchun bazadan tekshir
+                $isActive = \App\Models\WishlistItem::where('frontend_user_id', auth('web')->id())
+                            ->where('product_id', $product->id)
+                            ->exists();
+            } else {
+              // Session strukturangiz 'items' ichida saqlangan
+              $guestData = session('guest_wishlist', null);
+              $guestItems = [];
+              if ($guestData && is_array($guestData)) {
+                  $guestItems = $guestData['items'] ?? [];
+              }
+              $isActive = in_array($product->id, $guestItems);
+            }
+          @endphp
+
+        <div class="heart-icon {{ $isActive ? 'active' : '' }}" onclick="toggleHeart(this)" data-product-id="{{ $product->id }}">
           <svg viewBox="0 0 24 24">
-            <path
-              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5
+          5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78
+          1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
           </svg>
         </div>
+
+        <!-- isnew icon -->
+        @if($product->is_new_collection == 1)
+        <div class="isnew-icon">
+          <svg width="39" height="102" viewBox="0 0 39 102" fill="none"
+               xmlns="http://www.w3.org/2000/svg">
+            <rect x="0.5" y="0.5" width="38" height="101" stroke="#91BE17" />
+            <text x="15" y="110" font-size="16" fill="#91BE17"
+                  transform="rotate(-90 5,90)">НОВОЕ</text>
+          </svg>
+        </div>
+        @endif
+
         <div class="product-info">
-          <div class="product-brand">MINI ROSA</div>
-          <div class="product-price">29 000 ₽</div>
-          <div class="color-options">
-            <span class="color-option" style="background-color: #5E4F37;"></span>
-            <span class="color-option" style="background-color: #A86738;"></span>
-            <span class="color-option" style="background-color: #000000;"></span>
-            <span class="color-option" style="background-color: #DEDEDE;"></span>
-            <span class="color-option" style="background-color: #FF5733;"></span>
-            <span class="color-option" style="background-color: #33FF57;"></span>
-            <span class="color-option" style="background-color: #3357FF;"></span>
-            <span class="color-option" style="background-color: #F3FF33;"></span>
-            <span class="color-option" style="background-color: #FF33F3;"></span>
-            <span class="color-option" style="background-color: #33FFF3;"></span>
-            <span class="color-option" style="background-color: #FF9933;"></span>
-            <span class="color-option" style="background-color: #9933FF;"></span>
-            <span class="color-option" style="background-color: #33FF99;"></span>
-            <span class="color-option" style="background-color: #FF3399;"></span>
-            <span class="color-option" style="background-color: #99FF33;"></span>
+          <div class="product-brand">{{ $product->name }}</div>
+          <div class="product-price_item">
+            @if($product->old_price && $product->old_price > $product->price)
+              <div class="old-product-price">
+                {{ number_format($product->old_price, 0, ',', ' ') }} ₽
+              </div>
+            @endif
+            <div class="product-price">
+              {{ number_format($product->price, 0, ',', ' ') }} ₽
+            </div>
           </div>
+
+          @if($product->variants->isNotEmpty())
+            <div class="color-options">
+              @foreach($product->variants->take(5) as $variant)
+                @if($variant->color_code)
+                  <span class="color-option"
+                        style="background-color: {{ $variant->color_code }}"></span>
+                @endif
+              @endforeach
+
+              @if($product->variants->count() > 5)
+                <span class="color-option more">
+                  +{{ $product->variants->count() - 5 }}
+                </span>
+              @endif
+            </div>
+          @endif
         </div>
       </div>
 
-      <!-- Product 2 -->
-      <div class="product-card">
-        <a href="product.html" class="product-image">
-
-          <img src="/images/section_bg-bag2.png" alt="Mini Rosa Handbag Black">
-        </a>
-        <div class="heart-icon" onclick="toggleHeart(this)">
-          <svg viewBox="0 0 24 24">
-            <path
-              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-          </svg>
-        </div>
-        <div class="product-info">
-          <div class="product-brand">MINI ROSA</div>
-          <div class="product-price">29 000 ₽</div>
-          <div class="color-options">
-            <span class="color-option" style="background-color: #5E4F37;"></span>
-            <span class="color-option" style="background-color: #A86738;"></span>
-            <span class="color-option" style="background-color: #000000;"></span>
-            <span class="color-option" style="background-color: #DEDEDE;"></span>
-            <span class="color-option" style="background-color: #FF5733;"></span>
-            <span class="color-option" style="background-color: #33FF57;"></span>
-            <span class="color-option" style="background-color: #3357FF;"></span>
-            <span class="color-option" style="background-color: #F3FF33;"></span>
-            <span class="color-option" style="background-color: #FF33F3;"></span>
-            <span class="color-option" style="background-color: #33FFF3;"></span>
-            <span class="color-option" style="background-color: #FF9933;"></span>
-            <span class="color-option" style="background-color: #9933FF;"></span>
-            <span class="color-option" style="background-color: #33FF99;"></span>
-            <span class="color-option" style="background-color: #FF3399;"></span>
-            <span class="color-option" style="background-color: #99FF33;"></span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Product 3 -->
-      <div class="product-card">
-        <a href="product.html" class="product-image">
-
-          <img src="/images/section_bg-bag3.png" alt="Moss Handbag">
-        </a>
-        <div class="heart-icon" onclick="toggleHeart(this)">
-          <svg viewBox="0 0 24 24">
-            <path
-              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-          </svg>
-        </div>
-        <div class="product-info">
-          <div class="product-brand">MOSS</div>
-          <div class="product-price">29 000 ₽</div>
-          <div class="color-options">
-            <span class="color-option" style="background-color: #5E4F37;"></span>
-            <span class="color-option" style="background-color: #A86738;"></span>
-            <span class="color-option" style="background-color: #000000;"></span>
-            <span class="color-option" style="background-color: #DEDEDE;"></span>
-            <span class="color-option" style="background-color: #FF5733;"></span>
-            <span class="color-option" style="background-color: #33FF57;"></span>
-            <span class="color-option" style="background-color: #3357FF;"></span>
-            <span class="color-option" style="background-color: #F3FF33;"></span>
-            <span class="color-option" style="background-color: #FF33F3;"></span>
-            <span class="color-option" style="background-color: #33FFF3;"></span>
-            <span class="color-option" style="background-color: #FF9933;"></span>
-            <span class="color-option" style="background-color: #9933FF;"></span>
-            <span class="color-option" style="background-color: #33FF99;"></span>
-            <span class="color-option" style="background-color: #FF3399;"></span>
-            <span class="color-option" style="background-color: #99FF33;"></span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Product 4 -->
-      <div class="product-card">
-        <a href="product.html" class="product-image">
-
-          <img src="/images/section_bg-bag4.png" alt="Mini Rosa Blue Handbag">
-        </a>
-        <div class="heart-icon" onclick="toggleHeart(this)">
-          <svg viewBox="0 0 24 24">
-            <path
-              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-          </svg>
-        </div>
-        <div class="product-info">
-          <div class="product-brand">MINIasdasda ROSA</div>
-          <div class="product-price">29 000 ₽</div>
-          <div class="color-options">
-            <span class="color-option" style="background-color: #5E4F37;"></span>
-            <span class="color-option" style="background-color: #A86738;"></span>
-            <span class="color-option" style="background-color: #000000;"></span>
-            <span class="color-option" style="background-color: #DEDEDE;"></span>
-            <span class="color-option" style="background-color: #FF5733;"></span>
-            <span class="color-option" style="background-color: #33FF57;"></span>
-            <span class="color-option" style="background-color: #3357FF;"></span>
-            <span class="color-option" style="background-color: #F3FF33;"></span>
-            <span class="color-option" style="background-color: #FF33F3;"></span>
-            <span class="color-option" style="background-color: #33FFF3;"></span>
-            <span class="color-option" style="background-color: #FF9933;"></span>
-            <span class="color-option" style="background-color: #9933FF;"></span>
-            <span class="color-option" style="background-color: #33FF99;"></span>
-            <span class="color-option" style="background-color: #FF3399;"></span>
-            <span class="color-option" style="background-color: #99FF33;"></span>
-          </div>
-        </div>
-      </div>
+      @endforeach
+      @else
+        <p>Ваш список желаний пуст.</p>
+      @endif
+      
     </div>
 
-    <div class="products-grid">
-      <!-- Product 1 -->
-      <div class="product-card">
-        <a href="product.html" class="product-image">
-
-          <img src="/images/section_bg-bag5.png" alt="Mini Rosa Handbag">
-        </a>
-        <div class="heart-icon" onclick="toggleHeart(this)">
-          <svg viewBox="0 0 24 24">
-            <path
-              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-          </svg>
-        </div>
-        <!-- isnew icon -->
-        <div class="isnew-icon">
-          <svg width="39" height="102" viewBox="0 0 39 102" fill="none"
-               xmlns="http://www.w3.org/2000/svg">
-            <rect x="0.5" y="0.5" width="38" height="101" stroke="#91BE17" />
-            <text x="15" y="110" font-size="16" fill="#91BE17"
-                  transform="rotate(-90 5,90)">НОВОЕ</text>
-          </svg>
-
-        </div>
-        <div class="product-info">
-          <div class="product-brand">MINI ROSA</div>
-          <div class="product-price_item">
-            <div class="old-product-price">29 000 ₽</div>
-            <div class="product-price">21 000 ₽</div>
-          </div>
-
-          <div class="color-options">
-            <span class="color-option" style="background-color: #5E4F37;"></span>
-            <span class="color-option" style="background-color: #A86738;"></span>
-            <span class="color-option" style="background-color: #000000;"></span>
-            <span class="color-option" style="background-color: #DEDEDE;"></span>
-            <span class="color-option" style="background-color: #FF5733;"></span>
-            <span class="color-option" style="background-color: #33FF57;"></span>
-            <span class="color-option" style="background-color: #3357FF;"></span>
-            <span class="color-option" style="background-color: #F3FF33;"></span>
-            <span class="color-option" style="background-color: #FF33F3;"></span>
-            <span class="color-option" style="background-color: #33FFF3;"></span>
-            <span class="color-option" style="background-color: #FF9933;"></span>
-            <span class="color-option" style="background-color: #9933FF;"></span>
-            <span class="color-option" style="background-color: #33FF99;"></span>
-            <span class="color-option" style="background-color: #FF3399;"></span>
-            <span class="color-option" style="background-color: #99FF33;"></span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Product 2 -->
-      <div class="product-card">
-        <a href="product.html" class="product-image">
-
-          <img src="/images/section_bg-bag2.png" alt="Mini Rosa Handbag Black">
-        </a>
-        <div class="heart-icon" onclick="toggleHeart(this)">
-          <svg viewBox="0 0 24 24">
-            <path
-              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-          </svg>
-
-        </div>
-        <!-- isnew icon -->
-        <div class="isnew-icon">
-          <svg width="39" height="102" viewBox="0 0 39 102" fill="none"
-               xmlns="http://www.w3.org/2000/svg">
-            <rect x="0.5" y="0.5" width="38" height="101" stroke="#91BE17" />
-            <text x="15" y="110" font-size="16" fill="#91BE17"
-                  transform="rotate(-90 5,90)">НОВОЕ</text>
-          </svg>
-
-        </div>
-        <div class="product-info">
-          <div class="product-brand">MINI ROSA</div>
-          <div class="product-price_item">
-            <div class="old-product-price">29 000 ₽</div>
-            <div class="product-price">21 000 ₽</div>
-          </div>
-          <div class="color-options">
-            <span class="color-option" style="background-color: #5E4F37;"></span>
-            <span class="color-option" style="background-color: #A86738;"></span>
-            <span class="color-option" style="background-color: #000000;"></span>
-            <span class="color-option" style="background-color: #DEDEDE;"></span>
-            <span class="color-option" style="background-color: #FF5733;"></span>
-            <span class="color-option" style="background-color: #33FF57;"></span>
-            <span class="color-option" style="background-color: #3357FF;"></span>
-            <span class="color-option" style="background-color: #F3FF33;"></span>
-            <span class="color-option" style="background-color: #FF33F3;"></span>
-            <span class="color-option" style="background-color: #33FFF3;"></span>
-            <span class="color-option" style="background-color: #FF9933;"></span>
-            <span class="color-option" style="background-color: #9933FF;"></span>
-            <span class="color-option" style="background-color: #33FF99;"></span>
-            <span class="color-option" style="background-color: #FF3399;"></span>
-            <span class="color-option" style="background-color: #99FF33;"></span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Product 3 -->
-      <div class="product-card">
-        <a href="product.html" class="product-image">
-
-          <img src="/images/section_bg-bag6.png" alt="Moss Handbag">
-        </a>
-        <div class="heart-icon" onclick="toggleHeart(this)">
-          <svg viewBox="0 0 24 24">
-            <path
-              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-          </svg>
-        </div>
-        <!-- isnew icon -->
-        <div class="isnew-icon">
-          <svg width="39" height="102" viewBox="0 0 39 102" fill="none"
-               xmlns="http://www.w3.org/2000/svg">
-            <rect x="0.5" y="0.5" width="38" height="101" stroke="#91BE17" />
-            <text x="15" y="110" font-size="16" fill="#91BE17"
-                  transform="rotate(-90 5,90)">НОВОЕ</text>
-          </svg>
-
-        </div>
-        <div class="product-info">
-          <div class="product-brand">MINI ROSA</div>
-          <div class="product-price_item">
-            <div class="old-product-price">29 000 ₽</div>
-            <div class="product-price">21 000 ₽</div>
-          </div>
-          <div class="color-options">
-            <span class="color-option" style="background-color: #5E4F37;"></span>
-            <span class="color-option" style="background-color: #A86738;"></span>
-            <span class="color-option" style="background-color: #000000;"></span>
-            <span class="color-option" style="background-color: #DEDEDE;"></span>
-            <span class="color-option" style="background-color: #FF5733;"></span>
-            <span class="color-option" style="background-color: #33FF57;"></span>
-            <span class="color-option" style="background-color: #3357FF;"></span>
-            <span class="color-option" style="background-color: #F3FF33;"></span>
-            <span class="color-option" style="background-color: #FF33F3;"></span>
-            <span class="color-option" style="background-color: #33FFF3;"></span>
-            <span class="color-option" style="background-color: #FF9933;"></span>
-            <span class="color-option" style="background-color: #9933FF;"></span>
-            <span class="color-option" style="background-color: #33FF99;"></span>
-            <span class="color-option" style="background-color: #FF3399;"></span>
-            <span class="color-option" style="background-color: #99FF33;"></span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Product 4 -->
-      <div class="product-card">
-        <a href="product.html" class="product-image">
-
-          <img src="/images/section_bg-bag7.png" alt="Mini Rosa Blue Handbag">
-        </a>
-        <div class="heart-icon" onclick="toggleHeart(this)">
-          <svg viewBox="0 0 24 24">
-            <path
-              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-          </svg>
-        </div>
-        <!-- isnew icon -->
-        <div class="isnew-icon">
-          <svg width="39" height="102" viewBox="0 0 39 102" fill="none"
-               xmlns="http://www.w3.org/2000/svg">
-            <rect x="0.5" y="0.5" width="38" height="101" stroke="#91BE17" />
-            <text x="15" y="110" font-size="16" fill="#91BE17"
-                  transform="rotate(-90 5,90)">НОВОЕ</text>
-          </svg>
-
-        </div>
-        <div class="product-info">
-          <div class="product-brand">MINI ROSA</div>
-          <div class="product-price_item">
-            <div class="old-product-price">29 000 ₽</div>
-            <div class="product-price">21 000 ₽</div>
-          </div>
-          <div class="color-options">
-            <span class="color-option" style="background-color: #5E4F37;"></span>
-            <span class="color-option" style="background-color: #A86738;"></span>
-            <span class="color-option" style="background-color: #000000;"></span>
-            <span class="color-option" style="background-color: #DEDEDE;"></span>
-            <span class="color-option" style="background-color: #FF5733;"></span>
-            <span class="color-option" style="background-color: #33FF57;"></span>
-            <span class="color-option" style="background-color: #3357FF;"></span>
-            <span class="color-option" style="background-color: #F3FF33;"></span>
-            <span class="color-option" style="background-color: #FF33F3;"></span>
-            <span class="color-option" style="background-color: #33FFF3;"></span>
-            <span class="color-option" style="background-color: #FF9933;"></span>
-            <span class="color-option" style="background-color: #9933FF;"></span>
-            <span class="color-option" style="background-color: #33FF99;"></span>
-            <span class="color-option" style="background-color: #FF3399;"></span>
-            <span class="color-option" style="background-color: #99FF33;"></span>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -776,408 +147,7 @@
   </div>
 </section>
 
-<div class="footer_top-item">
-  <ul>
-    <li>
-      <a href="product.html">Магазин</a>
 
-    </li>
-    <li>
-      <a href="#">О бренде</a>
-    </li>
-    <li>
-      <a href="#">Мешковый этап</a>
-    </li>
-    <li>
-      <a href="#">Подарочные карты</a>
-    </li>
-  </ul>
-</div>
-<footer class="smb-footer">
-  <div class="container">
-    <!-- Desktop Version -->
-    <div class="smb-footer-desktop">
-      <div class="smb-footer-content">
-        <!-- Column 1: Navigation + Contacts -->
-        <div class="smb-footer-column">
+<x-footer />
 
-          <div class="smb-contact-info">
-            <div class="smb-footer-title">КОНТАКТЫ</div>
-            <a href="#"></a>
-            <a href="#"></a>
-            <a href="#"></a>
-            <a href="#"></a>
-            <ul class="smb-footer-links">
-              <li><a href="tel:88000000000">8(800)000-00-00</a></li>
-              <li><a href="mailto:info@smb.ru">INFO@SMB.RU</a></li>
-              <li><a href="/public-offer.pdf" target="_blank">Публичная оферта</a></li>
-              <li><a href="https://wa.me/" target="_blank">WHATSAPP</a></li>
-              <li><a href="https://t.me/" target="_blank">TELEGRAM</a></li>
-
-            </ul>
-            <div class="company-info">
-              <a href="#">ИП «ФАМИЛИЯ ИМЯ»</a>
-              <a href="#">Инн 0000000</a>
-              <a href="#">ОГРНИП 000000000000</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Column 2: Payment Systems + Buyers -->
-        <div class="smb-footer-column">
-          <h3 class="smb-footer-title">ПЛАТЕЖНЫЕ СИСТЕМЫ</h3>
-          <div class="smb-payment-icons">
-            <a href="#" class="smb-payment-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="54" height="15" viewBox="0 0 54 15"
-                   fill="none">
-                <g clip-path="url(#clip0_3041_10906)">
-                  <path fill-rule="evenodd" clip-rule="evenodd"
-                        d="M0.0158397 0.0225317C1.6632 0.0225317 3.32639 0.0225317 4.97375 0.0225317C5.74991 0.0069302 6.52607 0.412571 6.95375 1.05223C7.34975 1.59829 7.4923 2.26915 7.69822 2.90881C8.30014 4.89021 8.88622 6.88721 9.48814 8.8686C9.50398 9.05582 9.77326 9.11823 9.82078 8.93101C10.4385 6.91841 11.0246 4.92141 11.6265 2.90881C11.8325 2.20675 12.0225 1.45788 12.4977 0.865018C12.8145 0.490581 13.2422 0.225352 13.7174 0.100539C14.1293 -0.00867132 14.5411 0.0381333 14.9688 0.0225317C16.426 0.0225317 17.8675 0.00693116 19.3248 0.0381342C19.3089 5.03062 19.3248 10.0075 19.3089 15C17.7408 14.9844 16.1726 15.0156 14.6045 14.9844C14.6045 12.0513 14.6045 9.13383 14.6045 6.20074C14.5886 5.93551 14.1609 5.96672 14.1293 6.20074C13.1947 9.11823 12.2601 12.0513 11.3256 14.9688C10.2168 15 9.10798 14.9688 7.99919 14.9844C7.06463 12.0669 6.14591 9.13383 5.19551 6.21634C5.14799 5.98232 4.86287 5.96671 4.70447 6.10713C4.70447 9.07142 4.70447 12.0201 4.70447 14.9844C3.13631 15 1.56816 14.9844 0 15C0.01584 10.0075 0.0158397 5.01502 0.0158397 0.0225317ZM21.479 0.0225317C23.0472 -0.00867133 24.6153 0.0381371 26.1835 0.00693401C26.2151 2.97122 26.1835 5.93551 26.1993 8.8842C26.326 9.00901 26.5795 9.04022 26.6587 8.8374C27.7041 6.68439 28.7337 4.53137 29.7791 2.36276C30.1118 1.6919 30.3811 0.974226 30.9196 0.428172C31.1572 0.209751 31.4582 -0.00866752 31.8067 0.00693401C33.4065 0.00693401 35.0063 -0.00866752 36.6062 0.00693401C36.6062 4.99942 36.6062 9.97631 36.6062 14.9688C35.038 14.9844 33.4699 14.9844 31.9017 14.9688C31.9017 12.0201 31.9017 9.05582 31.9017 6.10713C31.9017 5.8575 31.4582 5.87311 31.4107 6.10713C30.4286 8.24454 29.4465 10.382 28.4644 12.5194C28.1635 13.1746 27.8783 13.8299 27.419 14.4071C27.1655 14.7192 26.8012 15 26.3735 14.9844C24.742 14.9844 23.1105 14.9844 21.479 14.9844C21.479 10.0075 21.479 5.01502 21.479 0.0225317ZM38.903 6.85601C43.8292 6.8248 48.7554 6.856 53.6817 6.8404C53.5233 7.51127 53.0797 8.08853 52.6045 8.58778C51.6858 9.57067 50.3711 10.1635 49.0089 10.1947C47.2031 10.2103 45.4132 10.1947 43.6074 10.1947C43.5916 11.7861 43.6074 13.3774 43.6074 14.9844C42.0393 14.9844 40.4711 14.9844 38.903 14.9844C38.903 12.2853 38.9188 9.57067 38.903 6.85601Z"
-                        fill="black" />
-                  <path fill-rule="evenodd" clip-rule="evenodd"
-                        d="M38.3008 0.0234375C41.9757 0.0234375 45.6664 0.0234375 49.3413 0.0234375C50.3075 0.0858437 51.2421 0.475883 52.0024 1.05314C53.1112 1.91123 53.8557 3.20616 53.9824 4.59469C54.0141 5.09394 53.9982 5.59319 53.919 6.09244C51.6698 6.10804 49.4047 6.09244 47.1554 6.09244C46.3792 6.09244 45.6031 6.12364 44.8269 6.01443C43.1003 5.79601 41.3896 5.09394 40.1541 3.84582C39.1404 2.83172 38.5068 1.44318 38.3008 0.0234375Z"
-                        fill="black" />
-                </g>
-                <defs>
-                  <clipPath id="clip0_3041_10906">
-                    <rect width="54" height="15" fill="white" />
-                  </clipPath>
-                </defs>
-              </svg>
-            </a>
-            <a href="#" class="smb-payment-icon"><svg xmlns="http://www.w3.org/2000/svg" width="49"
-                                                      height="15" viewBox="0 0 49 15" fill="none">
-                <g clip-path="url(#clip0_3041_10909)">
-                  <path d="M17.2617 14.7821L19.7391 0.25H23.7164L21.2256 14.7821H17.2617Z"
-                        fill="black" />
-                  <path
-                    d="M35.6198 0.614974C34.8297 0.320856 33.5977 0 32.0577 0C28.134 0 25.3754 1.96524 25.3486 4.79946C25.3218 6.88503 27.3171 8.04813 28.8304 8.74331C30.3704 9.45187 30.8927 9.90641 30.8927 10.5481C30.8793 11.5241 29.6606 11.9652 28.5224 11.9652C26.9288 11.9652 26.0851 11.7513 24.7862 11.2032L24.2773 10.9759L23.7148 14.2246C24.6389 14.6257 26.353 14.9866 28.134 15C32.2988 15 35.0172 13.0481 35.044 10.0401C35.0574 8.38235 33.9995 7.12567 31.7095 6.09626C30.3168 5.42781 29.4732 4.97326 29.4865 4.29144C29.4865 3.68984 30.2097 3.03476 31.7631 3.03476C33.0621 3.00802 33.9995 3.30214 34.736 3.59626L35.0976 3.77005L35.6198 0.614974Z"
-                    fill="black" />
-                  <path
-                    d="M45.8002 0.265625H42.7335C41.7827 0.265625 41.073 0.519636 40.6579 1.46884L34.7656 14.7843H38.9304C38.9304 14.7843 39.6133 12.9928 39.7606 12.6051C40.2159 12.6051 44.2602 12.6051 44.836 12.6051C44.9565 13.1132 45.3181 14.7843 45.3181 14.7843H49.0007L45.8002 0.265625ZM40.8989 9.63728C41.2337 8.79504 42.4791 5.57311 42.4791 5.57311C42.4523 5.61322 42.8005 4.73087 43.0014 4.18274L43.2692 5.43942C43.2692 5.43942 44.0325 8.91536 44.1932 9.63728H40.8989Z"
-                    fill="black" />
-                  <path
-                    d="M13.9415 0.265625L10.058 10.172L9.64283 8.15332C8.91969 5.82712 6.66993 3.31375 4.15234 2.05707L7.70107 14.7709H11.906L18.133 0.265625H13.9415Z"
-                    fill="black" />
-                  <path
-                    d="M6.44128 0.25H0.0535649L0 0.557489C4.98162 1.76069 8.27591 4.66176 9.64184 8.16443L8.24913 1.47994C8.00808 0.557488 7.31173 0.276738 6.44128 0.25Z"
-                    fill="white" />
-                </g>
-                <defs>
-                  <clipPath id="clip0_3041_10909">
-                    <rect width="49" height="15" fill="white" />
-                  </clipPath>
-                </defs>
-              </svg></a>
-            <a href="#" class="smb-payment-icon"><svg xmlns="http://www.w3.org/2000/svg" width="37"
-                                                      height="23" viewBox="0 0 37 23" fill="none">
-                <g clip-path="url(#clip0_3041_10915)">
-                  <path
-                    d="M37.0003 11.0909C37.0003 17.2036 32.0501 22.1662 25.9249 22.1662C19.8123 22.1662 14.8496 17.2161 14.8496 11.0909C14.8496 4.97826 19.7998 0.015625 25.9249 0.015625C32.0376 0.015625 37.0003 4.96576 37.0003 11.0909Z"
-                    fill="#959595" />
-                  <path
-                    d="M11.0003 0.0124992C4.92512 0.0500003 0 5.00014 0 11.0878C0 17.2005 4.96262 22.1631 11.0753 22.1631C13.9503 22.1631 16.5629 21.0756 18.5255 19.2755C18.9255 18.913 19.3005 18.513 19.6505 18.088H17.3754C17.0754 17.7255 16.8004 17.338 16.5504 16.9505H20.463C20.7005 16.5755 20.913 16.1755 21.113 15.7629H15.9129C15.7379 15.3879 15.5754 14.9879 15.4504 14.6004H21.5755C21.9505 13.5004 22.1505 12.3128 22.1505 11.0878C22.1505 10.2753 22.063 9.47527 21.9005 8.71275H15.1254C15.2129 8.32524 15.3129 7.92523 15.4379 7.55022H21.5755C21.438 7.1377 21.2755 6.75019 21.1005 6.36268H15.9129C16.1004 5.96267 16.3129 5.57516 16.5504 5.20015H20.463C20.2005 4.78764 19.913 4.38762 19.6005 4.01261H17.4254C17.7629 3.6126 18.1379 3.23759 18.538 2.88758C16.5754 1.10003 13.9503 0 11.0878 0C11.0378 0.0125004 11.0253 0.0124992 11.0003 0.0124992Z"
-                    fill="#959595" />
-                  <path
-                    d="M35.8898 16.875C35.9523 16.875 36.0148 16.8875 36.0648 16.925C36.1273 16.95 36.1648 17 36.2023 17.0625C36.2398 17.125 36.2523 17.175 36.2523 17.2375C36.2523 17.3 36.2398 17.3625 36.2023 17.4125C36.1648 17.475 36.1273 17.5125 36.0648 17.55C36.0023 17.575 35.9523 17.6 35.8898 17.6C35.8273 17.6 35.7648 17.5875 35.7148 17.55C35.6523 17.5125 35.6148 17.475 35.5773 17.4125C35.5398 17.35 35.5273 17.3 35.5273 17.2375C35.5273 17.175 35.5398 17.1125 35.5773 17.0625C35.6148 17 35.6523 16.9625 35.7148 16.925C35.7773 16.8875 35.8273 16.875 35.8898 16.875ZM35.8898 16.9375C35.8398 16.9375 35.7898 16.95 35.7398 16.975C35.6898 17 35.6523 17.0375 35.6273 17.0875C35.6023 17.1375 35.5898 17.1875 35.5898 17.2375C35.5898 17.2875 35.6023 17.3375 35.6273 17.3875C35.6523 17.4375 35.6898 17.475 35.7398 17.5C35.7898 17.525 35.8398 17.5375 35.8898 17.5375C35.9398 17.5375 35.9898 17.525 36.0398 17.5C36.0898 17.475 36.1273 17.4375 36.1523 17.3875C36.1773 17.3375 36.1898 17.2875 36.1898 17.2375C36.1898 17.1875 36.1773 17.1375 36.1523 17.0875C36.1273 17.0375 36.0898 17 36.0398 16.975C35.9898 16.95 35.9398 16.9375 35.8898 16.9375ZM35.7398 17.4375V17.05H35.8773C35.9273 17.05 35.9523 17.05 35.9773 17.0625C36.0023 17.075 36.0148 17.0875 36.0273 17.1C36.0398 17.1125 36.0398 17.1375 36.0398 17.1625C36.0398 17.1875 36.0273 17.2125 36.0148 17.2375C35.9898 17.2625 35.9648 17.275 35.9398 17.275C35.9523 17.275 35.9648 17.2875 35.9773 17.3C35.9898 17.3125 36.0148 17.3375 36.0398 17.375L36.0898 17.45H35.9773L35.9398 17.3875C35.9148 17.3375 35.8898 17.3125 35.8773 17.3C35.8648 17.2875 35.8523 17.2875 35.8273 17.2875H35.7898V17.45L35.7398 17.4375ZM35.8023 17.2125H35.8773C35.9148 17.2125 35.9398 17.2125 35.9523 17.2C35.9648 17.1875 35.9773 17.175 35.9773 17.1625C35.9773 17.15 35.9773 17.1375 35.9648 17.1375C35.9523 17.125 35.9523 17.125 35.9398 17.1125C35.9273 17.1125 35.9023 17.1 35.8773 17.1H35.8023V17.2125Z"
-                    fill="white" />
-                  <path
-                    d="M14.7442 14.261L14.8942 13.261C14.8192 13.261 14.6942 13.2985 14.5942 13.2985C14.1817 13.2985 14.1317 13.0735 14.1692 12.9235L14.5692 10.911H15.1942L15.3192 9.77346H14.7317L14.8567 9.08594H13.6317C13.6067 9.11094 12.9316 12.961 12.9316 13.436C12.9316 14.136 13.3191 14.436 13.8692 14.436C14.2942 14.411 14.6192 14.2985 14.7442 14.261Z"
-                    fill="white" />
-                  <path
-                    d="M15.1191 12.3532C15.1191 14.0158 16.2192 14.4158 17.1567 14.4158C18.0193 14.4158 18.4693 14.2158 18.4693 14.2158L18.6818 13.0782C18.6818 13.0782 17.9568 13.3782 17.3568 13.3782C16.0942 13.3782 16.3067 12.4282 16.3067 12.4282L18.7443 12.4407C18.7443 12.4407 18.8943 11.6782 18.8943 11.3657C18.8943 10.5907 18.4693 9.64062 17.1817 9.64062C15.9942 9.64062 15.1191 10.9157 15.1191 12.3532ZM17.1817 10.6907C17.8443 10.6907 17.7193 11.4407 17.7193 11.5032H16.4067C16.4192 11.4282 16.5442 10.6907 17.1817 10.6907Z"
-                    fill="white" />
-                  <path
-                    d="M24.6567 14.266L24.8692 12.9784C24.8692 12.9784 24.2942 13.2659 23.8942 13.2659C23.0567 13.2659 22.7192 12.6284 22.7192 11.9409C22.7192 10.5533 23.4442 9.77827 24.2442 9.77827C24.8442 9.77827 25.3317 10.1158 25.3317 10.1158L25.5192 8.86574C25.5192 8.86574 24.9442 8.45322 24.3317 8.45322C22.4942 8.44072 21.4316 9.72827 21.4316 11.9534C21.4316 13.4284 22.2067 14.4285 23.6192 14.4285C24.0192 14.4285 24.6567 14.266 24.6567 14.266Z"
-                    fill="white" />
-                  <path
-                    d="M8.25592 9.64844C7.4434 9.64844 6.83088 9.91095 6.83088 9.91095L6.65587 10.9234C6.65587 10.9234 7.16839 10.7109 7.94341 10.7109C8.38092 10.7109 8.70593 10.7609 8.70593 11.1234C8.70593 11.3359 8.66843 11.4235 8.66843 11.4235C8.66843 11.4235 8.31842 11.3985 8.15592 11.3985C7.00588 11.3985 6.06836 11.836 6.06836 13.1485C6.06836 14.186 6.76838 14.4235 7.20589 14.4235C8.04341 14.4235 8.36842 13.8985 8.38092 13.8985L8.36842 14.336H9.40595L9.86846 11.0859C9.88096 9.69844 8.66843 9.64844 8.25592 9.64844ZM8.43092 12.286C8.45592 12.486 8.38092 13.4235 7.6684 13.4235C7.30589 13.4235 7.20589 13.1485 7.20589 12.9735C7.20589 12.6485 7.38089 12.261 8.24342 12.261C8.45592 12.261 8.40592 12.286 8.43092 12.286Z"
-                    fill="white" />
-                  <path
-                    d="M10.9832 14.3892C11.2457 14.3892 12.7708 14.4517 12.7708 12.8892C12.7708 11.4266 11.3707 11.7141 11.3707 11.1266C11.3707 10.8391 11.5958 10.7391 12.0208 10.7391C12.1833 10.7391 12.8208 10.7891 12.8208 10.7891L12.9708 9.75156C12.9708 9.75156 12.5583 9.66406 11.8833 9.66406C11.0082 9.66406 10.1207 10.0141 10.1207 11.2016C10.1207 12.5517 11.5958 12.4142 11.5958 12.9892C11.5958 13.3642 11.1832 13.4017 10.8707 13.4017C10.3207 13.4017 9.82071 13.2142 9.82071 13.2267L9.6582 14.2517C9.6832 14.2517 9.99571 14.3892 10.9832 14.3892Z"
-                    fill="white" />
-                  <path
-                    d="M34.3855 8.71094L34.173 10.2984C34.173 10.2984 33.723 9.68597 33.0355 9.68597C31.723 9.68597 31.0605 10.986 31.0605 12.486C31.0605 13.4485 31.5355 14.3986 32.523 14.3986C33.2355 14.3986 33.623 13.911 33.623 13.911L33.573 14.3361H34.723L35.623 8.72344L34.3855 8.71094ZM33.873 11.7985C33.873 12.4235 33.5605 13.2485 32.923 13.2485C32.498 13.2485 32.298 12.886 32.298 12.336C32.298 11.4235 32.7105 10.8235 33.223 10.8235C33.6605 10.811 33.873 11.111 33.873 11.7985Z"
-                    fill="white" />
-                  <path
-                    d="M1.86918 14.3282L2.5817 10.0906L2.6817 14.3282H3.49423L5.00677 10.0906L4.33175 14.3282H5.54429L6.46932 8.71562L4.55676 8.70312L3.41923 12.1407L3.38172 8.71562H1.61917L0.681641 14.3282H1.86918Z"
-                    fill="white" />
-                  <path
-                    d="M20.0461 14.3393C20.3836 12.3892 20.5086 10.8516 21.5087 11.1641C21.6462 10.4141 21.9962 9.75158 22.1462 9.42657C22.1462 9.42657 22.0962 9.35156 21.7837 9.35156C21.2587 9.35156 20.5461 10.4266 20.5461 10.4266L20.6461 9.76408H19.5461L18.8086 14.3393H20.0461Z"
-                    fill="white" />
-                  <path
-                    d="M27.1211 9.64844C26.3086 9.64844 25.6961 9.91095 25.6961 9.91095L25.5211 10.9235C25.5211 10.9235 26.0336 10.711 26.8086 10.711C27.2461 10.711 27.5711 10.761 27.5711 11.1235C27.5711 11.336 27.5336 11.4235 27.5336 11.4235C27.5336 11.4235 27.1836 11.3985 27.0211 11.3985C25.8711 11.3985 24.9336 11.836 24.9336 13.1486C24.9336 14.1861 25.6336 14.4236 26.0711 14.4236C26.9086 14.4236 27.2336 13.8986 27.2461 13.8986L27.2336 14.3361H28.2711L28.7336 11.086C28.7461 9.69844 27.5461 9.64844 27.1211 9.64844ZM27.3086 12.286C27.3336 12.486 27.2586 13.4236 26.5461 13.4236C26.1836 13.4236 26.0836 13.1486 26.0836 12.9736C26.0836 12.6485 26.2586 12.261 27.1211 12.261C27.3211 12.261 27.2711 12.286 27.3086 12.286Z"
-                    fill="white" />
-                  <path
-                    d="M29.934 14.3361C30.1215 12.8986 30.4715 10.886 31.3965 11.161C31.534 10.4109 31.3965 10.4109 31.0965 10.4109C30.5715 10.4109 30.4465 10.4359 30.4465 10.4359L30.5465 9.77344H29.4465L28.709 14.3486H29.934V14.3361Z"
-                    fill="white" />
-                  <path
-                    d="M15.0519 13.9142L15.2019 12.9141C15.1269 12.9141 15.0019 12.9516 14.9019 12.9516C14.4894 12.9516 14.4519 12.7391 14.4769 12.5766L14.8144 10.5266H15.4394L15.5894 9.41408H15.0019L15.1269 8.72656H13.9519C13.9269 8.75156 13.252 12.6016 13.252 13.0766C13.252 13.7767 13.6394 14.0767 14.1894 14.0767C14.6019 14.0642 14.9394 13.9392 15.0519 13.9142Z"
-                    fill="black" />
-                  <path
-                    d="M15.4238 11.9985C15.4238 13.661 16.5239 14.0611 17.4614 14.0611C18.3239 14.0611 18.7114 13.8736 18.7114 13.8736L18.9239 12.736C18.9239 12.736 18.2614 13.0235 17.6739 13.0235C16.4114 13.0235 16.6239 12.0735 16.6239 12.0735H19.0239C19.0239 12.0735 19.1739 11.311 19.1739 10.9985C19.1739 10.2235 18.7864 9.27344 17.4864 9.27344C16.2989 9.27344 15.4238 10.5485 15.4238 11.9985ZM17.4864 10.3235C18.1489 10.3235 18.0239 11.0735 18.0239 11.136H16.7239C16.7239 11.061 16.8489 10.3235 17.4864 10.3235Z"
-                    fill="black" />
-                  <path
-                    d="M24.9626 13.9141L25.1751 12.6266C25.1751 12.6266 24.6001 12.9141 24.2001 12.9141C23.3625 12.9141 23.025 12.2766 23.025 11.5891C23.025 10.2015 23.7501 9.42657 24.5501 9.42657C25.1501 9.42657 25.6376 9.76407 25.6376 9.76407L25.8251 8.51406C25.8251 8.51406 25.1126 8.22656 24.5001 8.22656C23.1375 8.22656 21.8125 9.40157 21.8125 11.6266C21.8125 13.1016 22.525 14.0641 23.9376 14.0641C24.3251 14.0641 24.9626 13.9141 24.9626 13.9141Z"
-                    fill="black" />
-                  <path
-                    d="M8.56256 9.28906C7.75004 9.28906 7.13752 9.55156 7.13752 9.55156L6.96252 10.5641C6.96252 10.5641 7.47503 10.3516 8.25005 10.3516C8.68756 10.3516 9.01257 10.4016 9.01257 10.7641C9.01257 10.9766 8.97507 11.0641 8.97507 11.0641C8.97507 11.0641 8.62506 11.0391 8.46255 11.0391C7.43753 11.0391 6.375 11.4766 6.375 12.7891C6.375 13.8266 7.07502 14.0641 7.51253 14.0641C8.35005 14.0641 8.70006 13.5266 8.72506 13.5266L8.68756 13.9766H9.72509L10.1876 10.7266C10.1876 9.33906 8.98757 9.28906 8.56256 9.28906ZM8.81256 11.9391C8.83756 12.1391 8.68756 13.0641 7.97504 13.0641C7.61253 13.0641 7.51253 12.7891 7.51253 12.6141C7.51253 12.2891 7.68754 11.9016 8.55006 11.9016C8.76256 11.9141 8.78756 11.9391 8.81256 11.9391Z"
-                    fill="black" />
-                  <path
-                    d="M11.288 14.0298C11.5505 14.0298 13.0756 14.0923 13.0756 12.5298C13.0756 11.0673 11.6755 11.3548 11.6755 10.7673C11.6755 10.4798 11.9005 10.3797 12.3255 10.3797C12.488 10.3797 13.1256 10.4298 13.1256 10.4298L13.2756 9.39219C13.2756 9.39219 12.8631 9.30469 12.188 9.30469C11.313 9.30469 10.4254 9.65469 10.4254 10.8423C10.4254 12.1923 11.9005 12.0548 11.9005 12.6298C11.9005 13.0048 11.488 13.0423 11.1755 13.0423C10.6254 13.0423 10.1254 12.8548 10.1254 12.8673L9.96289 13.8923C9.98789 13.8923 10.3004 14.0298 11.288 14.0298Z"
-                    fill="black" />
-                  <path
-                    d="M34.7239 8.35938L34.4739 9.93444C34.4739 9.93444 34.0239 9.32191 33.3364 9.32191C32.2614 9.32191 31.3613 10.622 31.3613 12.122C31.3613 13.0846 31.8363 14.0346 32.8239 14.0346C33.5364 14.0346 33.9239 13.5471 33.9239 13.5471L33.8739 13.9721H35.0239L35.9239 8.35938H34.7239ZM34.1739 11.4345C34.1739 12.0595 33.8614 12.8846 33.2239 12.8846C32.7989 12.8846 32.5989 12.5221 32.5989 11.972C32.5989 11.0595 33.0114 10.4595 33.5239 10.4595C33.9614 10.4595 34.1739 10.747 34.1739 11.4345Z"
-                    fill="black" />
-                  <path
-                    d="M2.17542 13.9721L2.88793 9.73444L2.98793 13.9721H3.80045L5.31298 9.73444L4.63797 13.9721H5.8505L6.77552 8.35938H4.91298L3.75045 11.8095L3.68795 8.35938H1.96291L1.02539 13.9721H2.17542Z"
-                    fill="black" />
-                  <path
-                    d="M20.3501 13.9768C20.6876 12.0267 20.7626 10.4391 21.5751 10.7266C21.7126 9.97659 21.8626 9.67658 22.0126 9.36406C22.0126 9.36406 21.9376 9.35156 21.7876 9.35156C21.2626 9.35156 20.8626 10.0766 20.8626 10.0766L20.9626 9.41406H19.8625L19.125 13.9893H20.3501V13.9768Z"
-                    fill="black" />
-                  <path
-                    d="M27.6719 9.28906C26.8594 9.28906 26.2469 9.55156 26.2469 9.55156L26.0719 10.564C26.0719 10.564 26.5844 10.3515 27.3594 10.3515C27.7969 10.3515 28.1219 10.4015 28.1219 10.764C28.1219 10.9765 28.0844 11.064 28.0844 11.064C28.0844 11.064 27.7344 11.039 27.5719 11.039C26.5469 11.039 25.4844 11.4765 25.4844 12.789C25.4844 13.8265 26.1844 14.064 26.6219 14.064C27.4594 14.064 27.8094 13.5265 27.8344 13.5265L27.7969 13.9765H28.8345L29.297 10.7265C29.297 9.33906 28.0969 9.28906 27.6719 9.28906ZM27.9344 11.939C27.9594 12.139 27.8094 13.064 27.0969 13.064C26.7344 13.064 26.6344 12.789 26.6344 12.614C26.6344 12.289 26.8094 11.9015 27.6719 11.9015C27.8719 11.914 27.8969 11.939 27.9344 11.939Z"
-                    fill="black" />
-                  <path
-                    d="M30.2505 13.9768C30.588 12.0267 30.663 10.4391 31.4755 10.7266C31.613 9.97659 31.763 9.67658 31.913 9.36406C31.913 9.36406 31.838 9.35156 31.688 9.35156C31.163 9.35156 30.763 10.0766 30.763 10.0766L30.863 9.41406H29.7629L29.0254 13.9893H30.2505V13.9768Z"
-                    fill="black" />
-                  <path
-                    d="M35.8898 13.2734C35.9523 13.2734 36.0148 13.2859 36.0648 13.3234C36.1273 13.3484 36.1648 13.3984 36.2023 13.4609C36.2398 13.5234 36.2523 13.5734 36.2523 13.6359C36.2523 13.6984 36.2398 13.7609 36.2023 13.8109C36.1648 13.8734 36.1273 13.9109 36.0648 13.9484C36.0023 13.9859 35.9523 13.9984 35.8898 13.9984C35.8273 13.9984 35.7648 13.9859 35.7148 13.9484C35.6523 13.9109 35.6148 13.8734 35.5773 13.8109C35.5398 13.7484 35.5273 13.6984 35.5273 13.6359C35.5273 13.5734 35.5398 13.5109 35.5773 13.4609C35.6148 13.3984 35.6523 13.3609 35.7148 13.3234C35.7648 13.2859 35.8273 13.2734 35.8898 13.2734ZM35.8898 13.3234C35.8398 13.3234 35.7898 13.3359 35.7398 13.3609C35.6898 13.3859 35.6523 13.4234 35.6273 13.4734C35.6023 13.5234 35.5898 13.5734 35.5898 13.6234C35.5898 13.6734 35.6023 13.7234 35.6273 13.7734C35.6523 13.8234 35.6898 13.8609 35.7398 13.8859C35.7898 13.9109 35.8398 13.9234 35.8898 13.9234C35.9398 13.9234 35.9898 13.9109 36.0398 13.8859C36.0898 13.8609 36.1273 13.8234 36.1523 13.7734C36.1773 13.7234 36.1898 13.6734 36.1898 13.6234C36.1898 13.5734 36.1773 13.5234 36.1523 13.4734C36.1273 13.4234 36.0898 13.3859 36.0398 13.3609C35.9898 13.3484 35.9398 13.3234 35.8898 13.3234ZM35.7273 13.8234V13.4359H35.8648C35.9148 13.4359 35.9398 13.4359 35.9648 13.4484C35.9898 13.4609 36.0023 13.4734 36.0148 13.4859C36.0273 13.4984 36.0273 13.5234 36.0273 13.5484C36.0273 13.5734 36.0148 13.5984 36.0023 13.6234C35.9773 13.6484 35.9523 13.6609 35.9273 13.6609C35.9398 13.6609 35.9523 13.6734 35.9648 13.6859C35.9773 13.6984 36.0023 13.7234 36.0273 13.7609L36.0773 13.8359H35.9773L35.9398 13.7734C35.9148 13.7234 35.8898 13.6984 35.8773 13.6859C35.8648 13.6734 35.8523 13.6734 35.8273 13.6734H35.7898V13.8359L35.7273 13.8234ZM35.7898 13.6109H35.8648C35.9023 13.6109 35.9273 13.6109 35.9398 13.5984C35.9523 13.5859 35.9648 13.5734 35.9648 13.5609C35.9648 13.5484 35.9648 13.5359 35.9523 13.5359C35.9398 13.5234 35.9398 13.5234 35.9273 13.5109C35.9148 13.5109 35.8898 13.4984 35.8648 13.4984H35.7898V13.6109Z"
-                    fill="#785E4D" />
-                </g>
-                <defs>
-                  <clipPath id="clip0_3041_10915">
-                    <rect width="37" height="23" fill="white" />
-                  </clipPath>
-                </defs>
-              </svg></a>
-          </div>
-        </div>
-
-        <!-- Column 3: Data Security -->
-        <div class="smb-footer-column">
-          <h3 class="smb-footer-title">Покупателям</h3>
-          <ul class="smb-footer-links">
-            <li><a href="#">Доставка</a></li>
-            <li><a href="#">Оплата</a></li>
-            <li><a href="#">Возврат</a></li>
-            <li><a href="#">Программа лояльности</a></li>
-            <li><a href="#">Правила приобретения <br> и применения подарочных карт</a></li>
-
-          </ul>
-        </div>
-        <!-- Column 3: Data Security -->
-        <div class="smb-footer-column">
-          <h3 class="smb-footer-title">БЕЗОПАСНОСТЬ ДАННЫХ</h3>
-          <ul class="smb-footer-links">
-            <li><a href="#">Политика обработки персональных данных</a></li>
-            <li><a href="#">Согласие на обработку <br> персональных данных</a></li>
-            <li><a href="#">Публичная оферта</a></li>
-            <li><a href="#">Пользовательское соглашение</a></li>
-            <li><a href="#">Согласие на получение рекламной <br> рассылки</a></li>
-            <li><a href="#">Согласие на обработку <br>персональных данных, собираемых <br>
-                метрическими
-                системами</a>
-            </li>
-            <li><a href="#">Cookies</a></li>
-          </ul>
-        </div>
-
-        <!-- Empty Column for spacing -->
-        <div class="smb-footer-column"></div>
-      </div>
-
-      <div class="smb-footer-bottom">
-        <p class="smb-copyright">© SMB 2025</p>
-        <a href="#" class="smb-developer">Разработано Effect.Web</a>
-      </div>
-    </div>
-
-    <!-- Mobile Version -->
-    <div class="smb-footer-mobile">
-      <div class="smb-mobile-section_item">
-        <div class="smb-mobile-section">
-          <div class="smb-mobile-header">
-            <h3 class="smb-mobile-title">НАВИГАЦИЯ</h3>
-            <span class="smb-mobile-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                height="10" viewBox="0 0 16 10" fill="none">
-                                        <path
-                                          d="M15.7571 1.66542L8.0006 9.42188L0.244141 1.66542L1.13039 0.779167L8.0006 7.64938L14.8708 0.779167L15.7571 1.66542Z"
-                                          fill="#1C1B1F" />
-                                    </svg></span>
-          </div>
-          <div class="smb-mobile-content">
-            <div class="smb-mobile-links">
-              <ul>
-                <li> <a href="product.html">Магазин</a>
-                </li>
-                <li><a href="#">О бренде</a></li>
-                <li><a href="#">Мешковый этап</a></li>
-                <li><a href="#">Подарочные карты</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="smb-mobile-section">
-          <div class="smb-mobile-header">
-            <h3 class="smb-mobile-title">ПОКУПАТЕЛЯМ</h3>
-            <span class="smb-mobile-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                height="10" viewBox="0 0 16 10" fill="none">
-                                        <path
-                                          d="M15.7571 1.66542L8.0006 9.42188L0.244141 1.66542L1.13039 0.779167L8.0006 7.64938L14.8708 0.779167L15.7571 1.66542Z"
-                                          fill="#1C1B1F" />
-                                    </svg></span>
-          </div>
-          <div class="smb-mobile-content">
-            <div class="smb-mobile-links">
-              <ul>
-                <li><a href="#">Доставка</a></li>
-                <li><a href="#">Оплата</a></li>
-                <li><a href="#">Возврат</a></li>
-                <li><a href="#">Программа лояльности</a></li>
-                <li><a href="#">Правила приобретения и применения подарочных карт</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="smb-mobile-section">
-          <div class="smb-mobile-header">
-            <h3 class="smb-mobile-title">ПЛАТЕЖНЫЕ СИСТЕМЫ</h3>
-            <span class="smb-mobile-arrow">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="10" viewBox="0 0 16 10"
-                                         fill="none">
-                                        <path
-                                          d="M15.7571 1.66542L8.0006 9.42188L0.244141 1.66542L1.13039 0.779167L8.0006 7.64938L14.8708 0.779167L15.7571 1.66542Z"
-                                          fill="#1C1B1F" />
-                                    </svg>
-                                </span>
-          </div>
-          <div class="smb-mobile-content">
-            <div class="smb-mobile-links">
-              <div class="smb-payment-icons">
-                <svg xmlns="http://www.w3.org/2000/svg" width="54" height="15"
-                     viewBox="0 0 54 15" fill="none">
-                  <g clip-path="url(#clip0_3041_10906)">
-                    <path fill-rule="evenodd" clip-rule="evenodd"
-                          d="M0.0158397 0.0225317C1.6632 0.0225317 3.32639 0.0225317 4.97375 0.0225317C5.74991 0.0069302 6.52607 0.412571 6.95375 1.05223C7.34975 1.59829 7.4923 2.26915 7.69822 2.90881C8.30014 4.89021 8.88622 6.88721 9.48814 8.8686C9.50398 9.05582 9.77326 9.11823 9.82078 8.93101C10.4385 6.91841 11.0246 4.92141 11.6265 2.90881C11.8325 2.20675 12.0225 1.45788 12.4977 0.865018C12.8145 0.490581 13.2422 0.225352 13.7174 0.100539C14.1293 -0.00867132 14.5411 0.0381333 14.9688 0.0225317C16.426 0.0225317 17.8675 0.00693116 19.3248 0.0381342C19.3089 5.03062 19.3248 10.0075 19.3089 15C17.7408 14.9844 16.1726 15.0156 14.6045 14.9844C14.6045 12.0513 14.6045 9.13383 14.6045 6.20074C14.5886 5.93551 14.1609 5.96672 14.1293 6.20074C13.1947 9.11823 12.2601 12.0513 11.3256 14.9688C10.2168 15 9.10798 14.9688 7.99919 14.9844C7.06463 12.0669 6.14591 9.13383 5.19551 6.21634C5.14799 5.98232 4.86287 5.96671 4.70447 6.10713C4.70447 9.07142 4.70447 12.0201 4.70447 14.9844C3.13631 15 1.56816 14.9844 0 15C0.01584 10.0075 0.0158397 5.01502 0.0158397 0.0225317ZM21.479 0.0225317C23.0472 -0.00867133 24.6153 0.0381371 26.1835 0.00693401C26.2151 2.97122 26.1835 5.93551 26.1993 8.8842C26.326 9.00901 26.5795 9.04022 26.6587 8.8374C27.7041 6.68439 28.7337 4.53137 29.7791 2.36276C30.1118 1.6919 30.3811 0.974226 30.9196 0.428172C31.1572 0.209751 31.4582 -0.00866752 31.8067 0.00693401C33.4065 0.00693401 35.0063 -0.00866752 36.6062 0.00693401C36.6062 4.99942 36.6062 9.97631 36.6062 14.9688C35.038 14.9844 33.4699 14.9844 31.9017 14.9688C31.9017 12.0201 31.9017 9.05582 31.9017 6.10713C31.9017 5.8575 31.4582 5.87311 31.4107 6.10713C30.4286 8.24454 29.4465 10.382 28.4644 12.5194C28.1635 13.1746 27.8783 13.8299 27.419 14.4071C27.1655 14.7192 26.8012 15 26.3735 14.9844C24.742 14.9844 23.1105 14.9844 21.479 14.9844C21.479 10.0075 21.479 5.01502 21.479 0.0225317ZM38.903 6.85601C43.8292 6.8248 48.7554 6.856 53.6817 6.8404C53.5233 7.51127 53.0797 8.08853 52.6045 8.58778C51.6858 9.57067 50.3711 10.1635 49.0089 10.1947C47.2031 10.2103 45.4132 10.1947 43.6074 10.1947C43.5916 11.7861 43.6074 13.3774 43.6074 14.9844C42.0393 14.9844 40.4711 14.9844 38.903 14.9844C38.903 12.2853 38.9188 9.57067 38.903 6.85601Z"
-                          fill="black" />
-                    <path fill-rule="evenodd" clip-rule="evenodd"
-                          d="M38.3008 0.0234375C41.9757 0.0234375 45.6664 0.0234375 49.3413 0.0234375C50.3075 0.0858437 51.2421 0.475883 52.0024 1.05314C53.1112 1.91123 53.8557 3.20616 53.9824 4.59469C54.0141 5.09394 53.9982 5.59319 53.919 6.09244C51.6698 6.10804 49.4047 6.09244 47.1554 6.09244C46.3792 6.09244 45.6031 6.12364 44.8269 6.01443C43.1003 5.79601 41.3896 5.09394 40.1541 3.84582C39.1404 2.83172 38.5068 1.44318 38.3008 0.0234375Z"
-                          fill="black" />
-                  </g>
-                  <defs>
-                    <clipPath id="clip0_3041_10906">
-                      <rect width="54" height="15" fill="white" />
-                    </clipPath>
-                  </defs>
-                </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" width="49" height="15"
-                     viewBox="0 0 49 15" fill="none">
-                  <g clip-path="url(#clip0_3041_10909)">
-                    <path d="M17.2617 14.7821L19.7391 0.25H23.7164L21.2256 14.7821H17.2617Z"
-                          fill="black" />
-                    <path
-                      d="M35.6198 0.614974C34.8297 0.320856 33.5977 0 32.0577 0C28.134 0 25.3754 1.96524 25.3486 4.79946C25.3218 6.88503 27.3171 8.04813 28.8304 8.74331C30.3704 9.45187 30.8927 9.90641 30.8927 10.5481C30.8793 11.5241 29.6606 11.9652 28.5224 11.9652C26.9288 11.9652 26.0851 11.7513 24.7862 11.2032L24.2773 10.9759L23.7148 14.2246C24.6389 14.6257 26.353 14.9866 28.134 15C32.2988 15 35.0172 13.0481 35.044 10.0401C35.0574 8.38235 33.9995 7.12567 31.7095 6.09626C30.3168 5.42781 29.4732 4.97326 29.4865 4.29144C29.4865 3.68984 30.2097 3.03476 31.7631 3.03476C33.0621 3.00802 33.9995 3.30214 34.736 3.59626L35.0976 3.77005L35.6198 0.614974Z"
-                      fill="black" />
-                    <path
-                      d="M45.8002 0.265625H42.7335C41.7827 0.265625 41.073 0.519636 40.6579 1.46884L34.7656 14.7843H38.9304C38.9304 14.7843 39.6133 12.9928 39.7606 12.6051C40.2159 12.6051 44.2602 12.6051 44.836 12.6051C44.9565 13.1132 45.3181 14.7843 45.3181 14.7843H49.0007L45.8002 0.265625ZM40.8989 9.63728C41.2337 8.79504 42.4791 5.57311 42.4791 5.57311C42.4523 5.61322 42.8005 4.73087 43.0014 4.18274L43.2692 5.43942C43.2692 5.43942 44.0325 8.91536 44.1932 9.63728H40.8989Z"
-                      fill="black" />
-                    <path
-                      d="M13.9415 0.265625L10.058 10.172L9.64283 8.15332C8.91969 5.82712 6.66993 3.31375 4.15234 2.05707L7.70107 14.7709H11.906L18.133 0.265625H13.9415Z"
-                      fill="black" />
-                    <path
-                      d="M6.44128 0.25H0.0535649L0 0.557489C4.98162 1.76069 8.27591 4.66176 9.64184 8.16443L8.24913 1.47994C8.00808 0.557488 7.31173 0.276738 6.44128 0.25Z"
-                      fill="white" />
-                  </g>
-                  <defs>
-                    <clipPath id="clip0_3041_10909">
-                      <rect width="49" height="15" fill="white" />
-                    </clipPath>
-                  </defs>
-                </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" width="49" height="15"
-                     viewBox="0 0 49 15" fill="none">
-                  <g clip-path="url(#clip0_3041_10909)">
-                    <path d="M17.2617 14.7821L19.7391 0.25H23.7164L21.2256 14.7821H17.2617Z"
-                          fill="black" />
-                    <path
-                      d="M35.6198 0.614974C34.8297 0.320856 33.5977 0 32.0577 0C28.134 0 25.3754 1.96524 25.3486 4.79946C25.3218 6.88503 27.3171 8.04813 28.8304 8.74331C30.3704 9.45187 30.8927 9.90641 30.8927 10.5481C30.8793 11.5241 29.6606 11.9652 28.5224 11.9652C26.9288 11.9652 26.0851 11.7513 24.7862 11.2032L24.2773 10.9759L23.7148 14.2246C24.6389 14.6257 26.353 14.9866 28.134 15C32.2988 15 35.0172 13.0481 35.044 10.0401C35.0574 8.38235 33.9995 7.12567 31.7095 6.09626C30.3168 5.42781 29.4732 4.97326 29.4865 4.29144C29.4865 3.68984 30.2097 3.03476 31.7631 3.03476C33.0621 3.00802 33.9995 3.30214 34.736 3.59626L35.0976 3.77005L35.6198 0.614974Z"
-                      fill="black" />
-                    <path
-                      d="M45.8002 0.265625H42.7335C41.7827 0.265625 41.073 0.519636 40.6579 1.46884L34.7656 14.7843H38.9304C38.9304 14.7843 39.6133 12.9928 39.7606 12.6051C40.2159 12.6051 44.2602 12.6051 44.836 12.6051C44.9565 13.1132 45.3181 14.7843 45.3181 14.7843H49.0007L45.8002 0.265625ZM40.8989 9.63728C41.2337 8.79504 42.4791 5.57311 42.4791 5.57311C42.4523 5.61322 42.8005 4.73087 43.0014 4.18274L43.2692 5.43942C43.2692 5.43942 44.0325 8.91536 44.1932 9.63728H40.8989Z"
-                      fill="black" />
-                    <path
-                      d="M13.9415 0.265625L10.058 10.172L9.64283 8.15332C8.91969 5.82712 6.66993 3.31375 4.15234 2.05707L7.70107 14.7709H11.906L18.133 0.265625H13.9415Z"
-                      fill="black" />
-                    <path
-                      d="M6.44128 0.25H0.0535649L0 0.557489C4.98162 1.76069 8.27591 4.66176 9.64184 8.16443L8.24913 1.47994C8.00808 0.557488 7.31173 0.276738 6.44128 0.25Z"
-                      fill="white" />
-                  </g>
-                  <defs>
-                    <clipPath id="clip0_3041_10909">
-                      <rect width="49" height="15" fill="white" />
-                    </clipPath>
-                  </defs>
-                </svg>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="smb-mobile-section">
-          <div class="smb-mobile-header">
-            <h3 class="smb-mobile-title">БЕЗОПАСНОСТЬ ДАННЫХ</h3>
-            <span class="smb-mobile-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                height="10" viewBox="0 0 16 10" fill="none">
-                                        <path
-                                          d="M15.7571 1.66542L8.0006 9.42188L0.244141 1.66542L1.13039 0.779167L8.0006 7.64938L14.8708 0.779167L15.7571 1.66542Z"
-                                          fill="#1C1B1F" />
-                                    </svg></span>
-          </div>
-          <div class="smb-mobile-content">
-            <div class="smb-mobile-links">
-              <ul>
-                <li><a href="#">Политика обработки персональных данных</a></li>
-                <li><a href="#">Согласие на обработку персональных данных</a></li>
-                <li><a href="#">Публичная оферта</a></li>
-                <li><a href="#">Пользовательское соглашение</a></li>
-                <li><a href="#">Согласие на получение рекламной рассылки</a></li>
-                <li><a href="#">Согласие на обработку персональных данных, собираемых
-                    метрическими
-                    системами</a></li>
-                <li><a href="#">Cookies</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="smb-mobile-section no-dropdown">
-        <div class="smb-mobile-header contacting">
-          <h3 class="smb-mobile-title">КОНТАКТЫ</h3>
-        </div>
-        <ul class="smb-footer-links">
-          <div class="links_main-item">
-
-            <li><a href="tel:88000000000">8(800)000-00-00</a></li>
-            <li><a href="https://wa.me/" target="_blank">WHATSAPP</a></li>
-          </div>
-          <div class="links_main-item">
-            <li><a href="mailto:info@smb.ru">INFO@SMB.RU</a></li>
-
-
-            <li><a href="https://t.me/" target="_blank">TELEGRAM</a></li>
-          </div>
-
-        </ul>
-      </div>
-
-      <div class="smb-mobile-footer">
-        <p class="smb-copyright">© SMB 2025</p>
-        <a href="#" class="smb-developer">Разработано Effect.Web</a>
-      </div>
-    </div>
-  </div>
-</footer>
+@endsection

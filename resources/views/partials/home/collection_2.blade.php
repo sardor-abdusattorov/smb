@@ -15,13 +15,32 @@
                    alt="{{ $product->name }}">
             </a>
 
-            <div class="heart-icon" onclick="toggleHeart(this)">
-              <svg viewBox="0 0 24 24">
-                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5
-                         5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78
-                         1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-              </svg>
-            </div>
+            @php
+              $isActive = false;
+
+              if(auth('web')->check()) {
+                  // Login bo'lgan foydalanuvchi uchun bazadan tekshir
+                  $isActive = \App\Models\WishlistItem::where('frontend_user_id', auth('web')->id())
+                              ->where('product_id', $product->id)
+                              ->exists();
+              } else {
+                // Session strukturangiz 'items' ichida saqlangan
+                $guestData = session('guest_wishlist', null);
+                $guestItems = [];
+                if ($guestData && is_array($guestData)) {
+                    $guestItems = $guestData['items'] ?? [];
+                }
+                $isActive = in_array($product->id, $guestItems);
+              }
+            @endphp
+
+              <div class="heart-icon {{ $isActive ? 'active' : '' }}" onclick="toggleHeart(this)"  data-product-id="{{ $product->id }}">
+                <svg viewBox="0 0 24 24">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5
+                5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78
+                1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                </svg>
+              </div>
 
             <!-- isNew icon -->
             @if($product->is_new_collection)

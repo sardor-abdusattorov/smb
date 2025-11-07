@@ -23,9 +23,8 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
      */
     protected $fillable = [
         'avatar_url',
-        'name',
-        'email',
-        'password',
+        'name','email','password',
+        'role','is_active',
     ];
 
     /**
@@ -35,7 +34,6 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
      */
     protected $hidden = [
         'password',
-        'remember_token',
     ];
 
     /**
@@ -48,6 +46,7 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'is_active'         => 'boolean',
         ];
     }
 
@@ -62,8 +61,20 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
         }
     }
 
+    // public function canAccessPanel(Panel $panel): bool
+    // {
+    //     return true;
+    // }
+
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin';
+    }
+
     public function canAccessPanel(Panel $panel): bool
     {
-        return true;
+        // faqat aktiv adminlar kira oladi
+        return $this->is_active && $this->isAdmin();
     }
+
 }

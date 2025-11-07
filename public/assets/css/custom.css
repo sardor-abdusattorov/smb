@@ -16,3 +16,23 @@
   align-items: center;
   justify-content: center;
 }
+
+.wishlist-btn, .cart-btn{
+  position: relative;
+}
+.wishlist-btn::after,
+.cart-btn::after{
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  right: 5px;
+  width: 8px;
+  height: 8px;
+  background-color: #91BE17;
+  border-radius: 50%;
+  display: none;
+}
+.wishlist-btn.active::after,
+.cart-btn.active::after{
+  display: block;
+}

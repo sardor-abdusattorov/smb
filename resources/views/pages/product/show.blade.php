@@ -9,7 +9,7 @@
 
   <section class="product_catalog">
     <div class="breadcrumb">
-      <a href="">Каталог</a>
+      <a href="{{ route('catalog') }}">Каталог</a>
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
         <mask id="mask0_758_40483" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="12"
               height="12">
@@ -22,7 +22,7 @@
         </g>
       </svg>
 
-      <a href="#">Женские сумки</a>
+      <a href="{{ route('category.show', $product->category->slug) }}">{{ $product->category->name }} сумки</a>
 
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
         <mask id="mask0_758_40483" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="12"
@@ -35,87 +35,105 @@
             fill="#858585" />
         </g>
       </svg>
-      <a href="product.html" class="active">MOSS</a>
+      <a class="active">{{ $product->name }}</a>
 
     </div>
     <!--  -->
     <div class="container">
-      <div class="product">
+      <div class="product" id="product_card">
+
         <div class="product__images">
           <!-- Desktop version -->
           <div class="desktop-images">
             <div class="product-image">
-              <img src="/images/product-page_green-bag.png" alt="Green bag front view"
+
+              <img src="{{ $product->getFirstMediaUrl('preview_image') }}" alt="Green bag front view"
                    id="main-image">
-              <div class="heart-icon" onclick="toggleHeart(this)">
+
+              @php
+                $isActive = false;
+
+                if(auth('frontend')->check()) {
+                    // Login bo'lgan foydalanuvchi uchun bazadan tekshir
+                    $isActive = \App\Models\WishlistItem::where('frontend_user_id', auth('frontend')->id())
+                                ->where('product_id', $product->id)
+                                ->exists();
+                } else {
+                  // Session strukturangiz 'items' ichida saqlangan
+                  $guestData = session('guest_wishlist', null);
+                  $guestItems = [];
+                  if ($guestData && is_array($guestData)) {
+                      $guestItems = $guestData['items'] ?? [];
+                  }
+                  $isActive = in_array($product->id, $guestItems);
+                }
+              @endphp
+
+
+              <div class="heart-icon {{ $isActive ? 'active' : '' }}" onclick="toggleHeart(this)" data-product-id="{{ $product->id }}">
                 <svg viewBox="0 0 24 24">
-                  <path
-                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5
+                5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78
+                1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
                 </svg>
               </div>
+
             </div>
+
+            @foreach($product->getMedia('gallery') as $image)
+
             <div class="product-image">
-              <img src="/images/product-page_green-bag2.png" alt="Model with bag"
+              <img src="{{ $image->getUrl() }}" alt="Model with bag"
                    id="main-image">
             </div>
-            <div class="product-image">
-              <img src="/images/product-page_green-bag3.png" alt="Bag 3/4 view" id="main-image">
-            </div>
-            <div class="product-image">
-              <img src="/images/product-page_green-bag4.png" alt="Bag details" id="main-image">
-            </div>
-            <div class="product-image">
-              <img src="/images/product-page_green-bag5.png" alt="Open bag" id="main-image">
-            </div>
+
+            @endforeach
+
           </div>
 
           <!-- Mobile swiper -->
           <div class="swiper mobile-swiper" style="display: none;">
             <div class="swiper-wrapper">
+
               <div class="swiper-slide">
-                <img src="/images/product-page_green-bag2.png" alt="Model with bag"
-                     id="main-image">
-              </div>
-              <div class="swiper-slide">
-                <img src="/images/product-page_green-bag2.png" alt="Model with bag"
-                     id="main-image">
-              </div>
-              <div class="swiper-slide">
-                <img src="/images/product-page_green-bag3.png" alt="Bag 3/4 view"
-                     id="main-image">
-              </div>
-              <div class="swiper-slide">
-                <img src="/images/product-page_green-bag4.png" alt="Bag details"
+                <img src="{{ $product->getFirstMediaUrl('preview_image') }}" alt="Model with bag"
                      id="main-image">
               </div>
 
+              @foreach($product->getMedia('gallery') as $image)
+                <div class="swiper-slide">
+                  <img src="{{ $image->getUrl() }}" alt="Model with bag"
+                      id="main-image">
+                </div>
+              @endforeach
 
             </div>
             <div class="swiper-pagination"></div>
           </div>
+
         </div>
 
         <div class="product__info" id="product-info">
-          <h1 class="product-title">MOSS</h1>
+          <h1 class="product-title">{{ $product->name }}</h1>
 
+          @if($product->variants->isNotEmpty())
+          
           <div class="color-options">
             <div class="color-options__list">
-              <input type="radio" id="color-yellow" name="color" value="yellow">
-              <label for="color-yellow" class="color-yellow"></label>
 
-              <input type="radio" id="color-pink" name="color" value="pink">
-              <label for="color-pink" class="color-pink"></label>
+               @foreach($product->variants as $key => $variant)
+                @if($variant->color_code)
 
-              <input type="radio" id="color-brown" name="color" value="brown">
-              <label for="color-brown" class="color-brown"></label>
+                <input type="radio" id="color-{{ $variant->name }}" name="color" value="{{ $variant->color_code }}" {{ $key == 0 ? 'checked' : '' }}>
+                <label for="color-yellow" class="color-yellow" style="background: {{ $variant->color_code }}"></label>
 
-              <input type="radio" id="color-beige" name="color" value="beige">
-              <label for="color-beige" class="color-beige"></label>
-
-              <input type="radio" id="color-navy" name="color" value="navy">
-              <label for="color-navy" class="color-navy"></label>
+                @endif
+              @endforeach
+              
             </div>
           </div>
+
+          @endif
 
           <div class="material-options">
             <div class="material-options__buttons">
@@ -150,10 +168,18 @@
           </div>
 
           <div class="buttons">
-            <button class="buttons__add-to-cart">ДОБАВИТЬ В КОРЗИНУ</button>
+            <button class="buttons__add-to-cart btn-add-cart" data-product-id="{{ $product->id }}">ДОБАВИТЬ В КОРЗИНУ</button>
+            <div class="heart-icon  d-lg-none d-block {{ $isActive ? 'active' : '' }}" onclick="toggleHeart(this)" data-product-id="{{ $product->id }}">
+                <svg viewBox="0 0 24 24">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5
+                5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78
+                1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                </svg>
+              </div>
           </div>
 
         </div>
+
       </div>
     </div>
 
@@ -519,20 +545,55 @@
       <h2 class="section-title2">НАзвание модели</h2>
 
       <div class="products-grid">
+
         <!-- Product 1 -->
-        <div class="product-card">
-          <a href="product.html" class="product-image">
 
-            <img src="/images/section_bg-bag5.png" alt="Mini Rosa Handbag">
+        {{-- @dd($new_products) --}}
+        @if($new_products->isNotEmpty())
+        @foreach($new_products as $product)
+
+        <div class="product-card">
+          <a href="{{ route('product.show', [
+              'category'    => $product->category->slug,
+              'subcategory' => $product->subcategory->slug,
+              'product'     => $product->slug,
+          ]) }}" class="product-image">
+
+            <img src="{{ $product->getFirstMediaUrl('preview_image')}}" alt="{{ $product->name }}">
           </a>
-          <div class="heart-icon" onclick="toggleHeart(this)">
-            <svg viewBox="0 0 24 24">
-              <path
-                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-            </svg>
-          </div>
+
+          @php
+              $isActive = false;
+
+              if(auth('frontend')->check()) {
+                  // Login bo'lgan foydalanuvchi uchun bazadan tekshir
+                  $isActive = \App\Models\WishlistItem::where('frontend_user_id', auth('frontend')->id())
+                              ->where('product_id', $product->id)
+                              ->exists();
+              } else {
+                // Session strukturangiz 'items' ichida saqlangan
+                $guestData = session('guest_wishlist', null);
+                $guestItems = [];
+                if ($guestData && is_array($guestData)) {
+                    $guestItems = $guestData['items'] ?? [];
+                }
+                $isActive = in_array($product->id, $guestItems);
+              }
+            @endphp
+
+            <div class="heart-icon {{ $isActive ? 'active' : '' }}" onclick="toggleHeart(this)" data-product-id="{{ $product->id }}">
+              <svg viewBox="0 0 24 24">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5
+              5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78
+              1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              </svg>
+            </div>
+
           <!-- isНОВОЕ icon -->
+          @if ($product->is_new_collection == 1)
+         
           <div class="isnew-icon">
+
             <svg width="39" height="102" viewBox="0 0 39 102" fill="none"
                  xmlns="http://www.w3.org/2000/svg">
               <rect x="0.5" y="0.5" width="38" height="101" stroke="#91BE17" />
@@ -541,177 +602,38 @@
             </svg>
 
           </div>
+
+          @endif
+
           <div class="product-info">
-            <div class="product-brand">MINI ROSA</div>
+            <div class="product-brand">{{ $product->name }}</div>
             <div class="product-price_item">
-              <div class="old-product-price">29 000 ₽</div>
-              <div class="product-price">21 000 ₽</div>
+              <div class="old-product-price">{{ number_format($product->old_price, 0, ',', ' ') }} ₽</div>
+              <div class="product-price">{{ number_format($product->price, 0, ',', ' ') }} ₽</div>
             </div>
 
             <div class="color-options">
-              <span class="color-option" style="background-color: #5E4F37;"></span>
-              <span class="color-option" style="background-color: #A86738;"></span>
-              <span class="color-option" style="background-color: #000000;"></span>
-              <span class="color-option" style="background-color: #DEDEDE;"></span>
-              <span class="color-option" style="background-color: #FF5733;"></span>
-              <span class="color-option" style="background-color: #33FF57;"></span>
-              <span class="color-option" style="background-color: #3357FF;"></span>
-              <span class="color-option" style="background-color: #F3FF33;"></span>
-              <span class="color-option" style="background-color: #FF33F3;"></span>
-              <span class="color-option" style="background-color: #33FFF3;"></span>
-              <span class="color-option" style="background-color: #FF9933;"></span>
-              <span class="color-option" style="background-color: #9933FF;"></span>
-              <span class="color-option" style="background-color: #33FF99;"></span>
-              <span class="color-option" style="background-color: #FF3399;"></span>
-              <span class="color-option" style="background-color: #99FF33;"></span>
+
+              @foreach($product->variants->take(5) as $variant)
+                @if($variant->color_code)
+                  <span class="color-option" style="background-color: {{ $variant->color_code }};"></span>
+                @endif
+              @endforeach
+
+              @if($product->variants->count() > 5)
+                <span class="color-option more">
+                +{{ $product->variants->count() - 5 }}
+              </span>
+              @endif
+
             </div>
+              
           </div>
         </div>
 
-        <!-- Product 2 -->
-        <div class="product-card">
-          <a href="product.html" class="product-image">
+         @endforeach
+        @endif
 
-            <img src="/images/section_bg-bag2.png" alt="Mini Rosa Handbag Black">
-          </a>
-          <div class="heart-icon" onclick="toggleHeart(this)">
-            <svg viewBox="0 0 24 24">
-              <path
-                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-            </svg>
-
-          </div>
-          <!-- isnew icon -->
-          <div class="isnew-icon">
-            <svg width="39" height="102" viewBox="0 0 39 102" fill="none"
-                 xmlns="http://www.w3.org/2000/svg">
-              <rect x="0.5" y="0.5" width="38" height="101" stroke="#91BE17" />
-              <text x="15" y="110" font-size="16" fill="#91BE17"
-                    transform="rotate(-90 5,90)">НОВОЕ</text>
-            </svg>
-
-          </div>
-          <div class="product-info">
-            <div class="product-brand">MINI ROSA</div>
-            <div class="product-price_item">
-              <div class="old-product-price">29 000 ₽</div>
-              <div class="product-price">21 000 ₽</div>
-            </div>
-            <div class="color-options">
-              <span class="color-option" style="background-color: #5E4F37;"></span>
-              <span class="color-option" style="background-color: #A86738;"></span>
-              <span class="color-option" style="background-color: #000000;"></span>
-              <span class="color-option" style="background-color: #DEDEDE;"></span>
-              <span class="color-option" style="background-color: #FF5733;"></span>
-              <span class="color-option" style="background-color: #33FF57;"></span>
-              <span class="color-option" style="background-color: #3357FF;"></span>
-              <span class="color-option" style="background-color: #F3FF33;"></span>
-              <span class="color-option" style="background-color: #FF33F3;"></span>
-              <span class="color-option" style="background-color: #33FFF3;"></span>
-              <span class="color-option" style="background-color: #FF9933;"></span>
-              <span class="color-option" style="background-color: #9933FF;"></span>
-              <span class="color-option" style="background-color: #33FF99;"></span>
-              <span class="color-option" style="background-color: #FF3399;"></span>
-              <span class="color-option" style="background-color: #99FF33;"></span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 3 -->
-        <div class="product-card">
-          <a href="product.html" class="product-image">
-
-            <img src="/images/section_bg-bag6.png" alt="Moss Handbag">
-          </a>
-          <div class="heart-icon" onclick="toggleHeart(this)">
-            <svg viewBox="0 0 24 24">
-              <path
-                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-            </svg>
-          </div>
-          <!-- isnew icon -->
-          <div class="isnew-icon">
-            <svg width="39" height="102" viewBox="0 0 39 102" fill="none"
-                 xmlns="http://www.w3.org/2000/svg">
-              <rect x="0.5" y="0.5" width="38" height="101" stroke="#91BE17" />
-              <text x="15" y="110" font-size="16" fill="#91BE17"
-                    transform="rotate(-90 5,90)">НОВОЕ</text>
-            </svg>
-
-          </div>
-          <div class="product-info">
-            <div class="product-brand">MINI ROSA</div>
-            <div class="product-price_item">
-              <div class="old-product-price">29 000 ₽</div>
-              <div class="product-price">21 000 ₽</div>
-            </div>
-            <div class="color-options">
-              <span class="color-option" style="background-color: #5E4F37;"></span>
-              <span class="color-option" style="background-color: #A86738;"></span>
-              <span class="color-option" style="background-color: #000000;"></span>
-              <span class="color-option" style="background-color: #DEDEDE;"></span>
-              <span class="color-option" style="background-color: #FF5733;"></span>
-              <span class="color-option" style="background-color: #33FF57;"></span>
-              <span class="color-option" style="background-color: #3357FF;"></span>
-              <span class="color-option" style="background-color: #F3FF33;"></span>
-              <span class="color-option" style="background-color: #FF33F3;"></span>
-              <span class="color-option" style="background-color: #33FFF3;"></span>
-              <span class="color-option" style="background-color: #FF9933;"></span>
-              <span class="color-option" style="background-color: #9933FF;"></span>
-              <span class="color-option" style="background-color: #33FF99;"></span>
-              <span class="color-option" style="background-color: #FF3399;"></span>
-              <span class="color-option" style="background-color: #99FF33;"></span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 4 -->
-        <div class="product-card">
-          <a href="product.html" class="product-image">
-
-            <img src="/images/section_bg-bag7.png" alt="Mini Rosa Blue Handbag">
-          </a>
-          <div class="heart-icon" onclick="toggleHeart(this)">
-            <svg viewBox="0 0 24 24">
-              <path
-                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-            </svg>
-          </div>
-          <!-- isnew icon -->
-          <div class="isnew-icon">
-            <svg width="39" height="102" viewBox="0 0 39 102" fill="none"
-                 xmlns="http://www.w3.org/2000/svg">
-              <rect x="0.5" y="0.5" width="38" height="101" stroke="#91BE17" />
-              <text x="15" y="110" font-size="16" fill="#91BE17"
-                    transform="rotate(-90 5,90)">НОВОЕ</text>
-            </svg>
-
-          </div>
-          <div class="product-info">
-            <div class="product-brand">MINI ROSA</div>
-            <div class="product-price_item">
-              <div class="old-product-price">29 000 ₽</div>
-              <div class="product-price">21 000 ₽</div>
-            </div>
-            <div class="color-options">
-              <span class="color-option" style="background-color: #5E4F37;"></span>
-              <span class="color-option" style="background-color: #A86738;"></span>
-              <span class="color-option" style="background-color: #000000;"></span>
-              <span class="color-option" style="background-color: #DEDEDE;"></span>
-              <span class="color-option" style="background-color: #FF5733;"></span>
-              <span class="color-option" style="background-color: #33FF57;"></span>
-              <span class="color-option" style="background-color: #3357FF;"></span>
-              <span class="color-option" style="background-color: #F3FF33;"></span>
-              <span class="color-option" style="background-color: #FF33F3;"></span>
-              <span class="color-option" style="background-color: #33FFF3;"></span>
-              <span class="color-option" style="background-color: #FF9933;"></span>
-              <span class="color-option" style="background-color: #9933FF;"></span>
-              <span class="color-option" style="background-color: #33FF99;"></span>
-              <span class="color-option" style="background-color: #FF3399;"></span>
-              <span class="color-option" style="background-color: #99FF33;"></span>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -719,44 +641,47 @@
   <x-footer/>
 
   <script>
-    const handbagSwiper = new Swiper('.handbag2-gallery__slider', {
-      slidesPerView: 3.2,
-      spaceBetween: 4,
-      loop: true,
-      autoplay: {
-        delay: 0,
-        disableOnInteraction: false,
-        pauseOnMouseEnter: false,
-        reverseDirection: false
-      },
-      speed: 4500,
-      freeMode: false,
-      slidesPerGroup: 1,
-      effect: 'slide',
-      breakpoints: {
-        320: {
-          slidesPerView: 1.3,
-          spaceBetween: 4
-        },
-        480: {
-          slidesPerView: 2.2,
-          spaceBetween: 4
-        },
-        768: {
-          slidesPerView: 3.2,
-          spaceBetween: 4
-        }
-      },
-      on: {
-        init: function() {
-          this.wrapperEl.style.transitionTimingFunction = 'linear';
-        }
-      }
-    });
-    setInterval(() => {
-      if (handbagSwiper.autoplay && !handbagSwiper.autoplay.running) {
-        handbagSwiper.autoplay.start();
-      }
-    }, 1000);
+
+    // const handbagSwiper = new Swiper('.handbag2-gallery__slider', {
+    //   slidesPerView: 3.2,
+    //   spaceBetween: 4,
+    //   loop: true,
+    //   autoplay: {
+    //     delay: 0,
+    //     disableOnInteraction: false,
+    //     pauseOnMouseEnter: false,
+    //     reverseDirection: false
+    //   },
+    //   speed: 4500,
+    //   freeMode: false,
+    //   slidesPerGroup: 1,
+    //   effect: 'slide',
+    //   breakpoints: {
+    //     320: {
+    //       slidesPerView: 1.3,
+    //       spaceBetween: 4
+    //     },
+    //     480: {
+    //       slidesPerView: 2.2,
+    //       spaceBetween: 4
+    //     },
+    //     768: {
+    //       slidesPerView: 3.2,
+    //       spaceBetween: 4
+    //     }
+    //   },
+    //   on: {
+    //     init: function() {
+    //       this.wrapperEl.style.transitionTimingFunction = 'linear';
+    //     }
+    //   }
+    // });
+
+    // setInterval(() => {
+    //   if (handbagSwiper.autoplay && !handbagSwiper.autoplay.running) {
+    //     handbagSwiper.autoplay.start();
+    //   }
+    // }, 1000);
+  
   </script>
 @endsection

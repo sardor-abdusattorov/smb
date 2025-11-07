@@ -11,6 +11,9 @@
 
         {{-- Подкатегории --}}
         @foreach($subcategories as $subcategory)
+          @if ($subcategory->products->isEmpty())
+            
+          @else
           <a href="{{ route('subcategory.show', [$subcategory->category->slug, $subcategory->slug]) }}"
              class="category-item {{ request()->is($subcategory->category->slug.'/'.$subcategory->slug) ? 'active' : '' }}">
             {{ $subcategory->name }}
@@ -18,6 +21,8 @@
               <span class="category-count">({{ $subcategory->products->count() }})</span>
             @endif
           </a>
+
+          @endif
         @endforeach
       </div>
 

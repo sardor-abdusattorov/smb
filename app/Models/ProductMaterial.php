@@ -28,4 +28,9 @@ class ProductMaterial extends Model
             self::STATUS_INACTIVE => __('app.status.inactive'),
         ];
     }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }

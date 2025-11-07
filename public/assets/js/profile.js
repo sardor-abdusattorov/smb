@@ -1,3 +1,5 @@
+
+
 window.addEventListener("scroll", function () {
   const header = document.querySelector(".header");
   const mobileMenu = document.getElementById("mobileMenu");
@@ -129,9 +131,9 @@ const originalHTML = marqueeContent.innerHTML;
 marqueeContent.innerHTML = originalHTML + originalHTML;
 
 // Agar kerak bo'lsa, heart toggle funksiyasi
-function toggleHeart(heartElement) {
-  heartElement.classList.toggle("active");
-}
+// function toggleHeart(heartElement) {
+//   heartElement.classList.toggle("active");
+// }
 // ================================== marquee-content end
 document.addEventListener("DOMContentLoaded", function () {
   const handbagGallerySwiper = new Swiper(".handbag-gallery__slider", {
@@ -342,13 +344,13 @@ $(document).ready(function () {
     $(".custom_checkbox_input").on("change", validatePhoneForm);
 
     // Telefon → SMS
-    $(document).on("click", ".btn_phone_next", function (e) {
-      e.preventDefault();
-      if ($(this).is(":disabled")) return;
-      $(".step_phone").fadeOut(200, function () {
-        $(".step_sms").fadeIn(200);
-      });
-    });
+    // $(document).on("click", ".btn_phone_next", function (e) {
+    //   e.preventDefault();
+    //   if ($(this).is(":disabled")) return;
+    //   $(".step_phone").fadeOut(200, function () {
+    //     $(".step_sms").fadeIn(200);
+    //   });
+    // });
 
     // SMS → Назад
     $(document).on("click", ".btn_back_phone", function (e) {
@@ -428,9 +430,11 @@ $(document).ready(function () {
   $(".profile-btn").click(function () {
     $(".profile-modal#login").fadeIn();
   });
+
   $(".exit").on("click", function () {
     $(".profile-modal").fadeOut();
   });
+
   // bonus modal open btn
   $(".btn_politic").click(function () {
     $(".profile-modal#politic").fadeIn();
@@ -438,8 +442,9 @@ $(document).ready(function () {
   // inputmask
   $("input[type='tel']").inputmask("+7 (999) 999-99-99");
   //
+
   $(".profile__content").hide();
-  $(".profile__content:first").show();
+  $("#profile__content4").show();
 
   $(".profile__menu a").click(function (e) {
     // e.preventDefault();

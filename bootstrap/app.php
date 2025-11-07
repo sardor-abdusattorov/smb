@@ -17,6 +17,9 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
+            'auth' => \App\Http\Middleware\Authenticate::class, // MUHIM!
+            // ixtiyoriy: custom middleware aliaslari ham shu yerda:
+            'auth.home' => \App\Http\Middleware\EnsureAuthenticatedOrHome::class,
             /**** OTHER MIDDLEWARE ALIASES ****/
 //            'localize' => LaravelLocalizationRoutes::class,
 //            'localizationRedirect' => LaravelLocalizationRedirectFilter::class,

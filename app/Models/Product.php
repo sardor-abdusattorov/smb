@@ -64,6 +64,11 @@ class Product extends Model implements HasMedia
         return $this->hasMany(ProductVariant::class);
     }
 
+    public function materials()
+    {
+        return $this->hasMany(ProductMaterial::class);
+    }
+
     public function sizeValues()
     {
         return $this->hasMany(ProductSizeValue::class, 'product_id');

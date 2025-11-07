@@ -15,17 +15,22 @@ class CategoryController extends Controller
             ->orderBy('sort')
             ->get();
 
-        $products = Product::active()
+        $products = Product::active()->whereIn('subcategory_id', $category->subcategories->pluck('id'))
             ->orderBy('updated_at', 'desc')
             ->take(4)
             ->get();
 
-        $new_products = Product::NewProducts()
+        $top_products = Product::active()->whereIn('subcategory_id', $category->subcategories->pluck('id'))
+            ->orderBy('updated_at', 'asc')
+            ->take(2)
+            ->get();
+
+        $new_products = Product::NewProducts()->whereIn('subcategory_id', $category->subcategories->pluck('id'))
             ->orderBy('updated_at', 'desc')
             ->take(4)
             ->get();
 
-        $all_products = Product::active()
+        $all_products = Product::active()->whereIn('subcategory_id', $category->subcategories->pluck('id'))
             ->orderBy('updated_at', 'desc')
             ->paginate(8);
 
@@ -40,6 +45,7 @@ class CategoryController extends Controller
             'new_products'  => $new_products,
             'all_products'  => $all_products,
             'mini_moss'      => $mini_moss,
+            'top_products'      => $top_products,
         ]);
     }
 }

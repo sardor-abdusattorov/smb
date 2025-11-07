@@ -1,3 +1,12 @@
+@php
+    use App\Models\WishlistItem;
+
+    $hasWishlist = false;
+    if (auth('frontend')->check()) {
+        $hasWishlist = WishlistItem::where('frontend_user_id', auth('frontend')->id())->exists();
+    }
+@endphp
+
 <!-- Header Navigation -->
 <header class="header">
   <div class="container">
@@ -37,28 +46,77 @@
         <a href="{{route('search')}}" class="action-btn search-btn d-none d-lg-block">
           <img src="/images/search_icon.svg" alt="search">
         </a>
-        <a href="favorites.html" class="action-btn wishlist-btn d-none d-lg-block">
-          <img src="/images/favourite_icon.svg" alt="search">
+
+        @php
+          $guestItems = \App\Http\Controllers\WishlistController::getGuestWishlistFromSession();
+          $guestCount = count($guestItems);
+          $wishCount = auth('frontend')->check()
+              ? \App\Models\WishlistItem::where('frontend_user_id', auth('frontend')->id())->count()
+              : $guestCount;
+          $hasWishlist = $wishCount > 0;
+        @endphp
+
+        <a href="{{ $hasWishlist ? route('favourites') : '#!' }}"
+          class="action-btn wishlist-btn d-none d-lg-block {{ $hasWishlist ? 'active' : 'disabled' }}">
+          <img src="/images/favourite_icon.svg" alt="wishlist">
+          {{-- @if($wishCount)
+            <span class="wishlist-count">{{ $wishCount }}</span>
+          @endif --}}
         </a>
-        <a href="#" onclick="buyerModal()" class="action-btn cart-btn d-none d-lg-block">
+
+        @php
+          $cartCount = 0;
+          if (auth('frontend')->check()) {
+              $cartCount = \App\Models\CartItem::where('frontend_user_id', auth('frontend')->id())->sum('quantity');
+          } else {
+              $c = session('guest_cart');
+              $cartCount = $c ? array_sum($c['items'] ?? []) : 0;
+          }
+        @endphp
+        <a href="#" onclick="buyerModal()" class="action-btn cart-btn d-none d-lg-block {{ $cartCount > 0 ? 'active' : '' }}">
           <img src="/images/cart_icon.svg" alt="search">
         </a>
-        <a href="#!" class="action-btn profile-btn d-none d-lg-block">
+
+        {{-- <a href="#!" class="action-btn profile-btn d-none d-lg-block">
           <img src="/images/user_icon.svg" alt="search">
-        </a>
+        </a> --}}
+        @auth('frontend')
+          {{-- Login bo‘lgan foydalanuvchi --}}
+          <a href="{{ route('profile.edit') }}" class="action-btn d-none d-lg-flex active_user">
+            {{ strtoupper(substr(auth('frontend')->user()->name, 0, 1)) }}{{ strtoupper(substr(auth('frontend')->user()->lastname, 0, 1)) }}{{ strtoupper(substr(auth('frontend')->user()->middlename, 0, 1)) }}
+          </a>
+        @else
+          {{-- Mehmon (login qilmagan) foydalanuvchi --}}
+          <a href="#!" class="action-btn profile-btn d-none d-lg-block" >
+            <img src="/images/user_icon.svg" alt="Войти">
+          </a>
+        @endauth
+
         <!-- Mobile Actions -->
         <a href="{{route('search')}}" class="action-btn search-btn d-lg-none">
           <img src="/images/search_icon.svg" alt="search">
         </a>
-        <a href="{{route('favourites')}}" class="action-btn wishlist-btn d-lg-none">
-          <img src="/images/favourite_icon.svg" alt="search">
+
+        <a href="{{ $hasWishlist ? route('favourites') : '#!' }}"
+          class="action-btn wishlist-btn d-lg-none {{ $hasWishlist ? 'active' : '' }}"
+          @unless($hasWishlist) onclick="return false" @endunless>
+          <img src="/images/favourite_icon.svg" alt="wishlist">
         </a>
-        <a onclick="buyerModal()" class="action-btn cart-btn d-lg-none">
+
+        <a onclick="buyerModal()"  class="action-btn  cart-btn d-lg-none {{ $cartCount > 0 ? 'active' : '' }}">
           <img src="/images/cart_icon.svg" alt="search">
         </a>
-        <a href="#!" class="action-btn profile-btn d-lg-none">
+
+        @auth('frontend')
+          <a href="{{ route('profile.edit') }}" class="action-btn profile-btn d-flex d-lg-none active_user">
+            {{ strtoupper(substr(auth('frontend')->user()->name, 0, 1)) }}{{ strtoupper(substr(auth('frontend')->user()->lastname, 0, 1)) }}{{ strtoupper(substr(auth('frontend')->user()->middlename, 0, 1)) }}
+          </a>
+        @else
+        <a href="#!" class="action-btn profile-btn d-lg-none active_user">
           <img src="/images/user_icon.svg" alt="search">
         </a>
+        @endauth
+
       </div>
     </nav>
   </div>

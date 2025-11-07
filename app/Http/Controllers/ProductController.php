@@ -34,7 +34,12 @@ class ProductController extends Controller
             abort(404);
         }
 
-        return view('pages.product.show', compact('product'));
+        $new_products = Product::active()
+            ->orderBy('updated_at', 'desc')
+            ->take(4)
+            ->get();
+
+        return view('pages.product.show', compact('product','new_products'));
     }
 
 }
