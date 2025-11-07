@@ -38,8 +38,20 @@ class Product extends Model implements HasMedia
         'old_price'=> 'decimal:2',
     ];
 
+    protected $appends = ['total_stock'];
+
     public const STATUS_ACTIVE   = 1;
     public const STATUS_INACTIVE = 0;
+
+    public function getTotalStockAttribute(): int
+    {
+        return $this->variants()
+            ->with('sizes')
+            ->get()
+            ->sum(function ($variant) {
+                return $variant->sizes->sum('stock');
+            });
+    }
 
     public static function statusOptions(): array
     {

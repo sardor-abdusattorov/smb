@@ -434,9 +434,8 @@ class ProductResource extends Resource
                     ->sortable()
                     ->alignCenter(),
 
-                Tables\Columns\TextColumn::make('variants.sizes_sum_stock')
+                Tables\Columns\TextColumn::make('total_stock')
                     ->label(__('app.label.total_stock'))
-                    ->sum('variants.sizes', 'stock')
                     ->alignCenter()
                     ->toggleable(),
 
